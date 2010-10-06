@@ -1,16 +1,12 @@
 # Angel Velásquez <angvp[at]archlinux.org>
-# October 01, 2010 (Friday, 18:34h) 
+# Last Update: October 06, 2010 (Wednesday, 11:11h)  
 # User prompt shamelessly ripped of from Eike Hein's and scast configs.
 #
  
-#eval `dircolors -b ~/.dircolors`
 ### Global configurations
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
- 
-### I don't know what the hell this does - I just add it because I am cool
-# test -n "$DISPLAY" && export TERM=xterm-color
  
 ### Bash options
 shopt -s checkwinsize
@@ -81,7 +77,7 @@ x () {
 		echo "'$1' is not a valid file"
 	fi
 }  
- 
+function daemon() { sudo /etc/rc.d/$1 $2; } 
 function mktar() { tar czf "${1%%/}.tar.gz" "${1%%/}/"; }
 function mkmine() { sudo chown -R ${USER} ${1:-.}; }
 function calc() { echo "$*" | bc; }
