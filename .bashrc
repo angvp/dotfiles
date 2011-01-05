@@ -31,6 +31,7 @@ alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
 alias v="TERM=xterm && vim" 
+alias ll="ls -la"
 
 ### Exports
 export GTK2_RC_FILES=$HOME/.gtkrc-2.0
@@ -92,8 +93,9 @@ cal
 export PACKAGER="Angel Velasquez <angvp@archlinux.org>"
 export ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
 
-alias mktesting="upchr testing/a64 && mkchr testing/a64 && upchr testing/a32 && mkchr testing/a32"
-alias mkstable="upchr stable/a64 && mkchr stable/a64 && upchr stable/a32 && mkchr stable/a32"
+alias mktesting="upchr testing/a64 && mkchr testing/a64 && upchr t32 && mkchr t32"
+alias mkstable="mkchr a64 && mkchr a32"
+alias mkstaging="upchr staging/a64 && mkchr staging/a64 && upchr s32 && mkchr s32"
 
 # Update the given chroot/all
 function upchr() {
@@ -102,18 +104,25 @@ function upchr() {
             linux32 sudo mkarchroot -u /opt/chroot/stable/a32/root/
             echo -e '\e[1;32mUpdating the \e[1;31mtesting32\e[1;32m chroot.\e[0m'
             linux32 sudo mkarchroot -u /opt/chroot/testing/a32/root/
+            echo -e '\e[1;32mUpdating the \e[1;31mstaging32\e[1;32m chroot.\e[0m'
+            linux32 sudo mkarchroot -u /opt/chroot/staging/a32/root/
             echo -e '\e[1;32mUpdating the \e[1;31mstable64\e[1;32m chroot.\e[0m'
             sudo mkarchroot -u /opt/chroot/stable/a64/root/
             echo -e '\e[1;32mUpdating the \e[1;31mtesting64\e[1;32m chroot.\e[0m'
             sudo mkarchroot -u /opt/chroot/testing/a64/root/ 
+            echo -e '\e[1;32mUpdating the \e[1;31mstaging64\e[1;32m chroot.\e[0m'
+            sudo mkarchroot -u /opt/chroot/staging/a64/root/ 
+
     elif [ ! $1 = "" ]; then
             echo -e '\e[1;32mUpdating the \e[1;31m'$1'\e[1;32m chroot.\e[0m'
             if [ $1 = 'a32' ]; then
                     linux32 sudo mkarchroot -u /opt/chroot/stable/a32/root/
             elif [ $1 = 't32' ]; then
                     linux32 sudo mkarchroot -u /opt/chroot/testing/a32/root/
+            elif [ $1 = 's32' ]; then
+                    linux32 sudo mkarchroot -u /opt/chroot/staging/a32/root
             else
-                    sudo mkarchroot -u /opt/chroots/$1/root/
+                    sudo mkarchroot -u /opt/chroot/$1/root/
             fi
     fi
 }
@@ -123,11 +132,13 @@ function mkchr() {
     if [ ! $1 = "" ]; then
             echo -e '\e[1;32mBuilding package using the \e[1;31m'$1'\e[1;32m chroot.\e[0m'
             if [ $1 = 'a32' ]; then
-                    linux32 sudo makechrootpkg -c -r /opt/chroot/stable/$1/
+                    linux32 sudo makechrootpkg -c -r /opt/chroot/stable/a32/
             elif [ $1 = 't32' ]; then
-                    linux32 sudo makechrootpkg -c -r /opt/chroot/testing/$1/
+                    linux32 sudo makechrootpkg -c -r /opt/chroot/testing/a32/
+            elif [ $1 = 's32' ]; then
+                    linux32 sudo makechrootpkg -c -r /opt/chroot/staging/a32/
             else
-                    sudo makechrootpkg -c -r /opt/chroot/stable/$1/
+                    sudo makechrootpkg -c -r /opt/chroot/$1/
             fi
     fi
 }
@@ -159,6 +170,23 @@ function create_testing_chroots () {
     echo "Created testing32 and testing64 under /opt/chroot/testing/"
 }
 
+
+# Create a set of staging chroots for both architectures
+function create_staging_chroots () {
+    sudo mkdir -p /opt/chroot/staging/{a32,a64} 
+    # 64 Bit Chroot
+    sudo mkarchroot /opt/chroot/staging/a64/root base base-devel sudo
+    sudo $EDITOR /opt/chroot/staging/a64/root/etc/pacman.conf
+    sudo $EDITOR /opt/chroot/staging/a64/root/etc/pacman.d/mirrorlist
+    # 32 Bit Chroot
+    sed -e 's@/etc/pacman.d/mirrorlist@/tmp/mirrorlist@g' /opt/chroot/staging/a64/root/etc/pacman.conf > /tmp/pacman.conf
+    sudo linux32 mkarchroot /opt/chroot/staging/a32/root base base-devel sudo
+    sudo $EDITOR /opt/chroot/staging/a32/root/etc/pacman.conf
+    sudo $EDITOR /opt/chroot/staging/a32/root/etc/pacman.d/mirrorlist
+    echo "Created staging32 and staging64 under /opt/chroot/staging/"
+}
+
+
 function create_ff32_chroot() {
     sudo mkdir -p /opt/chroot/misc/firefox32
     sed -e 's@/etc/pacman.d/mirrorlist@/tmp/mirrorlist@g' /etc/pacman.conf > /tmp/pacman.conf
@@ -171,3 +199,5 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
+export WORKON_HOME=~/virtualenvs/
+source /usr/bin/virtualenvwrapper.sh
