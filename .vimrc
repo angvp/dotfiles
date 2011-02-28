@@ -3,8 +3,7 @@
 " I decided to remove unuseful stuff and add new features
 
 "Fkeys are:
-" F3: hlsearch 
-" F4: nohlsearch 
+" F3: hlsearch / nohlsearch 
 " F5 / F6: run / compile (according filetype) 
 " F7:python help  
 " F8: NerdTree Open / Close 
@@ -171,8 +170,7 @@ nnoremap <F1> :help<Space>
 map <F7> :!python -c 'help()'<left><left>
 
 " Search bindings
-map <F3> :set hlsearch <CR>
-map <F4> :set nohlsearch <CR>
+noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " NERDTree Bindings
 map <F8> :NERDTreeToggle <CR>
