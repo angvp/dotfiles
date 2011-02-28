@@ -16,8 +16,6 @@ shopt -s cdspell
 shopt -s extglob
 shopt -s cmdhist
 shopt -s promptvars
-shopt -s cmdhist
-shopt -s no_empty_cmd_completion
  
 stty -ixoff
  
@@ -42,8 +40,6 @@ export PAGER=most
 export MANPAGER=most
 export mail=~/.mail
 export IGNOREEOF=3
-#- OpenOffice Hax
-export OOO_FORCE_DESKTOP=gnome
 
 ### Prompt
 BGREEN='\[\033[1;32m\]'
@@ -82,8 +78,12 @@ function daemon() { sudo /etc/rc.d/$1 $2; }
 function mktar() { tar czf "${1%%/}.tar.gz" "${1%%/}/"; }
 function mkmine() { sudo chown -R ${USER} ${1:-.}; }
 function calc() { echo "$*" | bc; }
+
+#Python Virtualenv
+export WORKON_HOME=~/virtualenvs/
+source /usr/bin/virtualenvwrapper.sh
  
-# Welcome message
+# Welcome message (Arch banner)
 cat ~/.banner 
 #Calendar
 cal
@@ -194,10 +194,3 @@ function create_ff32_chroot() {
 
 }
 
-# enable bash completion in interactive shells
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-
-export WORKON_HOME=~/virtualenvs/
-source /usr/bin/virtualenvwrapper.sh

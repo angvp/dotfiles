@@ -1,0 +1,18 @@
+# angvp's screenrc file
+# ======================
+# I've to admit that I have been using screen since old epoques and today on
+# 2011 I decided to make this file :)
+
+startup_message off # removing the crappy start message
+
+# Last line helper
+hardstatus alwayslastline "%{yk}( %{Y}%H %{y})%=  %{wk}%?%-Lw%?%{R}(%{W}%n*%f %t%?(%u)%?%{R})%{w}%?%+Lw%?%?%= %{y}( %{Y}load: %l %{y}) (%C %A - %d-%m-%Y)"
+
+# some security shell
+idle 1800 lockscreen
+
+# Screens by default
+screen -t 'htop'  0 /bin/bash -c "htop"
+screen -t 'mtop' 1 /bin/bash -c "mtop"
+screen -t 'vim'  2 vim
+
