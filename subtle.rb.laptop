@@ -75,7 +75,7 @@ screen 1 do
 
   # Content of the top panel
   #top     [ :views, :title, :spacer, :tray, :sublets ]
-  top     [ :views, :center, :tasks, :volume, :wifi, :battery, :tray, :clock ]
+  top     [ :views, :spacer, :tasks, :spacer, :volume, :wifi, :battery, :tray, :clock ]
 
   # Content of the bottom panel
   # bottom  [ :center, :mpd ]
@@ -379,7 +379,7 @@ grab "W-F1", @dmenu
 # Screensaver lock
 grab "W-S-l", "xlock"
 # vim
-grab "W-v", "urxvt -name xterm-color -e vim "
+grab "W-v", "urxvt -name happyhack -e vim "
 # Run Ruby lambdas
 grab "S-F2" do |c|
   puts c.name
