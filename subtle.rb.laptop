@@ -32,7 +32,7 @@ set :padding, [ 0, 0, 0, 0 ]
 
 # Font string either take from e.g. xfontsel or use xft
 #set :font, "-*-*-medium-*-*-*-14-*-*-*-*-*-*-*"
-set :font, "xft:monaco-11"
+set :font, "xft:monaco-13"
 
 # Space around windows
 set :gap, 0
@@ -74,11 +74,9 @@ screen 1 do
   stipple false
 
   # Content of the top panel
-  #top     [ :views, :title, :spacer, :tray, :sublets ]
   top     [ :views, :spacer, :tasks, :spacer, :volume, :wifi, :battery, :tray, :clock ]
 
   # Content of the bottom panel
-  # bottom  [ :center, :mpd ]
   bottom [ :mpd, :temp, :weather ]
 end
 
@@ -127,8 +125,8 @@ color :sublets_bg,       "#202020"
 color :sublets_border,   "#303030"
 
 # Colors of panel
-color :panel_fg,        "#757575"
-color :panel_bg,        "#202020"
+color :stipple,        "#757575"
+color :panel,        "#202020"
 
 # Border colors of active/inactive windows
 color :client_active,   "#303030"
@@ -291,15 +289,15 @@ gravity :gimp_dock,      [ 100,   0,  10, 100 ]
 #  grab "C-y", :SubtleEscape
 
 # Jump to view1, view2, ...
-grab "W-S-1", :ViewJump1
-grab "W-S-2", :ViewJump2
-grab "W-S-3", :ViewJump3
-grab "W-S-4", :ViewJump4
-grab "W-S-5", :ViewJump5
-grab "W-S-6", :ViewJump6
-grab "W-S-7", :ViewJump7
-grab "W-S-8", :ViewJump8
-grab "W-S-9", :ViewJump9
+# grab "W-S-1", :ViewJump1
+# grab "W-S-2", :ViewJump2
+# grab "W-S-3", :ViewJump3
+# grab "W-S-4", :ViewJump4
+# grab "W-S-5", :ViewJump5
+# grab "W-S-6", :ViewJump6
+# grab "W-S-7", :ViewJump7
+# grab "W-S-8", :ViewJump8
+# grab "W-S-9", :ViewJump9
 
 # Switch current view
 grab "W-1", :ViewSwitch1
@@ -359,27 +357,33 @@ grab "W-Up",    :WindowUp
 grab "W-Right", :WindowRight
 
 # Kill current window
-grab "W-S-k", :WindowKill
+grab "W-S-c", :WindowKill
 
 # Cycle between given gravities
-grab "W-KP_7", [ :top_left,     :top_left66,     :top_left33     ]
-grab "W-KP_8", [ :top,          :top66,          :top33          ]
-grab "W-KP_9", [ :top_right,    :top_right66,    :top_right33    ]
-grab "W-KP_4", [ :left,         :left66,         :left33         ]
-grab "W-KP_5", [ :center,       :center66,       :center33       ]
-grab "W-KP_6", [ :right,        :right66,        :right33        ]
-grab "W-KP_1", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
-grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
-grab "W-KP_3", [ :bottom_right, :bottom_right66, :bottom_right33 ]
+grab "W-S-7", [ :top_left,     :top_left66,     :top_left33     ]
+grab "W-S-8", [ :top,          :top66,          :top33          ]
+grab "W-S-9", [ :top_right,    :top_right66,    :top_right33    ]
+grab "W-S-u", [ :left,         :left66,         :left33         ]
+grab "W-S-i", [ :center,       :center66,       :center33       ]
+grab "W-S-o", [ :right,        :right66,        :right33        ]
+grab "W-S-j", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
+grab "W-S-k", [ :bottom,       :bottom66,       :bottom33       ]
+grab "W-S-l", [ :bottom_right, :bottom_right66, :bottom_right33 ]
 
 # Exec programs
 grab "W-Return", "urxvt"
 @dmenu = "dmenu_run -fn 'xft:Monaco:pixelsize=12' -nb '#181818' -nf '#989898' -sb '#181818' -sf '#FFCC00' -p 'Run : '"
 grab "W-F1", @dmenu
 # Screensaver lock
-grab "W-S-l", "xlock"
+grab "W-C-l", "xlock"
 # vim
 grab "W-v", "urxvt -name happyhack -e vim "
+# ssh invitado (irc)
+grab "W-i", "urxvt -name irc -e irc"
+# musique
+grab "W-m", "urxvt -name musique -e ncmpcpp"
+# screenshot
+grab "Print", "import -w root screenshoot-$(date +%d%m%y-%H%M).jpg"
 # Run Ruby lambdas
 grab "S-F2" do |c|
   puts c.name
@@ -495,7 +499,7 @@ end
 # Simple tags
 tag "terms" do
   match "xterm|[u]?rxvt"
-  exclude "vim|happyhack"
+  exclude "vim|happyhack|irc|musique|ncmpcpp|ncmpc"
 end
 tag "browser", "uzbl|opera|firefox|navigator"
 
@@ -521,7 +525,7 @@ end
 
 # Modes
 tag "media" do
-  match "mplayer|sonata|smplayer|ncmpc"
+  match "mplayer|sonata|smplayer|ncmpcpp|musique|ncmpc"
   float true
 #  stick true
 end
@@ -563,7 +567,7 @@ tag "mail" do
 end
 
 tag "irc" do
-  match "weechat-curses|xchat"
+  match "weechat-curses|xchat|irc"
   float true
 end
 
