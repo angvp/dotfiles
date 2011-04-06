@@ -39,8 +39,8 @@ set :resize, true
 set :padding, [ 0, 0, 0, 0 ]
 
 # Font string either take from e.g. xfontsel or use xft
-#set :font, "-*-*-medium-*-*-*-14-*-*-*-*-*-*-*"
-set :font, "xft:monaco-11"
+set :font, "-*-*-medium-*-*-*-14-*-*-*-*-*-*-*"
+#set :font, "xft:monaco-11"
 
 # Space around windows
 set :gap, 0
@@ -83,10 +83,10 @@ screen 1 do
 
   # Content of the top panel
   #top     [ :views, :title, :spacer, :tray, :sublets ]
-  top     [ :views, :center, :title, :volume, :notify, :tray, :clock ]
+  top     [ :views, :spacer, :tasks, :spacer, :volume, :clock, :tray  ]
 
   # Content of the bottom panel
-  bottom  [ :mpd, :separator, :pacman, :separator, :storage ]
+  bottom  [ :mpd ]
   # bottom [ ]
 end
 
@@ -135,15 +135,15 @@ color :sublets_bg,       "#202020"
 color :sublets_border,   "#303030"
 
 # Colors of panel
-color :panel_fg,        "#757575"
-color :panel_bg,        "#202020"
+color :stipple,        "#757575"
+color :panel,        "#202020"
 
 # Border colors of active/inactive windows
 color :client_active,   "#303030"
 color :client_inactive, "#202020"
 
 # Background color of root background
-color :background,      "#3d3d3d"
+# color :background,      "#3d3d3d"
 
 # Color of the separator
 color :separator,       "#757575"
@@ -382,12 +382,16 @@ grab "W-KP_3", [ :bottom_right, :bottom_right66, :bottom_right33 ]
 
 # Exec programs
 grab "W-Return", "urxvt"
-@dmenu = "dmenu_run -fn 'xft:monaco-10' -nb '#181818' -nf '#989898' -sb '#181818' -sf '#FFCC00' -p 'Run : '"
-# grab "W-F1", "@dmenu"
-grab "W-F1", "gmrun"
-grab "W-F2", "@dmenu"
+
+@dmenu = "dmenu_run -fn '-*-profont-medium-*-*-*-*-120-*-*-*-*-*-*' -nb '#181818' -nf '#989898' -sb '#181818' -sf '#FFCC00' -p 'Run : ' "
+grab "W-F1", @dmenu
+
 # Screensaver lock
-grab "W-S-l", "xlock"
+grab "W-S-l", "xscreensaver-command -lock"
+# IRC
+grab "W-i", "urxvt -name irc -e irc "
+# Dev
+grab "W-v", "urxvt -name hack -e vim "
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -502,12 +506,15 @@ end
 #
 
 # Simple tags
-tag "terms",   "xterm|[u]?rxvt|gmrun"
-tag "browser", "uzbl|opera|firefox|navigator|gmrun"
+tag "terms", do
+  match "xterm|[u]?rxvt|gmrun"
+  exclude "irc|hack"
+end
+tag "browser", "uzbl|opera|firefox|navigator"
 
 # Placement
 tag "editor" do
-  match  "[g]?vim|geany"
+  match  "[g]?vim|geany|gnome-terminal|hack"
   resize true
 end
 
@@ -559,17 +566,17 @@ tag "im" do
 end
 
 tag "testing" do
-  match "gnome-terminal|fceux|chromium|gmrun"
+  match "gnome-terminal|fceux|chromium|gmrun|thunar"
   float true
 end
 
 tag "mail" do
-  match "thunderbird|gmrun"
+  match "Mail"
   float true
 end
 
 tag "irc" do
-  match "weechat-curses|xchat|gmrun"
+  match "irc|xchat"
   float true
 end
 
@@ -613,7 +620,7 @@ view "media", "media"
 sublet :clock do
   interval      10
   foreground    "#eeeeee"
-  background    "#000000"
+  background    "#3d3d3d"
   format_string "%I:%M:%p %Z"
 end
 #
