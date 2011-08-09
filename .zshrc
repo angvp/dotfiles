@@ -5,7 +5,15 @@
 # stuff from people from #archlinux-tu.
 #
 # Thanks to Bluewind, jelly1 and CryptoCrack for let me see their configs .
-#
+
+
+# history stuff
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+# path
+export PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
 
 # Aliases
 alias ls='ls --color=auto -hF'
@@ -45,7 +53,6 @@ setprompt () {
         # Use colorized output, necessary for prompts and completions.
         autoload -U colors && colors
         setopt prompt_subst
-
         # make some aliases for the colours: (coud use normal escap.seq's too)
         for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
                 eval PR_$color='%{$fg[${(L)color}]%}'
@@ -54,8 +61,8 @@ setprompt () {
 
         # Check the UID
         if [[ $UID -ge 1000 ]]; then # normal user
-                eval PR_USER='${PR_GREEN}%n${PR_NO_COLOR}'
-                eval PR_USER_OP='${PR_GREEN}%#${PR_NO_COLOR}'
+                eval PR_USER='${PR_YELLOW}%n${PR_NO_COLOR}'
+                eval PR_USER_OP='${PR_GREEN}%#'
         elif [[ $UID -eq 0 ]]; then # root
                 eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
                 eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
@@ -63,7 +70,7 @@ setprompt () {
 
         # Check if we are on SSH or not  --{FIXME}--  always goes to |no SSH|
         if [[ -z "$SSH_CLIENT"  ||  -z "$SSH2_CLIENT" ]]; then 
-                eval PR_HOST='${PR_GREEN}%M${PR_NO_COLOR}' # no SSH
+                eval PR_HOST='${PR_RED}%M${PR_NO_COLOR}' # no SSH
         else 
                 eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
         fi
@@ -71,7 +78,7 @@ setprompt () {
                 eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
         fi
         # set the prompt
-        PS1=$'${PR_CYAN}[${PR_USER}${PR_CYAN}@${PR_HOST}${PR_CYAN}][${PR_BLUE}%~${PR_CYAN}]${PR_USER_OP} '
+        PS1=$'${PR_CYAN}[${PR_USER}${PR_BLUE}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP} '
         PS2=$'%_>'
 }
 setprompt
@@ -85,7 +92,17 @@ bindkey '[7~' beginning-of-line
 bindkey '[8~' end-of-line
 bindkey '[5~' history-search-backward
 bindkey '[6~' history-search-forward 
-
+bindkey '^R'    history-incremental-search-backward
+#- Arch Linux Maintainance stuff
+export PACKAGER="Angel Velasquez <angvp@archlinux.org>"
+export ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
+# Development
+pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
+perlvirtualenv() { source ~/perl5/perlbrew/etc/zshrc }
+#radio functions
+rockandpop() {
+    mplayer http://streaming.fmrockandpop.com/rockandpop
+}
 #functions
 daemon() {
     sudo /etc/rc.d/$1 $2;
@@ -130,3 +147,11 @@ x() { # decompress archive (to directory $2 if wished for and possible)
         echo "Sorry, '$1' is not a valid archive.\nValid archive types are: \ntar.bz2, tar.gz, tar.xz, tar, gz, \ntbz2, tbz, tgz, lzo, rar \nzip, 7z, xz and lzma\n"
    fi
 }
+
+if [ -f .banner ] ; then
+    ./.banner
+    cal
+else
+    cal
+fi
+
