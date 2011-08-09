@@ -1,38 +1,13 @@
 # angvp .Xdefaults
 ###################
-Xcursor.theme: jimmac
+Xcursor.theme: Jimmac
 Xft*dpi:	    96
 Xft*antialias:	true
 *background:    #121212
 *foreground:    #F6F6F6
-!colors
-!black text
-*color0:           #0d0d0d
-*color8:           #0d0d0d
-!red text
-*color1:           #B73F23
-*color9:           #C74B2E
-!green text
-*color2:           #82B94A
-*color10:          #82B94A
-!yellow text
-*color3:           #C5CF43
-*color11:          #C5CF43
-!blue text
-*color4:           #6C89B1
-*color12:          #6C89B1
-!magenta text
-*color5:           #AA6F90
-*color13:          #AA6F90
-!cyan text
-*color6:           #A673BE
-*color14:          #A673BE
-!white
-*color7:           #EDEDED
-*color15:          #EDEDED
 !URxvt settings
 URxvt*termName:     xterm-color
-URxvt*font:         xft:Monaco:pixelsize=16
+URxvt*font:         xft:Monaco:pixelsize=13
 URxvt.imLocale:     es_AR.UTF-8
 URxvt*transparent:  true
 URxvt*shading:      10
@@ -45,3 +20,4 @@ URxvt*matcher.button:        2
 URxvt.tabbed.secondaryScroll: true
 URxvt.tabbed.urlLauncher:     firefox
 URxvt.tabbed.matcher.button:  2
+# include "/home/angvp/.xcolours/angvp"
