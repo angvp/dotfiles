@@ -7,7 +7,8 @@ Xft*antialias:	true
 *foreground:    #F6F6F6
 !URxvt settings
 URxvt*termName:     xterm-color
-URxvt*font:         xft:Monaco:pixelsize=13
+URxvt*font:         xft:terminus:pixelsize=16:antialias=false
+!URxvt*font:         xft:Monaco:pixelsize=13
 URxvt.imLocale:     es_AR.UTF-8
 URxvt*transparent:  true
 URxvt*shading:      10

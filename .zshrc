@@ -61,7 +61,7 @@ setprompt () {
 
         # Check the UID
         if [[ $UID -ge 1000 ]]; then # normal user
-                eval PR_USER='${PR_YELLOW}%n${PR_NO_COLOR}'
+                eval PR_USER='${PR_BLUE}%n${PR_NO_COLOR}'
                 eval PR_USER_OP='${PR_GREEN}%#'
         elif [[ $UID -eq 0 ]]; then # root
                 eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
@@ -70,15 +70,15 @@ setprompt () {
 
         # Check if we are on SSH or not  --{FIXME}--  always goes to |no SSH|
         if [[ -z "$SSH_CLIENT"  ||  -z "$SSH2_CLIENT" ]]; then 
-                eval PR_HOST='${PR_RED}%M${PR_NO_COLOR}' # no SSH
+                eval PR_HOST='${PR_BLUE}%M${PR_NO_COLOR}' # no SSH
         else 
-                eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
+                eval PR_HOST='${PR_BLUE}%M${PR_NO_COLOR}' #SSH
         fi
         if [[ -f /inchroot ]]; then
                 eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
         fi
         # set the prompt
-        PS1=$'${PR_CYAN}[${PR_USER}${PR_BLUE}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP} '
+        PS1=$'${PR_CYAN}[${PR_USER}${PR_YELLOW}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP}${PR_NO_COLOR} '
         PS2=$'%_>'
 }
 setprompt
@@ -99,10 +99,6 @@ export ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
 # Development
 pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
 perlvirtualenv() { source ~/perl5/perlbrew/etc/zshrc }
-#radio functions
-rockandpop() {
-    mplayer http://streaming.fmrockandpop.com/rockandpop
-}
 #functions
 daemon() {
     sudo /etc/rc.d/$1 $2;
