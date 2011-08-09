@@ -1,0 +1,29 @@
+#angvp color theme 
+
+*foreground: #DDEEDD
+*background: #1C1C1C
+
+!black
+*color0: #1C1C1C
+*color8: #4d4d4d
+!red
+*color1: #D81860
+*color9: #F00060
+!green
+*color2: #AAFF35
+*color10: #A9EEA9
+!yellow
+*color3: #EEEE66
+*color11: #EEEE00
+!blue
+*color4: #66AABB
+*color12: #509ec6
+!magenta
+*color5: #FEA63C
+*color13: #ffa32c
+!cyan
+*color6: #5E7175
+*color14: #526164
+!white
+*color7: #DDEEDD
+*color15: #EFEFEF
