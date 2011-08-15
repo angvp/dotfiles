@@ -6,14 +6,23 @@
 #
 # Thanks to Bluewind, jelly1 and CryptoCrack for let me see their configs .
 
-
-# history stuff
+# Exports
+## history stuff
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-
-# path
-export PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
+## path
+PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
+#other stuff
+GTK2_RC_FILES=$HOME/.gtkrc-2.0
+PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
+#editor
+EDITOR="vim"
+VISUAL="vim"
+PAGER=most
+MANPAGER=most
+mail=~/.mail
+IGNOREEOF=3
 
 # Aliases
 alias ls='ls --color=auto -hF'
@@ -26,16 +35,7 @@ alias cls="clear"
 alias vi="vim"
 alias v="TERM=xterm && vim" 
 alias ll="ls -la"
-
-# Server aliases
-alias cuca="ssh avelasquez@cuca"
-alias olmeca-devel="ssh movilgate@olmeca-devel"
-alias chimango-devel="ssh avelazquez@chimango-devel"
-alias chimango="ssh avelazquez@chimango"
-alias bombo-virtual="ssh avelazquez@bombo-virtual" 
-alias olmeca="ssh avelazquez@olmeca"
-alias deimos="ssh avelasquez@deimos"
-
+alias movilgate="source ~/movilgate.zshrc"
 
 #zsh options
 
@@ -93,15 +93,12 @@ bindkey '[8~' end-of-line
 bindkey '[5~' history-search-backward
 bindkey '[6~' history-search-forward 
 bindkey '^R'    history-incremental-search-backward
-#- Arch Linux Maintainance stuff
-export PACKAGER="Angel Velasquez <angvp@archlinux.org>"
-export ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
 # Development
 pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
 perlvirtualenv() { source ~/perl5/perlbrew/etc/zshrc }
 #functions
 daemon() {
-    sudo /etc/rc.d/$1 $2;
+    sudo rc.d $2 $1;
 }
 
 vc() { # list content of archive but don't unpack
@@ -122,21 +119,21 @@ vc() { # list content of archive but don't unpack
     fi
 }
 
-x() { # decompress archive (to directory $2 if wished for and possible)
+x() { # decompress an archive 
    if [ -f "$1" ] ; then
        case "$1" in
-       *.tar.bz2|*.tgz|*.tbz2|*.tbz) mkdir -v "$2" 2>/dev/null ; tar xvjf "$1" -C "$2" ;;
-       *.tar.gz)             mkdir -v "$2" 2>/dev/null ; tar xvzf "$1" -C "$2" ;;
-       *.tar.xz)             mkdir -v "$2" 2>/dev/null ; tar xvJf "$1" ;;
-       *.tar)             mkdir -v "$2" 2>/dev/null ; tar xvf "$1"  -C "$2" ;;
-       *.rar)             mkdir -v "$2" 2>/dev/null ; 7z x   "$1"     "$2" ;;
-       *.zip)             mkdir -v "$2" 2>/dev/null ; unzip   "$1"  -d "$2" ;;
-       *.7z)             mkdir -v "$2" 2>/dev/null ; 7z x    "$1"   -o"$2" ;;
-       *.lzo)             mkdir -v "$2" 2>/dev/null ; lzop -d "$1"   -p"$2" ;;  
-       *.gz)             gunzip "$1"                       ;;
-       *.bz2)             bunzip2 "$1"                       ;;
-       *.Z)                 uncompress "$1"                       ;;
-       *.xz|*.txz|*.lzma|*.tlz)     xz -d "$1"                           ;; 
+       *.tar.bz2|*.tgz|*.tbz2|*.tbz) tar xvjf   "$1"  ;;
+       *.tar.gz)                     tar xvzf   "$1"  ;;
+       *.tar.xz)                     tar xvJf   "$1"  ;;
+       *.tar)                        tar xvf    "$1"  ;;
+       *.rar)                        7z x       "$1"  ;;
+       *.zip)                        unzip      "$1"  ;;
+       *.7z)                         7z x       "$1"  ;;
+       *.lzo)                        lzop -d    "$1"  ;;  
+       *.gz)                         gunzip     "$1"  ;;
+       *.bz2)                        bunzip2    "$1"  ;;
+       *.Z)                          uncompress "$1"  ;;
+       *.xz|*.txz|*.lzma|*.tlz)      xz -d      "$1"  ;; 
        *)               
        esac
    else
@@ -151,3 +148,71 @@ else
     cal
 fi
 
+#Packager functions
+#- Arch Linux Maintainance stuff
+PACKAGER="Angel Velasquez <angvp@archlinux.org>"
+ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
+
+alias mktesting="upchr testing/a64 && mkchr testing/a64 && upchr t32 && mkchr t32"
+alias mkstable="mkchr a64 && mkchr a32"
+alias mkstaging="upchr staging/a64 && mkchr staging/a64 && upchr s32 && mkchr s32"
+
+ARCH_CHROOT_DIR="/opt/chroot"
+
+upchr() {
+    case "$1" in
+        "a32") echo "Updating stable a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/stable/a32/root/ ;;
+        "a64") echo "Updating stable a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/stable/a64/root/ ;;
+        "t32") echo "Updating testing a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/testing/a32/root/ ;;
+        "t64") echo "Updating testing a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/testing/a64/root/ ;;
+        "t32") echo "Updating staging a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a32/root/ ;;
+        "t64") echo "Updating staging a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a64/root/ ;;
+        "all") echo "Updating all chroots on the system" ; upchr a32 ; upchr a64 ; upchr t32 ; upchr t64 ; upchr s32 ; upchr s64 ;;
+    esac
+}
+
+mkchr() {
+    case "$1" in
+        "a32") echo "Building package using the stable 32bit chroot" ; linux32 sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/stable/a32/ ;;
+        "a64") echo "Building package using the stable 64bit chroot" ; sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/stable/a64/ ;;
+        "t32") echo "Building package using the testing 32bit chroot" ; linux32 sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/testing/a32/ ;;
+        "t64") echo "Building package using the testing 64bit chroot" ; sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/testing/a64/ ;;
+        "s32") echo "Building package using the staging 32bit chroot" ; linux32 sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/staging/a32/ ;;
+        "s64") echo "Building package using the staging 64bit chroot" ; sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/staging/a64/ ;;
+    esac
+}
+
+create_chroots() {
+    case "$1" in
+        "stable") 
+            if [[ -f $ARCH_CHROOT_DIR/$1/a32 || -f $ARCH_CHROOT_DIR/$1/a64 ]]; then 
+                echo "Chroots exists on $ARCH_CHROOT_DIR" 
+            else 
+                sudo mkdir -p $ARCH_CHROOT_DIR/$1/{a32,a64} &&
+                sudo mkarchroot $ARCH_CHROOT_DIR/stable/a64/root base base-devel sudo &&
+                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a64/root/etc/pacman.d/mirrorlist &&
+                # 32 bit chroot
+                sed -e 's@/etc/pacman.d/mirrorlist@/tmp/mirrorlist@g' /opt/chroot/$1/a64/root/etc/pacman.conf > /tmp/pacman.conf
+                sudo linux32 mkarchroot /opt/chroot/$1/a32/root base base-devel sudo
+            fi
+        ;;
+        "testing"|"staging")
+            if [[ -f $ARCH_CHROOT_DIR/$1/a32 || -f $ARCH_CHROOT_DIR/$1/a64 ]]; then 
+                echo "Chroots exists on $ARCH_CHROOT_DIR" 
+            else 
+                sudo mkdir -p $ARCH_CHROOT_DIR/$1/{a32,a64} && 
+                sudo mkarchroot $ARCH_CHROOT_DIR/$1/a64/root base base-devel sudo &&
+                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a64/root/etc/pacman.conf
+                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a64/root/etc/pacman.d/mirrorlist
+                # 32 bit chroot
+                sed -e 's@/etc/pacman.d/mirrorlist@/tmp/mirrorlist@g' /opt/chroot/$1/a64/root/etc/pacman.conf > /tmp/pacman.conf &&
+                sudo linux32 mkarchroot /opt/chroot/$1/a32/root base base-devel sudo
+                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a32/root/etc/pacman.conf
+                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a32/root/etc/pacman.d/mirrorlist
+            fi
+        ;;
+        "all")
+            create_chroots stable && create_chroots testing && create_chroots staging
+        ;;
+esac
+}
