@@ -4,7 +4,7 @@
 
 "Fkeys are:
 " F3: hlsearch / nohlsearch 
-" F5 / F6: compile / run (according filetype) 
+" F5 / F6: run / compile (according filetype) 
 " F7:python help  
 " F8: NerdTree Open / Close 
 " F10: pastetoggle
@@ -26,11 +26,12 @@ set acd
 set incsearch
 set softtabstop=4
 set shiftwidth=4
+set tabstop=4
+set expandtab
 set numberwidth=3
 set textwidth=79
 set ruler
-set termencoding=utf-8
-set guifont=Monaco\ 11
+set guifont=Terminus\ 11
 
 set splitbelow
 set nobackup
@@ -58,8 +59,6 @@ endif
 
 set whichwrap=h,l,<,>,[,]
 set backspace=indent,eol,start
-set tabstop=4
-set expandtab
 set nowrap
 set history=500
 set autoindent
@@ -108,6 +107,7 @@ let html_use_css=1
 iab teh the
 iab DATE <C-R>=strftime("%B %d, %Y (%A, %H:%Mh)")<CR>
 iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org> 
+iab putf8 # -*- coding: utf-8 -*-
 
 " {{{ OmniCpp settings
 " Behaive like a IDE that knows C++:
@@ -149,8 +149,7 @@ au FileType html,xhtml,php,eruby imap ddd <div class=""><left><left>
 
 " Compile and run keymappings
 au FileType c,cpp map <F5> :!./%:r<CR>
-au FileType sh,php,python,ruby map <F5> :!./%<CR>
-au FileType perl map <F5> :!perl -cw %<CR>
+au FileType sh,php,perl,python,ruby map <F5> :!./%<CR>
 au FileType c,cpp map <F6> :make<CR>
 au FileType php map <F6> :!php &<CR>
 au FileType python map <F6> :!python %<CR>
