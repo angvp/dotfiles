@@ -94,6 +94,7 @@ bindkey '[5~' history-search-backward
 bindkey '[6~' history-search-forward 
 bindkey '^R'    history-incremental-search-backward
 # Development
+WORKON_HOME=~/virtualenvs
 pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
 perlvirtualenv() { source ~/perl5/perlbrew/etc/zshrc }
 #functions
@@ -165,8 +166,8 @@ upchr() {
         "a64") echo "Updating stable a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/stable/a64/root/ ;;
         "t32") echo "Updating testing a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/testing/a32/root/ ;;
         "t64") echo "Updating testing a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/testing/a64/root/ ;;
-        "t32") echo "Updating staging a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a32/root/ ;;
-        "t64") echo "Updating staging a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a64/root/ ;;
+        "s32") echo "Updating staging a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a32/root/ ;;
+        "s64") echo "Updating staging a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a64/root/ ;;
         "all") echo "Updating all chroots on the system" ; upchr a32 ; upchr a64 ; upchr t32 ; upchr t64 ; upchr s32 ; upchr s64 ;;
     esac
 }
