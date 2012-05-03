@@ -1,6 +1,6 @@
 # Angel Velásquez <angvp[at]archlinux.org>
 #
-# Last Update: agosto 08, 2011 (lunes, 15:14h)   
+# Last update: mayo 03, 2012 (jueves, 11:38h) 
 # First i've tried to move some of my bash stuff to zsh then I copied sort of
 # stuff from people from #archlinux-tu.
 #
@@ -23,6 +23,8 @@ PAGER=most
 MANPAGER=most
 mail=~/.mail
 IGNOREEOF=3
+GPG_TTY=$(tty)
+export GPG_TTY
 
 # Aliases
 alias ls='ls --color=auto -hF'
@@ -35,7 +37,6 @@ alias cls="clear"
 alias vi="vim"
 alias v="TERM=xterm && vim" 
 alias ll="ls -la"
-alias movilgate="source ~/movilgate.zshrc"
 
 #zsh options
 
@@ -46,6 +47,13 @@ compinit
 # prompt
 ## some better colors for ls
 eval "`dircolors ~/.dircolors`"
+##############
+# git prompt #
+##############
+parse_git_branch () {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
 
 setprompt () {
         # load some modules
@@ -78,21 +86,61 @@ setprompt () {
                 eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
         fi
         # set the prompt
-        PS1=$'${PR_CYAN}[${PR_USER}${PR_YELLOW}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP}${PR_NO_COLOR} '
-        PS2=$'%_>'
+        PROMPT=$'${PR_CYAN}[${PR_USER}${PR_YELLOW}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP}${PR_NO_COLOR} '
+        RPROMPT=$'${PR_GREEN}$(parse_git_branch)${PR_NO_COLOR}'
 }
 setprompt
 
 #keybindings
 
 # URxvt keys
-bindkey '[2~' overwrite-mode
-bindkey '[3~' delete-char
-bindkey '[7~' beginning-of-line
-bindkey '[8~' end-of-line
 bindkey '[5~' history-search-backward
 bindkey '[6~' history-search-forward 
 bindkey '^R'    history-incremental-search-backward
+case "$TERM" in
+    linux)
+        bindkey '\e[1~' beginning-of-line   # Home
+        bindkey '\e[4~' end-of-line     # End
+        bindkey '\e[3~' delete-char     # Del
+        bindkey '\e[2~' overwrite-mode      # Insert
+        ;;
+    screen)
+        # In Linux console
+        bindkey '\e[1~' beginning-of-line   # Home
+        bindkey '\e[4~' end-of-line     # End
+        bindkey '\e[3~' delete-char     # Del
+        bindkey '\e[2~' overwrite-mode      # Insert
+        bindkey '\e[7~' beginning-of-line   # home
+        bindkey '\e[8~' end-of-line     # end
+        # In rxvt
+        bindkey '\eOc' forward-word     # ctrl cursor right
+        bindkey '\eOd' backward-word        # ctrl cursor left
+        bindkey '\e[3~' backward-delete-char    # This should not be necessary!
+        ;;
+    rxvt*)
+        #bindkey '\e[7~' beginning-of-line   # home
+        #bindkey '\e[8~' end-of-line     # end
+        bindkey '\e[1~' beginning-of-line   # home
+        bindkey '\e[4~' end-of-line     # end
+        bindkey '\eOc' forward-word     # ctrl cursor right
+        bindkey '\eOd' backward-word        # ctrl cursor left
+        bindkey '\e[3~' backward-delete-char    # This should not be necessary!
+        bindkey '\e[2~' overwrite-mode      # Insert
+        ;;
+    xterm*)
+        bindkey "\e[1~" beginning-of-line   # Home
+        bindkey "\e[4~" end-of-line     # End
+        bindkey '\e[3~' delete-char     # Del
+        bindkey '\e[2~' overwrite-mode      # Insert
+        ;;
+    sun)
+        bindkey '\e[214z' beginning-of-line       # Home
+        bindkey '\e[220z' end-of-line             # End
+        bindkey '^J'      delete-char             # Del
+        bindkey '^H'      backward-delete-char    # Backspace
+        bindkey '\e[247z' overwrite-mode          # Insert
+        ;;
+esac
 # Development
 WORKON_HOME=~/virtualenvs
 pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
@@ -217,3 +265,10 @@ create_chroots() {
         ;;
 esac
 }
+# Remove every .pyc file from the current path.
+delpyc() {
+    find . -name "*.pyc" -delete
+}
+
+# Let's load some aliases to work
+source ~/work.zshrc
