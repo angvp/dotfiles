@@ -6,13 +6,10 @@
 startup_message off # removing the crappy start message
 
 # Last line helper
-hardstatus alwayslastline "%{yk}( %{Y}%H %{y})%=  %{wk}%?%-Lw%?%{R}(%{W}%n*%f %t%?(%u)%?%{R})%{w}%?%+Lw%?%?%= %{y}( %{Y}load: %l %{y}) (%C %A - %d-%m-%Y)"
+hardstatus alwayslastline "%{yk}( %{Y}%H %{y})%=  %{wk}%?%-Lw%?%{C}(%{W}%n*%f %t%?(%u)%?%{C})%{w}%?%+Lw%?%?%= %{y}( %{Y}load: %l %{y}) (%C %A - %d-%m-%Y)"
 
 # some security shell
-idle 1800 lockscreen
+idle 3600 lockscreen
 
-# Screens by default
-screen -t 'htop'  0 /bin/bash -c "htop"
-screen -t 'mtop' 1 /bin/bash -c "mtop"
-screen -t 'vim'  2 vim
-
+# sorry riBer .. this makes me so much fun.
+vbell_msg "Nooooo... ESTAMOS EN LA B!!!!"
