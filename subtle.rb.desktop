@@ -443,8 +443,6 @@ grab "W-F1", @dmenu
 grab "W-C-l", "xlock"
 # vim
 grab "W-v", "urxvt -name happyhack -e vim "
-# ssh invitado (irc)
-grab "W-i", "urxvt -name irc -e irc"
 # musique
 grab "W-m", "urxvt -name musique -e ncmpcpp"
 # screenshot
@@ -633,7 +631,7 @@ tag "browser", "uzbl|opera|firefox|navigator|midori"
 
 # Placement
 tag "editor" do
-  match  "[g]?vim|geany|happyhack|xterm-color|VCLSalFrame|ninja-ide.py|poedit"
+  match  "[g]?vim|geany|happyhack|xterm-color|VCLSalFrame|ninja-ide.py|poedit|pgadmin3"
   resize true
 end
 
@@ -720,8 +718,8 @@ tag "vbox" do
   float true
 end
 
-tag "irc" do
-  match "weechat-curses|xchat|irc"
+tag "notes" do
+  match "xpad"
   float true
 end
 
@@ -794,7 +792,7 @@ view "gimp",  "gimp_.*"
 view "testing", "testing"
 view "vbox", "vbox"
 view "im", "im"
-view "irc", "irc"
+view "notes", "notes"
 view "media", "media"
 
 #
