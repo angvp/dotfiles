@@ -1,0 +1,113 @@
+##### song format #####
+##
+## for song format you can use:
+##
+## %l - length
+## %f - filename
+## %D - directory
+## %a - artist
+## %t - title
+## %b - album
+## %y - year
+## %n - track number (01/12 -> 01)
+## %N - full track info (01/12 -> 01/12)
+## %g - genre
+## %c - composer
+## %p - performer
+## %d - disc
+## %C - comment
+## %R - begin right alignment
+##
+## you can also put them in { } and then it will be displayed
+## only if all requested values are available and/or define alternate
+## value with { }|{ } eg. {%a - %t}|{%f}
+##
+## Note: Format that is similar to "%a - %t" (i.e. without any additional
+## braces) is equal to "{%a - %t}", so if one of the tags is missing,
+## you'll get nothing.
+##
+## text can also have different color than the main window has,
+## eg. if you want length to be green, write $3%l$9
+##
+## available values:
+##
+## - 0 - default window color (discards all other colors)
+## - 1 - black
+## - 2 - red
+## - 3 - green
+## - 4 - yellow
+## - 5 - blue
+## - 6 - magenta
+## - 7 - cyan
+## - 8 - white
+## - 9 - end of current color
+##
+## Note: colors can be nested.
+##
+
+# Visualizer
+visualizer_in_stereo = "no"
+visualizer_fifo_path = "/tmp/mpd.fifo"
+visualizer_output_name = "FIFO"
+visualizer_type = "wave"
+visualizer_look = "●▋"
+
+# Playlist
+song_columns_list_format = "(50)[yellow]{t|f} (50)[magenta]{ar} (5f)[white]{lr}"
+now_playing_prefix = "$b"
+now_playing_suffix = "$6 >>>>$/b$9"
+playlist_display_mode = "columns"
+autocenter_mode = "no"
+centered_cursor = "no"
+playlist_disable_highlight_delay = "3"
+playlist_separate_albums = "yes"
+
+# Bars
+alternative_header_first_line_format = "$b$1$aqqu$/a$9 $2{%t}|{%f}$9
+$1$atqq$/a$9$/b"
+alternative_header_second_line_format = "{{$6$b%a$/b$9}{ $b$1-$9$/b $8%b$9}{
+    $b$1($9$/b$6%y$9$b$1)$9$/b}}|{%D}"
+    user_interface = "alternative"
+    #progressbar_look = "█▋░"
+    display_bitrate = "yes"
+    titles_visibility = "yes"
+    header_visibility = "yes"
+
+# Browser
+browser_playlist_prefix = "[P]$9 "
+browser_display_mode = "columns"
+
+# Colors
+active_column_color = "yellow"
+active_window_border = "white"
+alternative_ui_separator_color = "black"
+color1 = "white"
+color2 = "black"
+empty_tag_marker = "--"
+empty_tag_color = "white"
+header_window_color = "white"
+main_window_color = "white"
+main_window_highlight_color = "yellow"
+progressbar_color = "yellow"
+state_line_color = "white"
+state_flags_color = "magenta"
+statusbar_color = "magenta"
+visualizer_color = "yellow"
+volume_color = "white"
+
+# Screen
+locked_screen_width_part = "35"
+ask_for_locked_screen_width_part = "no"
+
+# Others
+mpd_music_dir = "/home/angvp/mp3/"
+mpd_communication_mode = "polling"
+clock_display_seconds = "yes"
+startup_screen = "2"
+enable_window_title = "yes"
+search_engine_display_mode = "columns"
+follow_now_playing_lyrics = "yes"
+display_screens_numbers_on_start = "no"
+message_delay_time = "3"
+song_window_title_format = "{%a - }{%t}|{%f}"
+system_encoding = "utf8"
