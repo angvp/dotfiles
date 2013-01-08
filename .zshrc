@@ -6,25 +6,6 @@
 #
 # Thanks to Bluewind, jelly1 and CryptoCrack for let me see their configs .
 
-# Exports
-## history stuff
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
-## path
-PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
-#other stuff
-GTK2_RC_FILES=$HOME/.gtkrc-2.0
-PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
-#editor
-EDITOR="vim"
-VISUAL="vim"
-PAGER=most
-MANPAGER=most
-mail=~/.mail
-IGNOREEOF=3
-GPG_TTY=$(tty)
-export GPG_TTY
 
 # Aliases
 alias ls='ls --color=auto -hF'
@@ -174,6 +155,14 @@ delpyc() {
     find . -name "*.pyc" -delete
 }
 
+signpkg() {
+    for pkg in *.pkg.tar.xz; do gpg --detach-sign $pkg; done
+}
+
+delswp() {
+    find . -name "*.swp" -delete
+}
+
 # Let's load some aliases to work
 #source ~/work.zshrc
 
@@ -183,3 +172,33 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="angvp"
 plugins=(git screen)
 source $ZSH/oh-my-zsh.sh
+
+unsetopt correct_all
+
+bindkey "\e[5~" history-search-backward
+bindkey "\e[6~" history-search-forward
+bindkey "\e[7~" beginning-of-line # Home 
+bindkey "\e[8~" end-of-line # End
+
+# Exports
+## history stuff
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+## path
+PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
+#other stuff
+GTK2_RC_FILES=$HOME/.gtkrc-2.0
+PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
+#editor
+EDITOR="vim"
+VISUAL="vim"
+PAGER=most
+MANPAGER=most
+mail=~/.mail
+IGNOREEOF=3
+GPG_TTY=$(tty)
+LANG=es_VE.utf8
+LC_ALL=es_VE.UTF-8
+export GPG_TTY
+export LANG
