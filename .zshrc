@@ -28,119 +28,23 @@ export GPG_TTY
 
 # Aliases
 alias ls='ls --color=auto -hF'
-alias update='sudo pacman -Syu'
-alias ff="firefox"
 alias cp="cp -ri"
 alias rm="rm -i"
 alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
-alias v="TERM=xterm && vim" 
 alias ll="ls -la"
 
 #zsh options
 
-## Smart completion
-zstyle :compinstall filename "$HOME/.zshrc"
-autoload -Uz compinit
-compinit
 # prompt
+# see my theme on .oh-my-zsh/themes/angvp.theme
+
 ## some better colors for ls
 eval "`dircolors ~/.dircolors`"
-##############
-# git prompt #
-##############
-parse_git_branch () {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-
-
-setprompt () {
-        # load some modules
-        autoload -U zsh/terminfo # Used in the colour alias below
-        # Use colorized output, necessary for prompts and completions.
-        autoload -U colors && colors
-        setopt prompt_subst
-        # make some aliases for the colours: (coud use normal escap.seq's too)
-        for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-                eval PR_$color='%{$fg[${(L)color}]%}'
-        done
-        PR_NO_COLOR="%{$terminfo[sgr0]%}"
-
-        # Check the UID
-        if [[ $UID -ge 1000 ]]; then # normal user
-                eval PR_USER='${PR_BLUE}%n${PR_NO_COLOR}'
-                eval PR_USER_OP='${PR_GREEN}%#'
-        elif [[ $UID -eq 0 ]]; then # root
-                eval PR_USER='${PR_RED}%n${PR_NO_COLOR}'
-                eval PR_USER_OP='${PR_RED}%#${PR_NO_COLOR}'
-        fi      
-
-        # Check if we are on SSH or not  --{FIXME}--  always goes to |no SSH|
-        if [[ -z "$SSH_CLIENT"  ||  -z "$SSH2_CLIENT" ]]; then 
-                eval PR_HOST='${PR_BLUE}%M${PR_NO_COLOR}' # no SSH
-        else 
-                eval PR_HOST='${PR_BLUE}%M${PR_NO_COLOR}' #SSH
-        fi
-        if [[ -f /inchroot ]]; then
-                eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
-        fi
-        # set the prompt
-        PROMPT=$'${PR_CYAN}[${PR_USER}${PR_YELLOW}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP}${PR_NO_COLOR} '
-        RPROMPT=$'${PR_GREEN}$(parse_git_branch)${PR_NO_COLOR}'
-}
-setprompt
 
 #keybindings
 
-# URxvt keys
-bindkey '[5~' history-search-backward
-bindkey '[6~' history-search-forward 
-bindkey '^R'    history-incremental-search-backward
-case "$TERM" in
-    linux)
-        bindkey '\e[1~' beginning-of-line   # Home
-        bindkey '\e[4~' end-of-line     # End
-        bindkey '\e[3~' delete-char     # Del
-        bindkey '\e[2~' overwrite-mode      # Insert
-        ;;
-    screen)
-        # In Linux console
-        bindkey '\e[1~' beginning-of-line   # Home
-        bindkey '\e[4~' end-of-line     # End
-        bindkey '\e[3~' delete-char     # Del
-        bindkey '\e[2~' overwrite-mode      # Insert
-        bindkey '\e[7~' beginning-of-line   # home
-        bindkey '\e[8~' end-of-line     # end
-        # In rxvt
-        bindkey '\eOc' forward-word     # ctrl cursor right
-        bindkey '\eOd' backward-word        # ctrl cursor left
-        bindkey '\e[3~' backward-delete-char    # This should not be necessary!
-        ;;
-    rxvt*)
-        #bindkey '\e[7~' beginning-of-line   # home
-        #bindkey '\e[8~' end-of-line     # end
-        bindkey '\e[1~' beginning-of-line   # home
-        bindkey '\e[4~' end-of-line     # end
-        bindkey '\eOc' forward-word     # ctrl cursor right
-        bindkey '\eOd' backward-word        # ctrl cursor left
-        bindkey '\e[3~' backward-delete-char    # This should not be necessary!
-        bindkey '\e[2~' overwrite-mode      # Insert
-        ;;
-    xterm*)
-        bindkey "\e[1~" beginning-of-line   # Home
-        bindkey "\e[4~" end-of-line     # End
-        bindkey '\e[3~' delete-char     # Del
-        bindkey '\e[2~' overwrite-mode      # Insert
-        ;;
-    sun)
-        bindkey '\e[214z' beginning-of-line       # Home
-        bindkey '\e[220z' end-of-line             # End
-        bindkey '^J'      delete-char             # Del
-        bindkey '^H'      backward-delete-char    # Backspace
-        bindkey '\e[247z' overwrite-mode          # Insert
-        ;;
-esac
 # Development
 WORKON_HOME=~/virtualenvs
 pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
@@ -153,15 +57,15 @@ daemon() {
 vc() { # list content of archive but don't unpack
     if [ -f "$1" ]; then
          case "$1" in
-       *.tar.bz2|*.tbz2|*.tbz) tar -jtf "$1"     ;;
-       *.tar.gz)                     tar -ztf "$1"     ;;
-       *.tar|*.tgz|*.tar.xz)                 tar -tf "$1"     ;;
-       *.gz)                 gzip -l "$1"     ;;    
-       *.rar)                 rar vb "$1"     ;;
-       *.zip)                 unzip -l "$1"     ;;
-       *.7z)                 7z l "$1"     ;;
-       *.lzo)                 lzop -l "$1"     ;;  
-       *.xz|*.txz|*.lzma|*.tlz)      xz -l "$1"     ;;
+       *.tar.bz2|*.tbz2|*.tbz)  tar -jtf "$1"     ;;
+       *.tar.gz)                tar -ztf "$1"     ;;
+       *.tar|*.tgz|*.tar.xz)    tar -tf  "$1"     ;;
+       *.gz)                    gzip -l  "$1"     ;;    
+       *.rar)                   rar vb   "$1"     ;;
+       *.zip)                   unzip -l "$1"     ;;
+       *.7z)                    7z l     "$1"     ;;
+       *.lzo)                   lzop -l  "$1"     ;;  
+       *.xz|*.txz|*.lzma|*.tlz) xz -l    "$1"     ;;
          esac
     else
         echo "Sorry, '$1' is not a valid archive.\nValid archive types are: \ntar.bz2, tar.gz, tar.xz, tar, gz, \ntbz2, tbz, tgz, lzo, rar \nzip, 7z, xz and lzma\n"
@@ -271,4 +175,11 @@ delpyc() {
 }
 
 # Let's load some aliases to work
-source ~/work.zshrc
+#source ~/work.zshrc
+
+# oh my zsh stuff
+
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="angvp"
+plugins=(git screen)
+source $ZSH/oh-my-zsh.sh
