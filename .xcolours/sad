@@ -1,0 +1,38 @@
+# ------------------------------------------------------
+# file:     $HOME/.xcolours/sad
+# author:   Ramon Solis - http://cyb3rpunk.wordpress.com
+# modified: December 2010
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=txt:
+# ------------------------------------------------------
+
+!Cursor
+URxvt.cursorColor: #232323
+URxvt*cursorBlink: true
+
+*foreground: #878787
+*background: #0d0d0d
+
+!black
+*color0: #232323
+*color8: #191818
+!red
+*color1: #834040
+*color9: #5f2f2f
+!green
+*color2: #798a7c
+*color10: #5f6b61
+!yellow
+*color3: #aca892
+*color11: #888573
+!blue
+*color4: #6d8388
+*color12: #5d7074
+!magenta
+*color5: #887781
+*color13: #685b63
+!cyan
+*color6: #989081
+*color14: #777166
+!white
+*color7: #535353
+*color15: #494848
