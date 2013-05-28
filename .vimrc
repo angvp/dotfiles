@@ -107,7 +107,6 @@ let html_use_css=1
 iab teh the
 iab DATE <C-R>=strftime("%B %d, %Y (%A, %H:%Mh)")<CR>
 iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org> 
-iab putf8 # -*- coding: utf-8 -*-
 
 " {{{ OmniCpp settings
 " Behaive like a IDE that knows C++:
@@ -146,6 +145,10 @@ au FileType html,xhtml,php,eruby imap bbb <br />
 au FileType html,xhtml,php,eruby imap aaa <a href=""><left><left>
 au FileType html,xhtml,php,eruby imap iii <img src="" /><left><left><left><left>
 au FileType html,xhtml,php,eruby imap ddd <div class=""><left><left>
+
+" Python abbreviations
+au FileType py iab putf8 # -*- coding: utf-8 -*-
+au FileType py iab debug import pdb; pdb.set_trace()
 
 " Compile and run keymappings
 au FileType c,cpp map <F5> :!./%:r<CR>
@@ -232,4 +235,11 @@ nnoremap <C-e> ggVG
 
 " Turn on syntax highlighting by default (did I mention we don't need to
 " download modes like in emacs? :-)
+filetype off
+
+call pathogen#infect()
+call pathogen#helptags()
+
+filetype plugin indent on
+
 syntax on
