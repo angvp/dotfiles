@@ -147,8 +147,8 @@ au FileType html,xhtml,php,eruby imap iii <img src="" /><left><left><left><left>
 au FileType html,xhtml,php,eruby imap ddd <div class=""><left><left>
 
 " Python abbreviations
-au FileType py iab putf8 # -*- coding: utf-8 -*-
-au FileType py iab debug import pdb; pdb.set_trace()
+au FileType python iab putf8 # -*- coding: utf-8 -*-
+au FileType python iab debug import pdb; pdb.set_trace()
 
 " Compile and run keymappings
 au FileType c,cpp map <F5> :!./%:r<CR>
