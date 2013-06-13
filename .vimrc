@@ -9,7 +9,7 @@
 " F8: NerdTree Open / Close 
 " F10: pastetoggle
 "
-colorscheme wombat
+colorscheme solarized 
 set cmdheight=1
 set encoding=utf-8
 set termencoding=utf-8
@@ -31,7 +31,6 @@ set expandtab
 set numberwidth=3
 set textwidth=79
 set ruler
-set guifont=Terminus\ 11
 
 set splitbelow
 set nobackup
@@ -68,7 +67,7 @@ set shiftround
 set number
 if v:version >= 700
         try
-                setlocal numberwidth=3
+            setlocal numberwidth=3
         catch
         endtry
 "   Uncomment next line to have a cursorline so you know on what line are you. Be careful, 

@@ -15,6 +15,7 @@ alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
 alias ll="ls -la"
+#alias ssh="mosh"
 
 #zsh options
 
@@ -31,9 +32,6 @@ WORKON_HOME=~/virtualenvs
 pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
 perlvirtualenv() { source ~/perl5/perlbrew/etc/zshrc }
 #functions
-daemon() {
-    sudo rc.d $2 $1;
-}
 
 vc() { # list content of archive but don't unpack
     if [ -f "$1" ]; then
@@ -77,79 +75,13 @@ x() { # decompress an archive
 
 if [ -f .banner ] ; then
     ./.banner
-    cal
-else
-    cal
 fi
-
+cal
 #Packager functions
 #- Arch Linux Maintainance stuff
 PACKAGER="Angel Velasquez <angvp@archlinux.org>"
 ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
 
-alias mktesting="upchr testing/a64 && mkchr testing/a64 && upchr t32 && mkchr t32"
-alias mkstable="mkchr a64 && mkchr a32"
-alias mkstaging="upchr staging/a64 && mkchr staging/a64 && upchr s32 && mkchr s32"
-
-ARCH_CHROOT_DIR="/opt/chroot"
-
-upchr() {
-    case "$1" in
-        "a32") echo "Updating stable a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/stable/a32/root/ ;;
-        "a64") echo "Updating stable a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/stable/a64/root/ ;;
-        "t32") echo "Updating testing a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/testing/a32/root/ ;;
-        "t64") echo "Updating testing a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/testing/a64/root/ ;;
-        "s32") echo "Updating staging a32 arch chroot" ; linux32 sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a32/root/ ;;
-        "s64") echo "Updating staging a64 arch chroot" ; sudo mkarchroot -u $ARCH_CHROOT_DIR/staging/a64/root/ ;;
-        "all") echo "Updating all chroots on the system" ; upchr a32 ; upchr a64 ; upchr t32 ; upchr t64 ; upchr s32 ; upchr s64 ;;
-    esac
-}
-
-mkchr() {
-    case "$1" in
-        "a32") echo "Building package using the stable 32bit chroot" ; linux32 sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/stable/a32/ ;;
-        "a64") echo "Building package using the stable 64bit chroot" ; sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/stable/a64/ ;;
-        "t32") echo "Building package using the testing 32bit chroot" ; linux32 sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/testing/a32/ ;;
-        "t64") echo "Building package using the testing 64bit chroot" ; sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/testing/a64/ ;;
-        "s32") echo "Building package using the staging 32bit chroot" ; linux32 sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/staging/a32/ ;;
-        "s64") echo "Building package using the staging 64bit chroot" ; sudo makechrootpkg -c -r $ARCH_CHROOT_DIR/staging/a64/ ;;
-    esac
-}
-
-create_chroots() {
-    case "$1" in
-        "stable") 
-            if [[ -f $ARCH_CHROOT_DIR/$1/a32 || -f $ARCH_CHROOT_DIR/$1/a64 ]]; then 
-                echo "Chroots exists on $ARCH_CHROOT_DIR" 
-            else 
-                sudo mkdir -p $ARCH_CHROOT_DIR/$1/{a32,a64} &&
-                sudo mkarchroot $ARCH_CHROOT_DIR/stable/a64/root base base-devel sudo &&
-                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a64/root/etc/pacman.d/mirrorlist &&
-                # 32 bit chroot
-                sed -e 's@/etc/pacman.d/mirrorlist@/tmp/mirrorlist@g' /opt/chroot/$1/a64/root/etc/pacman.conf > /tmp/pacman.conf
-                sudo linux32 mkarchroot /opt/chroot/$1/a32/root base base-devel sudo
-            fi
-        ;;
-        "testing"|"staging")
-            if [[ -f $ARCH_CHROOT_DIR/$1/a32 || -f $ARCH_CHROOT_DIR/$1/a64 ]]; then 
-                echo "Chroots exists on $ARCH_CHROOT_DIR" 
-            else 
-                sudo mkdir -p $ARCH_CHROOT_DIR/$1/{a32,a64} && 
-                sudo mkarchroot $ARCH_CHROOT_DIR/$1/a64/root base base-devel sudo &&
-                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a64/root/etc/pacman.conf
-                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a64/root/etc/pacman.d/mirrorlist
-                # 32 bit chroot
-                sed -e 's@/etc/pacman.d/mirrorlist@/tmp/mirrorlist@g' /opt/chroot/$1/a64/root/etc/pacman.conf > /tmp/pacman.conf &&
-                sudo linux32 mkarchroot /opt/chroot/$1/a32/root base base-devel sudo
-                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a32/root/etc/pacman.conf
-                sudo $EDITOR $ARCH_CHROOT_DIR/$1/a32/root/etc/pacman.d/mirrorlist
-            fi
-        ;;
-        "all")
-            create_chroots stable && create_chroots testing && create_chroots staging
-        ;;
-esac
-}
 # Remove every .pyc file from the current path.
 delpyc() {
     find . -name "*.pyc" -delete
@@ -170,7 +102,7 @@ delswp() {
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="angvp"
-plugins=(git screen)
+plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
@@ -189,16 +121,17 @@ SAVEHIST=1000
 PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
 #other stuff
 GTK2_RC_FILES=$HOME/.gtkrc-2.0
-PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
 #editor
 EDITOR="vim"
 VISUAL="vim"
-PAGER=most
-MANPAGER=most
+PAGER="most"
+MANPAGER="most"
 mail=~/.mail
 IGNOREEOF=3
 GPG_TTY=$(tty)
-LANG=es_VE.utf8
-LC_ALL=es_VE.UTF-8
 export GPG_TTY
-export LANG
+
+#some work stuff
+source work.zshrc
+
+source /usr/share/zsh/site-contrib/powerline.zsh

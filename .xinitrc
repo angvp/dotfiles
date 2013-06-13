@@ -4,9 +4,11 @@
 #
 # Executed by startx (run your window manager from here)
 xscreensaver -no-splash &
+setxkbmap -model pc104 -layout us -option compose:ralt &
 eval $(cat ~/.fehbg) & 
-setxkbmap es &
-conky &
 wicd-client &
+conky &
+xrdb -merge ~/.Xresources &
 start-pulseaudio-x11 
-ck-launch-session subtle 
+exec awesome
+#exec subtle 

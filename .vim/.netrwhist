@@ -1,5 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/angvp/pkgs/extra/nicotine/trunk/src/nicotine+-1.2.16/files'
-let g:netrw_dirhist_2='/home/angvp/pkgs/extra/lsof/trunk/src/lsof_4.84'
-let g:netrw_dirhist_3='/home/angvp/Downloads/fisa-vim-config/.vim/ftplugin/python'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/home/angvp/projs/github/powerline/packages/archlinux/python2-powerline-git'
