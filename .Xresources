@@ -1,0 +1,30 @@
+! Xterm settings
+Xcursor.theme: Jimmac
+Xft*dpi:	    96
+Xft*antialias:	true
+! URxvt settings
+URxvt*termName:             screen-256color
+URxvt*font:         xft:Ubuntu Mono derivative Powerline:pixelsize=18
+!URxvt*font:         xft:Monaco for Powerline:pixelsize=15
+!URxvt*font:                 xft:Monaco:pixelsize=17
+URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher:  chromium
+URxvt.url-select.underline: true
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.utf-8:                1
+URxvt.imLocale:             es_AR.UTF-8
+URxvt*transparent:          true
+URxvt*shading:              10
+URxvt*scrollBar:            false
+URxvt*geometry:             80x27
+URxvt.cursorBlink:          True
+URxvt*urlLauncher:          firefox 
+URxvt*perl-eXT-common:      selection-autotransform,matcher
+URxvt*matcher.button:       2
+URxvt.tabbed.urlLauncher:   firefox
+URxvt.tabbed.matcher.button:2
+URxvt.tabbed.secondaryScroll:true
+!# include "/home/angvp/.xcolours/angvp"
+# include "/home/angvp/.xcolours/solarized"
