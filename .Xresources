@@ -4,9 +4,13 @@ Xft*dpi:	    96
 Xft*antialias:	true
 ! URxvt settings
 URxvt*termName:             screen-256color
-URxvt*font:         xft:Ubuntu Mono derivative Powerline:pixelsize=18
-!URxvt*font:         xft:Monaco for Powerline:pixelsize=15
-!URxvt*font:                 xft:Monaco:pixelsize=17
+!URxvt*font:         xft:Ubuntu Mono derivative Powerline:pixelsize=18
+URxvt*font:           xft:Monaco for Powerline:pixelsize=17
+URxvt*imFont:         xft:Monaco for Powerline:regular:size=17
+URxvt*boldFont:       xft:Monaco for Powerline:bold:size=17
+URxvt*italicFont:     xft:Monaco for Powerline:italic:size=17
+URxvt*boldItalicFont: xft:Monaco for Powerline:bold:italic:size=17
+
 URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
 URxvt.url-select.launcher:  chromium
 URxvt.url-select.underline: true
