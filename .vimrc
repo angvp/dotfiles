@@ -6,7 +6,6 @@
 " F3: hlsearch / nohlsearch 
 " F5 / F6: run / compile (according filetype) 
 " F7:python help  
-" F8: NerdTree Open / Close 
 " F10: pastetoggle
 "
 colorscheme solarized 
@@ -170,10 +169,7 @@ nnoremap <F1> :help<Space>
 map <F7> :!python -c 'help()'<left><left>
 
 " Search bindings
-noremap <F4> :set hlsearch! hlsearch?<CR>
-
-" NERDTree Bindings
-map <F8> :NERDTreeToggle <CR>
+map <F3> :set hlsearch! hlsearch?<CR>
 
 " Buffer handling
 nnoremap <C-N> :bn!<CR>
@@ -231,14 +227,12 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 " Set up the status line
 nnoremap <C-e> ggVG
+cmap W w
+cmap Q q
 
 " Turn on syntax highlighting by default (did I mention we don't need to
 " download modes like in emacs? :-)
-filetype off
-
-call pathogen#infect()
-call pathogen#helptags()
-
 filetype plugin indent on
-
 syntax on
+
+execute pathogen#infect()
