@@ -8,19 +8,64 @@
 " F7:python help  
 " F10: pastetoggle
 "
-colorscheme solarized 
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" Required
+Bundle 'gmarik/vundle'
+" Fuzzy finder
+Bundle 'kien/ctrlp.vim'
+" cool bars
+Bundle 'bling/vim-airline'
+" colors
+Bundle 'altercation/vim-colors-solarized'
+" class/module browser
+Bundle 'majutsushi/tagbar'
+" Zen coding
+Bundle 'mattn/emmet-vim'
+" Autocompletion
+Bundle 'AutoComplPop'
+" Python code checker
+Bundle 'pyflakes.vim'
+" Search results counter
+Bundle 'IndexedSearch'
+" XML/HTML tags navigation
+Bundle 'matchit.zip'
+" Indent text object
+Bundle 'michaeljsmith/vim-indent-object'
+" Python autocompletion and documentation
+Bundle 'davidhalter/jedi-vim'
+" PEP8 and python-flakes checker
+Bundle 'nvie/vim-flake8'
+" Search and read python documentation
+Bundle 'fs111/pydoc.vim'
+" Automatically sort python imports
+Bundle 'fisadev/vim-isort'
+" Virtualenv
+Bundle 'jmcantrell/vim-virtualenv'
+
+" tunning powerline
+let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'solarized' 
+
+set background=dark
+colorscheme solarized
+let g:airline_solarized_bg = "dark"
+let g:airline_theme = "solarized"
+
 set cmdheight=1
 set encoding=utf-8
 set termencoding=utf-8
 set clipboard=unnamed
 set mouse=a
-set nocompatible
 set shortmess+=aI
 set showmode
 set showcmd
 set modeline
 set wildmenu
-set background=dark
 set acd
 set incsearch
 set softtabstop=4
@@ -227,6 +272,7 @@ inoremap <C-k> <Up>
 inoremap <C-l> <Right>
 " Set up the status line
 nnoremap <C-e> ggVG
+" Sometimes i press shift and W or Q doesn't nothing .. so let's remap them :D
 cmap W w
 cmap Q q
 
@@ -234,5 +280,3 @@ cmap Q q
 " download modes like in emacs? :-)
 filetype plugin indent on
 syntax on
-
-execute pathogen#infect()
