@@ -29,9 +29,19 @@ eval "`dircolors ~/.dircolors`"
 
 # Development
 WORKON_HOME=~/virtualenvs
-pythonvirtualenv() { source /usr/bin/virtualenvwrapper.sh }
+source /usr/bin/virtualenvwrapper.sh 
+
 perlvirtualenv() { source ~/perl5/perlbrew/etc/zshrc }
 #functions
+autoload -U zmv
+
+rmspaces () {
+    zmv '* *' '$f:gs/ /_'
+}
+
+lowerfiles() {
+    zmv '(*)' '${(L)1}'
+}
 
 vc() { # list content of archive but don't unpack
     if [ -f "$1" ]; then
@@ -82,11 +92,6 @@ cal
 PACKAGER="Angel Velasquez <angvp@archlinux.org>"
 ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
 
-# Remove every .pyc file from the current path.
-delpyc() {
-    find . -name "*.pyc" -delete
-}
-
 signpkg() {
     for pkg in *.pkg.tar.xz; do gpg --detach-sign $pkg; done
 }
@@ -102,10 +107,12 @@ delswp() {
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="angvp"
-plugins=(git)
+plugins=(zsh-syntax-highlighting git git-extras python systemd)
 source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
+unsetopt correct
+DISABLE_CORRECTION="true"
 
 bindkey "\e[5~" history-search-backward
 bindkey "\e[6~" history-search-forward
@@ -118,7 +125,7 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 ## path
-PATH=$PATH:/usr/local/bin:$HOME:/usr/bin:$HOME/bin
+PATH=$PATH:/usr/local/bin:/usr/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin
 #other stuff
 GTK2_RC_FILES=$HOME/.gtkrc-2.0
 #editor
@@ -129,9 +136,15 @@ MANPAGER="most"
 mail=~/.mail
 IGNOREEOF=3
 GPG_TTY=$(tty)
+LC_ALL=en_US.UTF-8
 export GPG_TTY
+export EDITOR
+export PAGER
+export VISUAL
+export LC_ALL
 
 #some work stuff
-source work.zshrc
+#source work.zshrc
 
-source /usr/share/zsh/site-contrib/powerline.zsh
+#source /usr/share/zsh/site-contrib/powerline.zsh
+#export PULSE_LATENCY_MSEC=60
