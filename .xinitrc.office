@@ -3,12 +3,12 @@
 # ~/.xinitrc
 #
 # Executed by startx (run your window manager from here)
-xscreensaver -no-splash &
-eval $(cat ~/.fehbg) 
-ck-launch-session subtle 
-#ck-launch-session gnome-session
-# exec startlxde 
-# exec gnome-session
-# exec startkde
-# exec startxfce4
-# ...or the Window Manager of your choice
+#xscreensaver -no-splash &
+setxkbmap -model pc104 -layout us -option compose:ralt &
+eval $(cat ~/.fehbg) & 
+wicd-client &
+conky &
+xrdb -merge ~/.Xresources &
+start-pulseaudio-x11 
+exec awesome
+#exec subtle 
