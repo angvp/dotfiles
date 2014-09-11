@@ -192,6 +192,7 @@ au FileType html,xhtml,php,eruby imap ddd <div class=""><left><left>
 " Python abbreviations
 au FileType python iab putf8 # -*- coding: utf-8 -*-
 au FileType python iab debug import pdb; pdb.set_trace()
+au FileType python iab idebug import ipdb; ipdb.set_trace()
 
 " Compile and run keymappings
 au FileType c,cpp map <F5> :!./%:r<CR>
@@ -275,6 +276,8 @@ nnoremap <C-e> ggVG
 " Sometimes i press shift and W or Q doesn't nothing .. so let's remap them :D
 cmap W w
 cmap Q q
+
+set fillchars+=stl:\ ,stlnc:\
 
 " Turn on syntax highlighting by default (did I mention we don't need to
 " download modes like in emacs? :-)
