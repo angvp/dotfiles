@@ -327,7 +327,8 @@ vicious.register(batpct, vicious.widgets.bat, function(widget, args)
     else
       baticon:set_image(beautiful.widget_batempty)
     end
-  else
+  end
+  if args[1] == "+" then 
     baticon:set_image(beautiful.widget_ac)
     if args[1] == "+" then
       blink = not blink
