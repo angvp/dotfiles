@@ -33,89 +33,9 @@ volspace = wibox.widget.textbox()
 volspace:set_text(" ")
 -- }}}
 
--- {{{ PROCESSOR
 -- Cache
 vicious.cache(vicious.widgets.cpu)
 vicious.cache(vicious.widgets.cpuinf)
-
--- Core 0 freq
-cpufreq = wibox.widget.textbox()
-vicious.register(cpufreq, vicious.widgets.cpuinf, function(widget, args)
-   return string.format("<span color='" .. beautiful.fg_em .. "'>cpu</span>%1.1fGHz", args["{cpu0 ghz}"])
-end, 3000)
-
--- Core 0 graph
-cpugraph0 = awful.widget.graph()
-cpugraph0:set_width(graphwidth):set_height(graphheight)
-cpugraph0:set_border_color(nil)
-cpugraph0:set_border_color(beautiful.bg_widget)
-cpugraph0:set_background_color(beautiful.bg_widget)
-cpugraph0:set_color({
-  type = "linear",
-  from = { 0, graphheight },
-  to = { 0, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(cpugraph0, vicious.widgets.cpu, "$2")
-
--- Core 0 %
-cpupct0 = wibox.widget.textbox()
-cpupct0.fit = function(box,w,h)
-  local w,h = wibox.widget.textbox.fit(box,w,h) return math.max(pctwidth,w),h
-end
-vicious.register(cpupct0, vicious.widgets.cpu, "$2%", 2)
-
--- Core 1 graph
-cpugraph1 = awful.widget.graph()
-cpugraph1:set_width(graphwidth):set_height(graphheight)
-cpugraph1:set_border_color(nil)
-cpugraph1:set_border_color(beautiful.bg_widget)
-cpugraph1:set_background_color(beautiful.bg_widget)
-cpugraph1:set_color({
-  type = "linear",
-  from = { 0, graphheight },
-  to = { 0, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(cpugraph1, vicious.widgets.cpu, "$3")
-
--- Core 1 %
-cpupct1 = wibox.widget.textbox()
-cpupct1.fit = function(box,w,h)
-  local w,h = wibox.widget.textbox.fit(box,w,h) return math.max(pctwidth,w),h
-end
-vicious.register(cpupct1, vicious.widgets.cpu, "$3%", 2)
-
--- Core 2 graph
-cpugraph2 = awful.widget.graph()
-cpugraph2:set_width(graphwidth):set_height(graphheight)
-cpugraph2:set_border_color(nil)
-cpugraph2:set_border_color(beautiful.bg_widget)
-cpugraph2:set_background_color(beautiful.bg_widget)
-cpugraph2:set_color({
-  type = "linear",
-  from = { 0, graphheight },
-  to = { 0, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(cpugraph2, vicious.widgets.cpu, "$4")
-
--- Core 2 %
-cpupct2 = wibox.widget.textbox()
-cpupct2.fit = function(box,w,h)
-  local w,h = wibox.widget.textbox.fit(box,w,h) return math.max(pctwidth,w),h
-end
-vicious.register(cpupct2, vicious.widgets.cpu, "$4%", 2)
--- }}}
 
 -- {{{ MEMORY
 -- Cache
@@ -148,30 +68,6 @@ mempct = wibox.widget.textbox()
 mempct.width = pctwidth
 vicious.register(mempct, vicious.widgets.mem, "$1%", 5)
 
--- Swap bar
-swapbar = awful.widget.progressbar()
-swapbar:set_vertical(false):set_width(graphwidth):set_height(graphheight)
-swapbar:set_ticks(false):set_ticks_size(2)
-swapbar:set_border_color(nil)
-swapbar:set_background_color(beautiful.bg_widget)
-swapbar:set_color({
-  type = "linear",
-  from = { 0, 0 },
-  to = { graphwidth, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(swapbar, vicious.widgets.mem, "$5", 13)
-
--- Swap %
-swappct = wibox.widget.textbox()
-swappct.width = pctwidth
-vicious.register(swappct, vicious.widgets.mem,
-  "<span color='" .. beautiful.fg_em .. "'>swap</span>$5%", 5)
-
--- {{{ FILESYSTEM
 -- Cache
 vicious.cache(vicious.widgets.fs)
 
@@ -272,7 +168,7 @@ vicious.register(weather, vicious.widgets.weather,
 weather:buttons(awful.util.table.join(awful.button({ }, 1, function()
   vicious.force({ weather })
 end)))
--- }}}
+
 
 -- {{{ VOLUME
 -- Cache
@@ -364,3 +260,6 @@ end
 batpct:buttons(awful.util.table.join(awful.button({ }, 1, popup_bat)))
 baticon:buttons(batpct:buttons())
 -- }}}
+--
+
+
