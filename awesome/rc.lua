@@ -373,11 +373,26 @@ clientkeys = awful.util.table.join(
       c.maximized_vertical = not c.maximized_vertical
     end),
 
+  -- Menubar
+  awful.key({ modkey }, "p", function() menubar.show() end),
+
+  -- Brightness
+  awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 15")        end),
+  awful.key({ }, "XF86MonBrightnessUp",   function () awful.util.spawn("xbacklight -inc 15")        end),
+
+  -- Volume
+  awful.key({ }, "XF86AudioRaiseVolume",  function () awful.util.spawn("amixer set Master 7%+")     end),
+  awful.key({ }, "XF86AudioLowerVolume",  function () awful.util.spawn("amixer set Master 7%-")     end),
+  awful.key({ }, "XF86AudioMute",         function () awful.util.spawn("amixer sset Master toggle") end),
+ 
+
+
   -- Scratchify
   awful.key({ modkey, }, "v",
     function(c)
       scratch.pad.set(c, 0.50, 0.50, true)
     end)
+
 )
 
 keynumber = 0
