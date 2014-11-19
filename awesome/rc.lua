@@ -168,6 +168,22 @@ mytasklist.buttons = awful.util.table.join(
       if client.focus then client.focus:raise() end
     end))
 
+--{{{ Keyboard map indicator and changer
+kbdcfg = {}
+kbdcfg.cmd = "setxkbmap"
+kbdcfg.layout = { { "us", "" , "EN" }, { "es", "" , "ES" } } 
+kbdcfg.current = 1  -- us is our default layout
+kbdcfg.widget = wibox.widget.textbox()
+kbdcfg.widget:set_text(" " .. kbdcfg.layout[kbdcfg.current][3] .. " ")
+kbdcfg.switch = function ()
+  kbdcfg.current = kbdcfg.current % #(kbdcfg.layout) + 1
+  local t = kbdcfg.layout[kbdcfg.current]
+  kbdcfg.widget:set_text(" " .. t[3] .. " ")
+  os.execute( kbdcfg.cmd .. " " .. t[1] .. " " .. t[2] )
+end
+
+
+
 for s = 1, screen.count() do
   mypromptbox[s] = awful.widget.prompt()
 
@@ -199,6 +215,7 @@ for s = 1, screen.count() do
   right_wibox:add(space)
   if s == 1 then right_wibox:add(wibox.widget.systray()) end
   right_wibox:add(baticon)
+  right_wibox:add(kbdcfg.widget)
   right_wibox:add(batpct)
   right_wibox:add(volicon)
   right_wibox:add(volpct)
@@ -295,7 +312,7 @@ globalkeys = awful.util.table.join(
     end),
 
   -- Prompt
-  awful.key({ modkey }, "F1", function() mypromptbox[mouse.screen]:run() end),
+  awful.key({ modkey }, "r", function() mypromptbox[mouse.screen]:run() end),
 
   awful.key({ modkey }, "x",
     function()
@@ -449,6 +466,11 @@ awful.rules.rules = {
     properties = { floating = true, tag = tags[1][8] } }
 }
 -- }}}
+
+-- Mouse bindings
+kbdcfg.widget:buttons(
+ awful.util.table.join(awful.button({ }, 1, function () kbdcfg.switch() end))
+)
 
 -- {{{ Signals
 client.connect_signal("manage", function(c, startup)
