@@ -63,103 +63,6 @@ membar:set_color({
   }})
 vicious.register(membar, vicious.widgets.mem, "$1", 13)
 
--- Ram %
-mempct = wibox.widget.textbox()
-mempct.width = pctwidth
-vicious.register(mempct, vicious.widgets.mem, "$1%", 5)
-
--- Cache
-vicious.cache(vicious.widgets.fs)
-
--- Root used
-rootfsused = wibox.widget.textbox()
-vicious.register(rootfsused, vicious.widgets.fs,
-  "<span color='" .. beautiful.fg_em .. "'>ssd</span>${/ used_gb}GB", 97)
-
--- Root bar
-rootfsbar = awful.widget.progressbar()
-rootfsbar:set_vertical(false):set_width(graphwidth):set_height(graphheight)
-rootfsbar:set_ticks(false):set_ticks_size(2)
-rootfsbar:set_border_color(nil)
-rootfsbar:set_background_color(beautiful.bg_widget)
-rootfsbar:set_color({
-  type = "linear",
-  from = { 0, 0 },
-  to = { graphwidth, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(rootfsbar, vicious.widgets.fs, "${/ used_p}", 97)
-
--- Root %
-rootfspct = wibox.widget.textbox()
-rootfspct.width = pctwidth
-vicious.register(rootfspct, vicious.widgets.fs, "${/ used_p}%", 97)
--- }}}
-
--- {{{ NETWORK
--- Cache
-vicious.cache(vicious.widgets.net)
-
--- Up graph
-upgraph = awful.widget.graph()
-upgraph:set_width(graphwidth):set_height(graphheight)
-upgraph:set_border_color(nil)
-upgraph:set_background_color(beautiful.bg_widget)
-upgraph:set_color({
-  type = "linear",
-  from = { 0, graphheight },
-  to = { 0, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(upgraph, vicious.widgets.net, "${eth0 up_kb}")
-
--- TX
-txwidget = wibox.widget.textbox()
-vicious.register(txwidget, vicious.widgets.net,
-  "<span color='" .. beautiful.fg_em .. "'>up</span>${eth0 tx_mb}MB", 19)
-
--- Up speed
-upwidget = wibox.widget.textbox()
-upwidget.fit = function(box,w,h)
-  local w,h = wibox.widget.textbox.fit(box,w,h) return math.max(netwidth,w),h
-end
-vicious.register(upwidget, vicious.widgets.net, "${eth0 up_kb}", 2)
-
--- Down graph
-downgraph = awful.widget.graph()
-downgraph:set_width(graphwidth):set_height(graphheight)
-downgraph:set_border_color(nil)
-downgraph:set_background_color(beautiful.bg_widget)
-downgraph:set_color({
-  type = "linear",
-  from = { 0, graphheight },
-  to = { 0, 0 },
-  stops = {
-    { 0, beautiful.fg_widget },
-    { 0.25, beautiful.fg_center_widget },
-    { 1, beautiful.fg_end_widget }
-  }})
-vicious.register(downgraph, vicious.widgets.net, "${eth0 down_kb}")
-
--- RX
-rxwidget = wibox.widget.textbox()
-vicious.register(rxwidget, vicious.widgets.net,
-  "<span color='" .. beautiful.fg_em .. "'>down</span>${eth0 rx_mb}MB", 17)
-
--- Down speed
-downwidget = wibox.widget.textbox()
-downwidget.fit = function(box,w,h)
-  local w,h = wibox.widget.textbox.fit(box,w,h) return math.max(netwidth,w),h
-end
-vicious.register(downwidget, vicious.widgets.net, "${eth0 down_kb}", 2)
--- }}}
-
 -- {{{ WEATHER
 weather = wibox.widget.textbox()
 vicious.register(weather, vicious.widgets.weather,
@@ -213,7 +116,7 @@ vicious.register(batpct, vicious.widgets.bat, function(widget, args)
   bat_charge = args[2]
   bat_time   = args[3]
 
-  if args[1] == "-" then
+  if bat_state == "−" then
     if bat_charge > 70 then
       baticon:set_image(beautiful.widget_batfull)
     elseif bat_charge > 30 then
@@ -223,18 +126,15 @@ vicious.register(batpct, vicious.widgets.bat, function(widget, args)
     else
       baticon:set_image(beautiful.widget_batempty)
     end
-  end
-  if args[1] == "+" then 
-    baticon:set_image(beautiful.widget_ac)
-    if args[1] == "+" then
-      blink = not blink
-      if blink then
-        baticon:set_image(beautiful.widget_acblink)
-      end
+  else
+    if bat_state == "↯" then
+      baticon:set_image(beautiful.widget_ac)
+    elseif bat_state == "⌁" or bat_state == "+" then
+      baticon:set_image(beautiful.widget_acblink)
     end
   end
 
-  return args[2] .. "%"
+  return bat_charge .. "%"
 end, nil, "BAT0")
 
 -- Buttons
@@ -246,7 +146,7 @@ function popup_bat()
     state = "Charged"
   elseif bat_state == "+" then
     state = "Charging"
-  elseif bat_state == "-" then
+  elseif bat_state == "−" then
     state = "Discharging"
   elseif bat_state == "⌁" then
     state = "Not charging"
@@ -261,5 +161,3 @@ batpct:buttons(awful.util.table.join(awful.button({ }, 1, popup_bat)))
 baticon:buttons(batpct:buttons())
 -- }}}
 --
-
-
