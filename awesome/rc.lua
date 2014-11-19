@@ -215,8 +215,8 @@ for s = 1, screen.count() do
   right_wibox:add(space)
   if s == 1 then right_wibox:add(wibox.widget.systray()) end
   right_wibox:add(baticon)
-  right_wibox:add(kbdcfg.widget)
   right_wibox:add(batpct)
+  right_wibox:add(kbdcfg.widget)
   right_wibox:add(volicon)
   right_wibox:add(volpct)
   right_wibox:add(volspace)
@@ -231,21 +231,11 @@ for s = 1, screen.count() do
   -- Graphbox
   mygraphbox[s] = awful.wibox({ position = "bottom", height = 22, screen = s })
 
-  local left_graphbox = wibox.layout.fixed.horizontal()
-  left_graphbox:add(memused)
-  left_graphbox:add(membar)
-  left_graphbox:add(mempct)
-  left_graphbox:add(space)
-  left_graphbox:add(rootfsused)
-  left_graphbox:add(rootfsbar)
-  left_graphbox:add(rootfspct)
-
   local right_graphbox = wibox.layout.fixed.horizontal()
   right_graphbox:add(weather)
   right_graphbox:add(mytextclock)
 
   local graphbox_layout = wibox.layout.align.horizontal()
-  graphbox_layout:set_left(left_graphbox)
   graphbox_layout:set_right(right_graphbox)
 
   mygraphbox[s]:set_widget(graphbox_layout)
@@ -300,16 +290,6 @@ globalkeys = awful.util.table.join(
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(layouts, -1) end),
 
   awful.key({ modkey, "Control" }, "n", awful.client.restore),
-
-  -- Scratch
-  awful.key({ modkey }, "`", function()
-      scratch.drop("xterm -name scratch", "bottom", "center", 1.0, 0.40, false)
-    end),
-
-  -- Thunderbird
-  awful.key({ modkey }, ";", function()
-      scratch.drop("thunderbird", "center", "center", 0.95, 0.9, false)
-    end),
 
   -- Prompt
   awful.key({ modkey }, "r", function() mypromptbox[mouse.screen]:run() end),
@@ -383,16 +363,8 @@ clientkeys = awful.util.table.join(
   -- Volume
   awful.key({ }, "XF86AudioRaiseVolume",  function () awful.util.spawn("amixer set Master 7%+")     end),
   awful.key({ }, "XF86AudioLowerVolume",  function () awful.util.spawn("amixer set Master 7%-")     end),
-  awful.key({ }, "XF86AudioMute",         function () awful.util.spawn("amixer sset Master toggle") end),
+  awful.key({ }, "XF86AudioMute",         function () awful.util.spawn("amixer sset Master toggle") end)
  
-
-
-  -- Scratchify
-  awful.key({ modkey, }, "v",
-    function(c)
-      scratch.pad.set(c, 0.50, 0.50, true)
-    end)
-
 )
 
 keynumber = 0
