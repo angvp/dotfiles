@@ -6,10 +6,12 @@
 
 local awful = require("awful")
 
+local basedir = awful.util.getdir('config')
+
 -- {{{ Main
 theme = {}
-theme.wallpaper = awful.util.getdir("config") .. "/themes/dust/Galaxy3.jpg"
-theme.font = "Monaco 11"
+-- theme.wallpaper = basedir .. "/themes/dust/Galaxy3.jpg"
+theme.font = "Monaco 12"
 -- }}}
 
 -- {{{ Colors
@@ -57,28 +59,28 @@ theme.menu_width = 100
 -- }}}
 
 -- {{{ Taglist
-theme.taglist_squares_sel = awful.util.getdir("config") .. "/themes/dust/taglist/squaref.png"
-theme.taglist_squares_unsel = awful.util.getdir("config") .. "/themes/dust/taglist/square.png"
+theme.taglist_squares_sel = basedir .. "/themes/dust/taglist/squaref.png"
+theme.taglist_squares_unsel = basedir .. "/themes/dust/taglist/square.png"
 -- }}}
 
 -- {{{ Misc
-theme.awesome_icon = awful.util.getdir("config") .. "/themes/dust/awesome-dust22.png"
+theme.awesome_icon = basedir .. "/themes/dust/awesome-dust22.png"
 theme.menu_submenu_icon = "/usr/share/awesome/themes/default/submenu.png"
 -- }}}
 
 -- {{{ Layout
-theme.layout_tile = awful.util.getdir("config") .. "/themes/dust/layouts/tilew.png"
-theme.layout_tileleft = awful.util.getdir("config") .. "/themes/dust/layouts/tileleftw.png"
-theme.layout_tilebottom = awful.util.getdir("config") .. "/themes/dust/layouts/tilebottomw.png"
-theme.layout_tiletop = awful.util.getdir("config") .. "/themes/dust/layouts/tiletopw.png"
-theme.layout_fairv = awful.util.getdir("config") .. "/themes/dust/layouts/fairvw.png"
-theme.layout_fairh = awful.util.getdir("config") .. "/themes/dust/layouts/fairhw.png"
-theme.layout_spiral = awful.util.getdir("config") .. "/themes/dust/layouts/spiralw.png"
-theme.layout_dwindle = awful.util.getdir("config") .. "/themes/dust/layouts/dwindlew.png"
-theme.layout_max = awful.util.getdir("config") .. "/themes/dust/layouts/maxw.png"
-theme.layout_fullscreen = awful.util.getdir("config") .. "/themes/dust/layouts/fullscreenw.png"
-theme.layout_magnifier = awful.util.getdir("config") .. "/themes/dust/layouts/magnifierw.png"
-theme.layout_floating = awful.util.getdir("config") .. "/themes/dust/layouts/floatingw.png"
+theme.layout_tile = basedir .. "/themes/dust/layouts/tilew.png"
+theme.layout_tileleft = basedir .. "/themes/dust/layouts/tileleftw.png"
+theme.layout_tilebottom = basedir .. "/themes/dust/layouts/tilebottomw.png"
+theme.layout_tiletop = basedir .. "/themes/dust/layouts/tiletopw.png"
+theme.layout_fairv = basedir .. "/themes/dust/layouts/fairvw.png"
+theme.layout_fairh = basedir .. "/themes/dust/layouts/fairhw.png"
+theme.layout_spiral = basedir .. "/themes/dust/layouts/spiralw.png"
+theme.layout_dwindle = basedir .. "/themes/dust/layouts/dwindlew.png"
+theme.layout_max = basedir .. "/themes/dust/layouts/maxw.png"
+theme.layout_fullscreen = basedir .. "/themes/dust/layouts/fullscreenw.png"
+theme.layout_magnifier = basedir .. "/themes/dust/layouts/magnifierw.png"
+theme.layout_floating = basedir .. "/themes/dust/layouts/floatingw.png"
 -- }}}
 
 -- {{{ Titlebar
@@ -107,37 +109,37 @@ theme.titlebar_maximized_button_normal_inactive = "/usr/share/awesome/themes/def
 -- }}}
 
 -- {{{ Widgets
-theme.widget_disk = awful.util.getdir("config") .. "/themes/dust/widgets/disk.png"
-theme.widget_cpu = awful.util.getdir("config") .. "/themes/dust/widgets/cpu.png"
-theme.widget_ac = awful.util.getdir("config") .. "/themes/dust/widgets/ac.png"
-theme.widget_acblink = awful.util.getdir("config") .. "/themes/dust/widgets/acblink.png"
-theme.widget_blank = awful.util.getdir("config") .. "/themes/dust/widgets/blank.png"
-theme.widget_batfull = awful.util.getdir("config") .. "/themes/dust/widgets/batfull.png"
-theme.widget_batmed = awful.util.getdir("config") .. "/themes/dust/widgets/batmed.png"
-theme.widget_batlow = awful.util.getdir("config") .. "/themes/dust/widgets/batlow.png"
-theme.widget_batempty = awful.util.getdir("config") .. "/themes/dust/widgets/batempty.png"
-theme.widget_vol = awful.util.getdir("config") .. "/themes/dust/widgets/vol.png"
-theme.widget_mute = awful.util.getdir("config") .. "/themes/dust/widgets/mute.png"
-theme.widget_pac = awful.util.getdir("config") .. "/themes/dust/widgets/pac.png"
-theme.widget_pacnew = awful.util.getdir("config") .. "/themes/dust/widgets/pacnew.png"
-theme.widget_mail = awful.util.getdir("config") .. "/themes/dust/widgets/mail.png"
-theme.widget_mailnew = awful.util.getdir("config") .. "/themes/dust/widgets/mailnew.png"
-theme.widget_temp = awful.util.getdir("config") .. "/themes/dust/widgets/temp.png"
-theme.widget_tempwarn = awful.util.getdir("config") .. "/themes/dust/widgets/tempwarm.png"
-theme.widget_temphot = awful.util.getdir("config") .. "/themes/dust/widgets/temphot.png"
-theme.widget_wifi = awful.util.getdir("config") .. "/themes/dust/widgets/wifi.png"
-theme.widget_nowifi = awful.util.getdir("config") .. "/themes/dust/widgets/nowifi.png"
-theme.widget_mpd = awful.util.getdir("config") .. "/themes/dust/widgets/mpd.png"
-theme.widget_play = awful.util.getdir("config") .. "/themes/dust/widgets/play.png"
-theme.widget_pause = awful.util.getdir("config") .. "/themes/dust/widgets/pause.png"
-theme.widget_ram = awful.util.getdir("config") .. "/themes/dust/widgets/ram.png"
+theme.widget_disk = basedir .. "/themes/dust/widgets/disk.png"
+theme.widget_cpu = basedir .. "/themes/dust/widgets/cpu.png"
+theme.widget_ac = basedir .. "/themes/dust/widgets/ac.png"
+theme.widget_acblink = basedir .. "/themes/dust/widgets/acblink.png"
+theme.widget_blank = basedir .. "/themes/dust/widgets/blank.png"
+theme.widget_batfull = basedir .. "/themes/dust/widgets/batfull.png"
+theme.widget_batmed = basedir .. "/themes/dust/widgets/batmed.png"
+theme.widget_batlow = basedir .. "/themes/dust/widgets/batlow.png"
+theme.widget_batempty = basedir .. "/themes/dust/widgets/batempty.png"
+theme.widget_vol = basedir .. "/themes/dust/widgets/vol.png"
+theme.widget_mute = basedir .. "/themes/dust/widgets/mute.png"
+theme.widget_pac = basedir .. "/themes/dust/widgets/pac.png"
+theme.widget_pacnew = basedir .. "/themes/dust/widgets/pacnew.png"
+theme.widget_mail = basedir .. "/themes/dust/widgets/mail.png"
+theme.widget_mailnew = basedir .. "/themes/dust/widgets/mailnew.png"
+theme.widget_temp = basedir .. "/themes/dust/widgets/temp.png"
+theme.widget_tempwarn = basedir .. "/themes/dust/widgets/tempwarm.png"
+theme.widget_temphot = basedir .. "/themes/dust/widgets/temphot.png"
+theme.widget_wifi = basedir .. "/themes/dust/widgets/wifi.png"
+theme.widget_nowifi = basedir .. "/themes/dust/widgets/nowifi.png"
+theme.widget_mpd = basedir .. "/themes/dust/widgets/mpd.png"
+theme.widget_play = basedir .. "/themes/dust/widgets/play.png"
+theme.widget_pause = basedir .. "/themes/dust/widgets/pause.png"
+theme.widget_ram = basedir .. "/themes/dust/widgets/ram.png"
 
-theme.widget_mem = awful.util.getdir("config") .. "/themes/dust/tp/ram.png"
-theme.widget_swap = awful.util.getdir("config") .. "/themes/dust/tp/swap.png"
-theme.widget_fs = awful.util.getdir("config") .. "/themes/dust/tp/fs_01.png"
-theme.widget_fs2 = awful.util.getdir("config") .. "/themes/dust/tp/fs_02.png"
-theme.widget_up = awful.util.getdir("config") .. "/themes/dust/tp/up.png"
-theme.widget_down = awful.util.getdir("config") .. "/themes/dust/tp/down.png"
+theme.widget_mem = basedir .. "/themes/dust/tp/ram.png"
+theme.widget_swap = basedir .. "/themes/dust/tp/swap.png"
+theme.widget_fs = basedir .. "/themes/dust/tp/fs_01.png"
+theme.widget_fs2 = basedir .. "/themes/dust/tp/fs_02.png"
+theme.widget_up = basedir .. "/themes/dust/tp/up.png"
+theme.widget_down = basedir .. "/themes/dust/tp/down.png"
 -- }}}
 
 return theme

@@ -127,9 +127,8 @@ vicious.register(batpct, vicious.widgets.bat, function(widget, args)
       baticon:set_image(beautiful.widget_batempty)
     end
   else
-    if bat_state == "↯" then
-      baticon:set_image(beautiful.widget_ac)
-    elseif bat_state == "⌁" or bat_state == "+" then
+    baticon:set_image(beautiful.widget_ac)
+    if bat_state == "⌁" or bat_state == "+" then
       baticon:set_image(beautiful.widget_acblink)
     end
   end
