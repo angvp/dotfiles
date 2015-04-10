@@ -56,6 +56,9 @@ colorscheme solarized
 let g:airline_solarized_bg = "dark"
 let g:airline_theme = "solarized"
 
+" jedi-vim annoying signature issue
+let g:jedi#show_call_signatures = 0
+
 set cmdheight=1
 set encoding=utf-8
 set termencoding=utf-8
