@@ -101,13 +101,13 @@ delswp() {
 }
 
 # Let's load some aliases to work
-#source ~/work.zshrc
+source ~/work.zshrc
 
 # oh my zsh stuff
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="angvp"
-plugins=(zsh-syntax-highlighting git git-extras python systemd)
+plugins=(zsh-syntax-highlighting git git-extras python systemd django)
 source $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
@@ -142,9 +142,9 @@ export EDITOR
 export PAGER
 export VISUAL
 export LC_ALL
+unset GREP_OPTIONS
 
 #some work stuff
-#source work.zshrc
 
 #source /usr/share/zsh/site-contrib/powerline.zsh
 #export PULSE_LATENCY_MSEC=60
