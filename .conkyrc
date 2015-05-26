@@ -12,8 +12,8 @@
 # - Fortune
 # - MPD Info (custom script)
 #
+# -- Angel 'angvp' Velásquez <angvp[at]archlinux.com.ve> 
 #
-# Angel Velasquez <angvp@archlinux.org>  
 
 # Create own window instead of using desktop (required in nautilus)
 #own_window yes
@@ -107,19 +107,19 @@ Root (/):      ${fs_free_perc /}%   ${fs_bar 4 /}$color
 Var  (/var):      ${fs_free_perc /var}%   ${fs_bar 4 /}$color
 Home (/home):  ${fs_free_perc /home}%   ${fs_bar 4 /home}$color
 
-${color green}NETWORK  (Wi-Fi) (${addr wlan0}) ${hr 2}$color
-Down: $color${downspeed wlan0} k/s ${alignr}Up: ${upspeed wlan0} k/s
-${downspeedgraph wlan0 15,140 000000 ff0000} ${alignr}${upspeedgraph wlan0
+${color green}NETWORK  (Wi-Fi) (${addr wlp3s0}) ${hr 2}$color
+Down: $color${downspeed wlp3s0} ${alignr}Up: ${upspeed wlp3s0} 
+${downspeedgraph wlp3s0 15,140 000000 ff0000} ${alignr}${upspeedgraph wlp3s0
 15,140 000000 00ff00}$color
-Total: ${totaldown wlan0} ${alignr}Total: ${totalup wlan0}
+Total: ${totaldown wlp3s0} ${alignr}Total: ${totalup wlp3s0}
 Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
 61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
 
-${color green}NETWORK  (Ethernet) (${addr eth0}) ${hr 2}$color
-Down: $color${downspeed eth0} k/s ${alignr}Up: ${upspeed eth0} k/s
-${downspeedgraph eth0 15,140 000000 ff0000} ${alignr}${upspeedgraph eth0
+${color green}NETWORK  (Ethernet) (${addr enp0s25}) ${hr 2}$color
+Down: $color${downspeed enp0s25} ${alignr}Up: ${upspeed enp0s25}
+${downspeedgraph enp0s25 15,140 000000 ff0000} ${alignr}${upspeedgraph enp0s25
 15,140 000000 00ff00}$color
-Total: ${totaldown eth0} ${alignr}Total: ${totalup eth0}
+Total: ${totaldown enp0s25} ${alignr}Total: ${totalup enp0s25}
 Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
 61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
 
@@ -133,5 +133,5 @@ ${execi 120 fortune -s | fold -w50}
 
 #This is a custom script if you don't use it, please comment these lines 
 ${color green}MPD ${hr 2}$color
-${exec mpd_cs.py} 
+#${exec mpd_cs.py} 
 
