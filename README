@@ -1,23 +1,13 @@
 angvp's configs files:
 ======================
-<es>
-Y... esto lo hice desde que he tenido que cambiar de maquinas, y necesito
-entornos similares con el que vengo trabajando en casa, .. siempre estoy
-tratando de acomodar mis configs y hacerlas mas comodas, y normalmente este
-tipo de archivos son utiles para cualquier cosa, espero sean utiles para ti
-(para mi lo son :D)
-</es>
 
-<en>
-Since I am installing machines and I usually needs a similar environment like I
-have at home, I did that, of course, I always improving my files, and these
-kind of files are always usual for anything, hope these are utils for you (for
-me obviously are :D)
-</en>
 
-<it>
-Da quando sto istallando i miei pc è bisogno miei enviroment come quello che ho
-a casa, ho fatto questo, ovviamente, Io sempre provo di migliorare i miei
-config, e questi tipi di file sono usualmente utili per qualcosa, aspetto sia utile
-per voi (per me ovvio sono utili :D)
-</it>
+Available configs:
+
+- awesome (3.5)
+- bashrc (not using it lately)
+- ncmpp (out of date too)
+- subtle (out of date since I don't use it anymore)
+- tmux
+- vim (requires Bundle)
+- zshrc (requires oh-my-zsh)
