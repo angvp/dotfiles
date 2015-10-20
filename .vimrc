@@ -3,48 +3,49 @@
 " I decided to remove unuseful stuff and add new features
 
 "Fkeys are:
+" F1: help
 " F3: hlsearch / nohlsearch 
 " F5 / F6: run / compile (according filetype) 
-" F7:python help  
 " F10: pastetoggle
 "
 
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+
+call plug#begin('~/.vim/plugged')
 " Required
-Bundle 'gmarik/vundle'
+Plug 'gmarik/vundle'
 " Fuzzy finder
-Bundle 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 " cool bars
-Bundle 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " colors
-Bundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 " class/module browser
-Bundle 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " Zen coding
-Bundle 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 " Autocompletion
-Bundle 'AutoComplPop'
+Plug 'AutoComplPop'
 " Python code checker
-Bundle 'pyflakes.vim'
+Plug 'pyflakes.vim'
 " Search results counter
-Bundle 'IndexedSearch'
+Plug 'IndexedSearch'
 " XML/HTML tags navigation
-Bundle 'matchit.zip'
+Plug 'matchit.zip'
 " Indent text object
-Bundle 'michaeljsmith/vim-indent-object'
+Plug 'michaeljsmith/vim-indent-object'
 " Python autocompletion and documentation
-Bundle 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 " PEP8 and python-flakes checker
-Bundle 'nvie/vim-flake8'
+Plug 'nvie/vim-flake8'
 " Search and read python documentation
-Bundle 'fs111/pydoc.vim'
+Plug 'fs111/pydoc.vim'
 " Automatically sort python imports
-Bundle 'fisadev/vim-isort'
+Plug 'fisadev/vim-isort'
 " Virtualenv
-Bundle 'jmcantrell/vim-virtualenv'
+Plug 'jmcantrell/vim-virtualenv'
+call plug#end()
 
 " tunning powerline
 let g:airline_powerline_fonts = 1
@@ -57,7 +58,7 @@ let g:airline_solarized_bg = "dark"
 let g:airline_theme = "solarized"
 
 " jedi-vim annoying signature issue
-let g:jedi#show_call_signatures = 0
+" let g:jedi#show_call_signatures = 0
 
 set cmdheight=1
 set encoding=utf-8
@@ -205,7 +206,6 @@ au FileType php map <F6> :!php &<CR>
 au FileType python map <F6> :!python %<CR>
 au FileType perl map <F6> :!perl %<CR>
 au FileType ruby map <F6> :!ruby %<CR>
-au FileType html,xhtml map <F5> :!firefox %<CR>
 
 " MS Word document reading
 au BufReadPre *.doc set ro
@@ -215,7 +215,7 @@ inoremap <Nul> <C-x><C-o>
 
 " Help keybindings
 nnoremap <F1> :help<Space>
-map <F7> :!python -c 'help()'<left><left>
+nmap <F2> :TagbarToggle<CR>
 
 " Search bindings
 map <F3> :set hlsearch! hlsearch?<CR>
