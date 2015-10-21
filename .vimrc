@@ -13,8 +13,6 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-" Required
-Plug 'gmarik/vundle'
 " Fuzzy finder
 Plug 'kien/ctrlp.vim'
 " cool bars
