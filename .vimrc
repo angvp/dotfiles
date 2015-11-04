@@ -26,7 +26,7 @@ Plug 'mattn/emmet-vim'
 " Autocompletion
 Plug 'AutoComplPop'
 " Python code checker
-Plug 'pyflakes.vim'
+" Plug 'pyflakes.vim'
 " Search results counter
 Plug 'IndexedSearch'
 " XML/HTML tags navigation
@@ -34,15 +34,18 @@ Plug 'matchit.zip'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
 " Python autocompletion and documentation
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " PEP8 and python-flakes checker
-Plug 'nvie/vim-flake8'
+" Plug 'nvie/vim-flake8'
 " Search and read python documentation
-Plug 'fs111/pydoc.vim'
+" Plug 'fs111/pydoc.vim'
 " Automatically sort python imports
 Plug 'fisadev/vim-isort'
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
+" vim troll stopper
+Plug 'vim-utils/vim-troll-stopper'
+Plug 'klen/python-mode'
 call plug#end()
 
 " tunning powerline
@@ -279,6 +282,8 @@ cmap W w
 cmap Q q
 
 set fillchars+=stl:\ ,stlnc:\
+
+highlight TrollStopper ctermbg = red guibg = #FF0000
 
 " Turn on syntax highlighting by default (did I mention we don't need to
 " download modes like in emacs? :-)
