@@ -5,6 +5,7 @@
 "Fkeys are:
 " F1: help
 " F3: hlsearch / nohlsearch 
+" F4: TagbarToggle
 " F5 / F6: run / compile (according filetype) 
 " F10: pastetoggle
 "
@@ -142,15 +143,6 @@ if has("folding")
 endif
 
 let html_use_css=1
-" Change the <Leader> key here. By default it's ` but you can change for
-" everything you want.
-" let mapleader="`" 
-
-" Spellchecking
-" I don't know how this works, you can try to fix it and email me with your
-" solution. Sorry.
-
-" setlocal spell spelllang=en_us
 
 iab teh the
 iab DATE <C-R>=strftime("%B %d, %Y (%A, %H:%Mh)")<CR>
@@ -168,6 +160,12 @@ let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
 let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included
 let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e.
 
+" Tagbar ----------------------------- 
+
+" toggle tagbar display
+map <F4> :TagbarToggle<CR>
+" autofocus on tagbar open
+let g:tagbar_autofocus = 1
 
 " Clear autocmds - starts from a clean slate
 autocmd!

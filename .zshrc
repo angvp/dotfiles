@@ -1,4 +1,4 @@
-# Angel Velásquez <angvp[at]archlinux.org>
+#Angel Velásquez <angvp[at]archlinux.org>
 #
 # Last update: mayo 03, 2012 (jueves, 11:38h) 
 # First i've tried to move some of my bash stuff to zsh then I copied sort of
@@ -101,12 +101,13 @@ delswp() {
 }
 
 # Let's load some aliases to work
-source ~/work.zshrc
+#source ~/work.zshrc
 
 # oh my zsh stuff
 
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="angvp"
+
 plugins=(zsh-syntax-highlighting git git-extras python systemd django)
 source $ZSH/oh-my-zsh.sh
 
@@ -125,7 +126,8 @@ HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 ## path
-PATH=$PATH:/usr/local/bin:/usr/bin:$HOME/bin:$HOME/.gem/ruby/2.0.0/bin
+export GOPATH=~/go
+PATH=$PATH:/usr/local/bin:/usr/bin:$HOME/bin:$HOME/.gem/ruby/2.2.0/bin:$GOPATH/bin
 #other stuff
 GTK2_RC_FILES=$HOME/.gtkrc-2.0
 #editor
@@ -136,15 +138,25 @@ MANPAGER="most"
 mail=~/.mail
 IGNOREEOF=3
 GPG_TTY=$(tty)
-LC_ALL=en_US.UTF-8
 export GPG_TTY
 export EDITOR
 export PAGER
 export VISUAL
-export LC_ALL
 unset GREP_OPTIONS
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 
 #some work stuff
 
 #source /usr/share/zsh/site-contrib/powerline.zsh
 #export PULSE_LATENCY_MSEC=60
+#
+#
+
+	
+# Start keychain
+if [ -f /usr/bin/keychain ] && [ "x$ssh_key" != "x" ]; then
+	/usr/bin/keychain -q $ssh_key
+	source $HOME/.keychain/$HOSTNAME-sh
+fi
