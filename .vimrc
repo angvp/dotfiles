@@ -18,6 +18,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'kien/ctrlp.vim'
 " cool bars
 Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " colors
 Plug 'altercation/vim-colors-solarized'
 " class/module browser
