@@ -36,7 +36,7 @@ setprompt () {
                 eval PR_HOST='${PR_YELLOW}%M${PR_NO_COLOR}' #SSH
         fi
         # set the prompt
-        PROMPT=$'${PR_CYAN}[${PR_USER}${PR_YELLOW}@${PR_HOST}${PR_CYAN}][${PR_MAGENTA}%~${PR_CYAN}]${PR_USER_OP}${PR_NO_COLOR} '
+        PROMPT=$'${PR_CYAN}[${PR_USER}${PR_YELLOW}@${PR_BLUE}%~${PR_CYAN}]${PR_USER_OP}${PR_NO_COLOR} '
         RPROMPT=$'${PR_GREEN}$(git_prompt_info)${PR_NO_COLOR}'
 }
 setprompt
