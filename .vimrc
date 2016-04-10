@@ -1,14 +1,4 @@
 " angvp's .vimrc config 
-" I completely rip off everything from scast rezza and phrakture configs, then
-" I decided to remove unuseful stuff and add new features
-
-"Fkeys are:
-" F1: help
-" F3: hlsearch / nohlsearch 
-" F4: TagbarToggle
-" F5 / F6: run / compile (according filetype) 
-" F10: pastetoggle
-"
 
 set nocompatible
 filetype off
@@ -27,22 +17,15 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 " Autocompletion
 Plug 'AutoComplPop'
-" Python code checker
-" Plug 'pyflakes.vim'
 " Search results counter
 Plug 'IndexedSearch'
 " XML/HTML tags navigation
 Plug 'matchit.zip'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
-" Python autocompletion and documentation
-" Plug 'davidhalter/jedi-vim'
-" PEP8 and python-flakes checker
-" Plug 'nvie/vim-flake8'
-" Search and read python documentation
-" Plug 'fs111/pydoc.vim'
-" Automatically sort python imports
+Plug 'scrooloose/syntastic'
 Plug 'fisadev/vim-isort'
+Plug 'pignacio/vim-yapf-format'
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
@@ -50,18 +33,15 @@ Plug 'vim-utils/vim-troll-stopper'
 Plug 'klen/python-mode'
 call plug#end()
 
-" tunning powerline
-let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme = 'solarized' 
-
 set background=dark
 colorscheme solarized
+" tunning powerline
+"
+let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = "dark"
 let g:airline_theme = "solarized"
 
 " jedi-vim annoying signature issue
-" let g:jedi#show_call_signatures = 0
 
 set cmdheight=1
 set encoding=utf-8
@@ -72,7 +52,6 @@ set shortmess+=aI
 set showmode
 set showcmd
 set modeline
-set wildmenu
 set acd
 set incsearch
 set softtabstop=4
@@ -99,12 +78,19 @@ set smartcase
 set showmatch
 
 if v:version >= 700
+    try
+        setlocal numberwidth=3
+    catch
+    endtry
     " set cursorline
     set completeopt=menu,menuone,longest,preview
     set spelllang=en_us
     set spellsuggest=fast,20
     set numberwidth=1
     " imma commnt with missspellings, use me tu tesst
+    "
+    hi Pmenu ctermbg=2 guibg=darkolivegreen
+    hi PmenuSel ctermbg=0 guibg=black
 endif
 
 set whichwrap=h,l,<,>,[,]
@@ -116,25 +102,9 @@ set smartindent
 set shiftround
 
 set number
-if v:version >= 700
-        try
-            setlocal numberwidth=3
-        catch
-        endtry
-"   Uncomment next line to have a cursorline so you know on what line are you. Be careful, 
-"   this makes screen redrawing very slow. 
-
-"    set cursorline
-    set completeopt=menu,menuone,longest,preview
-    set numberwidth=1
-    hi Pmenu ctermbg=2 guibg=darkolivegreen
-    hi PmenuSel ctermbg=0 guibg=black
-endif
-
 
 set formatoptions+=nl
 set selection=inclusive
-set pastetoggle=<F10>
 
 
 if has("folding")
@@ -150,9 +120,8 @@ iab DATE <C-R>=strftime("%B %d, %Y (%A, %H:%Mh)")<CR>
 iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org> 
 
 " {{{ OmniCpp settings
-" Behaive like a IDE that knows C++:
+" Behave like a IDE that knows C++:
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-" set completeopt=menu,menuone
 
 let OmniCpp_MayCompleteDot = 1 " autocomplete with .
 let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
@@ -198,27 +167,11 @@ au FileType python iab putf8 # -*- coding: utf-8 -*-
 au FileType python iab debug import pdb; pdb.set_trace()
 au FileType python iab idebug import ipdb; ipdb.set_trace()
 
-" Compile and run keymappings
-au FileType c,cpp map <F5> :!./%:r<CR>
-au FileType sh,php,perl,python,ruby map <F5> :!./%<CR>
-au FileType c,cpp map <F6> :make<CR>
-au FileType php map <F6> :!php &<CR>
-au FileType python map <F6> :!python %<CR>
-au FileType perl map <F6> :!perl %<CR>
-au FileType ruby map <F6> :!ruby %<CR>
-
 " MS Word document reading
 au BufReadPre *.doc set ro
 au BufReadPre *.doc set hlsearch!
 au BufReadPost *.doc %!antiword "%"
 inoremap <Nul> <C-x><C-o>
-
-" Help keybindings
-nnoremap <F1> :help<Space>
-nmap <F2> :TagbarToggle<CR>
-
-" Search bindings
-map <F3> :set hlsearch! hlsearch?<CR>
 
 " Buffer handling
 nnoremap <C-N> :bn!<CR>
@@ -232,6 +185,7 @@ inoremap <C-x><C-p> <C-o>:bp!<CR>
 
 " Shorcuts for tabs
 map <C-t> <esc>:tabnew<cr>
+" change this to arrows
 " Control PageUp/PageDown to switch between tabs
 nmap    <ESC>[5^    <C-PageUp>
 nmap    <ESC>[6^    <C-PageDown>
@@ -241,40 +195,11 @@ nnoremap <C-PageUp> :tabp<CR>
 " Cuz I am too lazy
 map q :confirm qa<CR>
 
-" Frames or whatever they are called.
-" There are probably better ways to set a keybinding for both, insert and normal modes,
-" I am just stupid (and apparently a thief too).
-inoremap <M-/> <C-x><C-o>
-inoremap <C-x>2 <C-o><C-w>s
-nnoremap <C-x>2 <C-w>s
-inoremap <C-x>3 <C-o><C-w>v
-nnoremap <C-x>3 <C-w>v
-inoremap <C-x>0 <C-o><C-w>c
-nnoremap <C-x>0 <C-w>c
-inoremap <C-x>1 <C-o><C-w>o
-nnoremap <C-x>1 <C-w>o
-inoremap <C-x>o <C-o><C-w>w
-nnoremap <C-x>o <C-w>w 
-inoremap <C-x><C-o> <C-o><C-w>w
-nnoremap <C-x><C-o> <C-w>w
-inoremap <M-x> <C-o>:
-nnoremap <M-x> :
-vnoremap <M-w> "ly
-vnoremap <Backspace> x
-inoremap <C-x>u <C-o>u
-nnoremap <C-x>u u
-inoremap <C-x>w <C-o>x
-nnoremap <C-x>w <C-o>x
-vnoremap <C-x>w x
-inoremap <A-o> <C-o>o
-nnoremap <A-o> <C-o>o
-
 " insert mode
 inoremap <C-h> <Left>
 inoremap <C-j> <Down>
 inoremap <C-k> <Up>
 inoremap <C-l> <Right>
-" Set up the status line
 nnoremap <C-e> ggVG
 " Sometimes i press shift and W or Q doesn't nothing .. so let's remap them :D
 cmap W w
