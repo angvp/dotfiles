@@ -5,7 +5,7 @@ filetype off
 
 call plug#begin('~/.vim/plugged')
 " Fuzzy finder
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 " cool bars
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -31,6 +31,7 @@ Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
 Plug 'vim-utils/vim-troll-stopper'
 Plug 'klen/python-mode'
+
 call plug#end()
 
 set background=dark
@@ -76,21 +77,12 @@ set ignorecase
 set smartcase
 set showmatch
 
-if v:version >= 700
-    try
-        setlocal numberwidth=3
-    catch
-    endtry
-    " set cursorline
-    set completeopt=menu,menuone,longest,preview
-    set spelllang=en_us
-    set spellsuggest=fast,20
-    set numberwidth=1
-    " imma commnt with missspellings, use me tu tesst
-    "
-    hi Pmenu ctermbg=2 guibg=darkolivegreen
-    hi PmenuSel ctermbg=0 guibg=black
-endif
+" set cursorline
+set completeopt=menu,menuone,longest,preview
+set spelllang=en_us
+set spellsuggest=fast,20
+" imma commnt with missspellings, use me tu tesst
+"
 
 set whichwrap=h,l,<,>,[,]
 set backspace=indent,eol,start
@@ -118,21 +110,6 @@ iab teh the
 iab DATE <C-R>=strftime("%B %d, %Y (%A, %H:%Mh)")<CR>
 iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org> 
 
-" {{{ OmniCpp settings
-" Behave like a IDE that knows C++:
-autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-let OmniCpp_MayCompleteDot = 1 " autocomplete with .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
-let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
-let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e.
-
-" Tagbar ----------------------------- 
-
-" toggle tagbar display
-map <F4> :TagbarToggle<CR>
 " autofocus on tagbar open
 let g:tagbar_autofocus = 1
 
@@ -175,21 +152,8 @@ inoremap <Nul> <C-x><C-o>
 " Buffer handling
 nnoremap <C-N> :bn!<CR>
 nnoremap <C-P> :bp!<CR>
-inoremap <C-x><C-f> <C-o>:e!<Space>
-nnoremap <C-x><C-f> :e!<Space>
-inoremap <C-x><C-s> <C-o>:w!<CR>
-nnoremap <C-x><C-s> :w!<CR>
-inoremap <C-x><C-n> <C-o>:bn!<CR>
-inoremap <C-x><C-p> <C-o>:bp!<CR>
-
-" Shorcuts for tabs
-map <C-t> <esc>:tabnew<cr>
-" change this to arrows
-" Control PageUp/PageDown to switch between tabs
-nmap    <ESC>[5^    <C-PageUp>
-nmap    <ESC>[6^    <C-PageDown>
-nnoremap <C-PageDown> :tabn<CR>
-nnoremap <C-PageUp> :tabp<CR>
+nnoremap <C-PageDown> :bnext!<CR>
+nnoremap <C-PageUp> :bprevious!<CR>
 
 " Cuz I am too lazy
 map q :confirm qa<CR>
