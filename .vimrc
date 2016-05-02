@@ -1,11 +1,13 @@
 " angvp's .vimrc config 
-
+let mapleader = " "
+let maplocalleader = " "
 set nocompatible
-filetype off
 
 call plug#begin('~/.vim/plugged')
 " Fuzzy finder
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 " cool bars
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -31,6 +33,8 @@ Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
 Plug 'vim-utils/vim-troll-stopper'
 Plug 'klen/python-mode'
+" Fugitive
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
@@ -150,29 +154,28 @@ au BufReadPost *.doc %!antiword "%"
 inoremap <Nul> <C-x><C-o>
 
 " Buffer handling
-nnoremap <C-N> :bn!<CR>
-nnoremap <C-P> :bp!<CR>
-nnoremap <C-PageDown> :bnext!<CR>
-nnoremap <C-PageUp> :bprevious!<CR>
+nnoremap <C-o> :bn!<CR>
+nnoremap <C-p> :bp!<CR>
+nnoremap <C-k> :bd!<CR>
 
 " Cuz I am too lazy
-map q :confirm qa<CR>
+map q :bd!<CR>
 
 " insert mode
-inoremap <C-h> <Left>
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-l> <Right>
 nnoremap <C-e> ggVG
-" Sometimes i press shift and W or Q doesn't nothing .. so let's remap them :D
-cmap W w
-cmap Q q
+" FZF config
+nnoremap <silent> <leader><C-P> :Files<CR>
+nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>; :BLines<CR>
+nnoremap <silent> <leader>. :Lines<CR>
+nnoremap <silent> <leader>o :BTags<CR>
+nnoremap <silent> <leader>O :Tags<CR>
+nnoremap <silent> <leader>? :History<CR>
+nnoremap <silent> <leader>gl :Commits<CR>
+nnoremap <silent> <leader>ga :BCommits<CR>
 
 set fillchars+=stl:\ ,stlnc:\
 
 highlight TrollStopper ctermbg = red guibg = #FF0000
 
-" Turn on syntax highlighting by default (did I mention we don't need to
-" download modes like in emacs? :-)
-filetype plugin indent on
 syntax on
