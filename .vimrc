@@ -154,8 +154,8 @@ au BufReadPost *.doc %!antiword "%"
 inoremap <Nul> <C-x><C-o>
 
 " Buffer handling
-nnoremap <C-o> :bn!<CR>
-nnoremap <C-p> :bp!<CR>
+nnoremap <C-o> :bp!<CR>
+nnoremap <C-p> :bn!<CR>
 nnoremap <C-k> :bd!<CR>
 
 " Cuz I am too lazy
@@ -173,6 +173,7 @@ nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
+nnoremap <silent> <leader><C-R>source ~/.vimrc<CR>
 
 set fillchars+=stl:\ ,stlnc:\
 
