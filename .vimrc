@@ -1,4 +1,4 @@
-" angvp's .vimrc config 
+" angvp's .vimrc config
 let mapleader = " "
 let maplocalleader = " "
 set nocompatible
@@ -14,14 +14,17 @@ Plug 'vim-airline/vim-airline-themes'
 " colors
 Plug 'altercation/vim-colors-solarized'
 " class/module browser
+" to be removed?
 Plug 'majutsushi/tagbar'
 " Zen coding
 Plug 'mattn/emmet-vim'
 " Autocompletion
 Plug 'AutoComplPop'
 " Search results counter
+" to be removed (?)
 Plug 'IndexedSearch'
 " XML/HTML tags navigation
+" to be removed (?)
 Plug 'matchit.zip'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
@@ -35,10 +38,13 @@ Plug 'vim-utils/vim-troll-stopper'
 Plug 'klen/python-mode'
 " Fugitive
 Plug 'tpope/vim-fugitive'
+" JavaScript stuff
+Plug 'mtscout6/syntastic-local-eslint.vim'
 
 call plug#end()
 
 set background=dark
+let g:solarized_visibility =  "low"
 colorscheme solarized
 " tunning powerline
 "
@@ -56,13 +62,8 @@ set shortmess+=aI
 set showmode
 set showcmd
 set modeline
-set acd
+set acd " set current working dir
 set incsearch
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
-set expandtab
-set numberwidth=3
 set textwidth=79
 set ruler
 
@@ -75,7 +76,6 @@ set wildmenu
 set wildmode=longest:full,full
 
 set laststatus=2
-set statusline=%-3.3n\ %f\ %r%#Error#%m%#Statusline#\ (%l/%L,\ %c)\ %P%=%h%w\ %y\ [%{&encoding}:%{&fileformat}]\ \ 
 set nohlsearch
 set ignorecase
 set smartcase
@@ -85,8 +85,6 @@ set showmatch
 set completeopt=menu,menuone,longest,preview
 set spelllang=en_us
 set spellsuggest=fast,20
-" imma commnt with missspellings, use me tu tesst
-"
 
 set whichwrap=h,l,<,>,[,]
 set backspace=indent,eol,start
@@ -101,7 +99,6 @@ set number
 set formatoptions+=nl
 set selection=inclusive
 
-
 if has("folding")
     set foldenable
     set foldmethod=marker
@@ -109,10 +106,6 @@ if has("folding")
 endif
 
 let html_use_css=1
-
-iab teh the
-iab DATE <C-R>=strftime("%B %d, %Y (%A, %H:%Mh)")<CR>
-iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org> 
 
 " autofocus on tagbar open
 let g:tagbar_autofocus = 1
@@ -130,28 +123,21 @@ au BufNewFile,BufRead .torsmorc* set filetype=rc
 au BufNewFile,BufRead *.inc set filetype=php
 au BufNewFile,BufRead *.sys set filetype=php
 au BufNewFile,BufRead grub.conf set filetype=grub
+au BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
 
 " C file specific options
 au FileType c,cpp set cindent
 au FileType c,cpp set formatoptions+=ro
 au FileType c,cpp set makeprg=gcc\ -Wall\ -O2\ -o\ %<\ %
 
-" HTML abbreviations
-au FileType html,xhtml,php,eruby imap bbb <br />
-au FileType html,xhtml,php,eruby imap aaa <a href=""><left><left>
-au FileType html,xhtml,php,eruby imap iii <img src="" /><left><left><left><left>
-au FileType html,xhtml,php,eruby imap ddd <div class=""><left><left>
-
 " Python abbreviations
 au FileType python iab putf8 # -*- coding: utf-8 -*-
-au FileType python iab debug import pdb; pdb.set_trace()
-au FileType python iab idebug import ipdb; ipdb.set_trace()
+au FileType python setlocal et ts=4 sw=4 sts=4
+" JavaScript abbreviations
+au FileType javascript setlocal et ts=2 sw=2 sts=2
 
-" MS Word document reading
-au BufReadPre *.doc set ro
-au BufReadPre *.doc set hlsearch!
-au BufReadPost *.doc %!antiword "%"
-inoremap <Nul> <C-x><C-o>
+au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
+au FileType yaml setlocal et ts=2 sw=2 sts=2
 
 " Buffer handling
 nnoremap <C-o> :bp!<CR>
@@ -161,7 +147,7 @@ nnoremap <C-k> :bd!<CR>
 " Cuz I am too lazy
 map q :bd!<CR>
 
-" insert mode
+" select all
 nnoremap <C-e> ggVG
 " FZF config
 nnoremap <silent> <leader><C-P> :Files<CR>
@@ -173,10 +159,17 @@ nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
-nnoremap <silent> <leader><C-R>source ~/.vimrc<CR>
+nnoremap <silent> <leader><C-R>source $MYVIMRC<CR>
 
 set fillchars+=stl:\ ,stlnc:\
 
+" trollstopper
 highlight TrollStopper ctermbg = red guibg = #FF0000
+
+" yapf
+let g:yapf_format_yapf_location = '/usr/local/bin/yapf'
+
+" syntastic
+let g:syntastic_check_on_open=1
 
 syntax on
