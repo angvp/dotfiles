@@ -124,6 +124,7 @@ au BufNewFile,BufRead *.inc set filetype=php
 au BufNewFile,BufRead *.sys set filetype=php
 au BufNewFile,BufRead grub.conf set filetype=grub
 au BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
+au BufNewFile,BufRead *.j2 set filetype=jinja
 
 " C file specific options
 au FileType c,cpp set cindent
@@ -133,8 +134,10 @@ au FileType c,cpp set makeprg=gcc\ -Wall\ -O2\ -o\ %<\ %
 " Python abbreviations
 au FileType python iab putf8 # -*- coding: utf-8 -*-
 au FileType python setlocal et ts=4 sw=4 sts=4
+au FileType jinja setlocal et ts=4 sw=4 sts=4
 " JavaScript abbreviations
 au FileType javascript setlocal et ts=2 sw=2 sts=2
+au FileType json setlocal et ts=2 sw=2 sts=2
 
 au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
 au FileType yaml setlocal et ts=2 sw=2 sts=2
