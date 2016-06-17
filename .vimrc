@@ -2,6 +2,21 @@
 let mapleader = " "
 let maplocalleader = " "
 set nocompatible
+"" plugin installer
+let vim_plug_just_installed = 0
+let vim_plug_path = expand('~/.vim/autoload/plug.vim')
+if !filereadable(vim_plug_path)
+    echo "Installing Vim-plug..."
+    echo ""
+    silent !mkdir -p ~/.vim/autoload
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let vim_plug_just_installed = 1
+endif
+
+" manually load vim-plug the first time
+if vim_plug_just_installed
+    :execute 'source '.fnameescape(vim_plug_path)
+endif
 
 call plug#begin('~/.vim/plugged')
 " Fuzzy finder
@@ -13,19 +28,14 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " colors
 Plug 'altercation/vim-colors-solarized'
-" class/module browser
-" to be removed?
+" class/module browser (to be removed?)
 Plug 'majutsushi/tagbar'
 " Zen coding
 Plug 'mattn/emmet-vim'
 " Autocompletion
-Plug 'AutoComplPop'
-" Search results counter
-" to be removed (?)
+Plug 'Shougo/neocomplcache.vim'
+" Indexed Search (better search integration)
 Plug 'IndexedSearch'
-" XML/HTML tags navigation
-" to be removed (?)
-Plug 'matchit.zip'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'scrooloose/syntastic'
@@ -40,6 +50,9 @@ Plug 'klen/python-mode'
 Plug 'tpope/vim-fugitive'
 " JavaScript stuff
 Plug 'mtscout6/syntastic-local-eslint.vim'
+" window chooser
+Plug 't9md/vim-choosewin'
+
 
 call plug#end()
 
@@ -173,6 +186,41 @@ highlight TrollStopper ctermbg = red guibg = #FF0000
 let g:yapf_format_yapf_location = '/usr/local/bin/yapf'
 
 " syntastic
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open = 1
+nmap <leader>e :Errors<CR>
+let g:syntastic_enable_signs = 1
+let g:syntastic_error_symbol = '✗'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+let g:syntastic_python_checkers=['flake8']
+
+"neocomplcache (stolen from fisadev/fisaconfig)
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_ignore_case = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_auto_select = 1
+let g:neocomplcache_enable_fuzzy_completion = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_fuzzy_completion_start_length = 1
+let g:neocomplcache_auto_completion_start_length = 1
+let g:neocomplcache_manual_completion_start_length = 1
+let g:neocomplcache_min_keyword_length = 1
+let g:neocomplcache_min_syntax_length = 1
+" complete with workds from any opened file
+let g:neocomplcache_same_filetype_lists = {}
+let g:neocomplcache_same_filetype_lists._ = '_'
+
+" Python-mode
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_signs = 0
+let g:pymode_folding = 0
+let g:pymode_rope = 0
+
+" choosewin 
+nmap  -  <Plug>(choosewin)
+" show big letters
+let g:choosewin_overlay_enable = 1
 
 syntax on
