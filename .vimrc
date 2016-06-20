@@ -138,6 +138,7 @@ au BufNewFile,BufRead *.sys set filetype=php
 au BufNewFile,BufRead grub.conf set filetype=grub
 au BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
 au BufNewFile,BufRead *.j2 set filetype=jinja
+au BufNewFile,BufRead *.sls set filetype=yaml
 
 " C file specific options
 au FileType c,cpp set cindent
@@ -193,7 +194,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checkers=['python', 'flake8', 'frosted']
 
 "neocomplcache (stolen from fisadev/fisaconfig)
 let g:neocomplcache_enable_at_startup = 1
@@ -208,7 +209,7 @@ let g:neocomplcache_auto_completion_start_length = 1
 let g:neocomplcache_manual_completion_start_length = 1
 let g:neocomplcache_min_keyword_length = 1
 let g:neocomplcache_min_syntax_length = 1
-" complete with workds from any opened file
+" complete with words from any opened file
 let g:neocomplcache_same_filetype_lists = {}
 let g:neocomplcache_same_filetype_lists._ = '_'
 
@@ -216,7 +217,7 @@ let g:neocomplcache_same_filetype_lists._ = '_'
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_signs = 0
 let g:pymode_folding = 0
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 
 " choosewin 
 nmap  -  <Plug>(choosewin)
