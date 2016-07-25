@@ -123,7 +123,7 @@ export EDITOR
 export PAGER
 export VISUAL
 export HOMEBREW_GITHUB_API_TOKEN
-export VIM=/usr/local/Cellar/vim/7.4.1468/share/vim/vim74/
+export VIM=/usr/local/Cellar/vim/7.4.2085/share/vim/vim74/
 unset GREP_OPTIONS
 unsetopt CORRECT
 
