@@ -44,7 +44,6 @@ Plug 'scrooloose/syntastic'
 Plug 'fisadev/vim-isort'
 " YAPF formatter for Python
 Plug 'pignacio/vim-yapf-format'
-endif
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
