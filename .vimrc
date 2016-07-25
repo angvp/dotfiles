@@ -38,13 +38,18 @@ Plug 'Shougo/neocomplcache.vim'
 Plug 'IndexedSearch'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
+" syntastic
 Plug 'scrooloose/syntastic'
+" Isort plugin
 Plug 'fisadev/vim-isort'
+" YAPF formatter for Python
 Plug 'pignacio/vim-yapf-format'
+endif
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
 Plug 'vim-utils/vim-troll-stopper'
+" python-mode (debugger and python stuff)
 Plug 'klen/python-mode'
 " Fugitive
 Plug 'tpope/vim-fugitive'
@@ -52,15 +57,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'mtscout6/syntastic-local-eslint.vim'
 " window chooser
 Plug 't9md/vim-choosewin'
-
-
 call plug#end()
 
+" colors
 set background=dark
 let g:solarized_visibility =  "low"
 colorscheme solarized
-" tunning powerline
-"
+" colors -> powerline options
 let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = "dark"
 let g:airline_theme = "solarized"
@@ -79,7 +82,6 @@ set acd " set current working dir
 set incsearch
 set textwidth=79
 set ruler
-
 set splitbelow
 set nobackup
 
@@ -186,7 +188,7 @@ highlight TrollStopper ctermbg = red guibg = #FF0000
 " yapf
 let g:yapf_format_yapf_location = '/usr/local/bin/yapf'
 
-" syntastic
+" syntastic options
 let g:syntastic_check_on_open = 1
 nmap <leader>e :Errors<CR>
 let g:syntastic_enable_signs = 1
@@ -194,7 +196,7 @@ let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_python_checkers=['python', 'flake8', 'frosted']
+let g:syntastic_python_checkers=['flake8']
 
 "neocomplcache (stolen from fisadev/fisaconfig)
 let g:neocomplcache_enable_at_startup = 1
@@ -213,7 +215,7 @@ let g:neocomplcache_min_syntax_length = 1
 let g:neocomplcache_same_filetype_lists = {}
 let g:neocomplcache_same_filetype_lists._ = '_'
 
-" Python-mode
+" Python-mode options
 let g:pymode_lint_on_write = 0
 let g:pymode_lint_signs = 0
 let g:pymode_folding = 0
@@ -223,5 +225,8 @@ let g:pymode_rope = 1
 nmap  -  <Plug>(choosewin)
 " show big letters
 let g:choosewin_overlay_enable = 1
+
+" define python to be used
+let g:python_host_prog = '/usr/local/bin/python'
 
 syntax on
