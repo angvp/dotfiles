@@ -6,8 +6,10 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Aliases
-alias gls="/usr/local/bin/gls"
-alias ls="gls --color=auto"
+if [ -f /usr/local/bin/gls ]; then
+    alias gls="/usr/local/bin/gls"
+    alias ls="gls --color=auto"
+fi
 alias cp="cp -ri"
 alias rm="rm -i"
 alias mv="mv -i"
@@ -16,14 +18,17 @@ alias vi="vim"
 alias ll="ls -la"
 alias grep="grep --color=always"
 
-# TODO: this is an osx alias, I should create a .zshrc.osx
-# and source it is actually osx
 alias launch-redis="redis-server /usr/local/etc/redis.conf"
 
 # Python Development
 WORKON_HOME=~/virtualenvs
-# TODO: Again this path below is osxish
-source /usr/local/bin/virtualenvwrapper.sh 
+
+# MacOSX homebrew path
+if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
+    source /usr/local/bin/virtualenvwrapper.sh 
+elif [ -f /usr/bin/virtualenvwrapper.sh ] ; then
+    source /usr/bin/virtualenvwrapper.sh
+fi
 
 # Functions
 autoload -U zmv
@@ -123,14 +128,17 @@ export EDITOR
 export PAGER
 export VISUAL
 export HOMEBREW_GITHUB_API_TOKEN
-export VIM=/usr/local/Cellar/vim/7.4.2085/share/vim/vim74/
+if [ -d /usr/local/Cellar/vim/7.4.2085/share/vim/vim74/ ]; then
+    export VIM=/usr/local/Cellar/vim/7.4.2085/share/vim/vim74/
+fi
+
 unset GREP_OPTIONS
 unsetopt CORRECT
 
 # Start keychain
 if [ -f /usr/bin/keychain ] && [ "x$ssh_key" != "x" ]; then
     /usr/bin/keychain -q $ssh_key
-source $HOME/.keychain/$HOSTNAME-sh
+    source $HOME/.keychain/$HOSTNAME-sh
 fi
 
 # colors for ls
