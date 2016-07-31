@@ -121,8 +121,8 @@ MANPAGER="most"
 mail=~/.mail
 IGNOREEOF=3
 # osx homebrew
-HOMEBREW_GITHUB_API_TOKEN=fd8427c5d68eb9428d07ddcc6b8e0274173e2e6a
 GPG_TTY=$(tty)
+LANG=en_US.UTF-8
 export GPG_TTY
 export EDITOR
 export PAGER
@@ -143,7 +143,6 @@ fi
 
 # colors for ls
 source $HOME/env/colors.sh
-# alias ls='gls --color=auto'
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -154,4 +153,3 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 # prompt 
 autoload -Uz promptinit
 promptinit
-# prompt agnoster
