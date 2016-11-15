@@ -1,13 +1,14 @@
-# angvp .Xdefaults
-###################
+! angvp .Xdefaults
+!##################
 Xcursor.theme: Jimmac
 Xft*dpi:	    96
 Xft*antialias:	true
 *background:    #121212
 *foreground:    #F6F6F6
 !URxvt settings
-URxvt*termName:     xterm-color
-URxvt*font:         xft:Monaco:pixelsize=18:antialias=false
+!URxvt*termName:     xterm-color
+URxvt*termName:     rxvt-unicode-256color
+URxvt*font:         xft:Monaco:pixelsize=16:antialias=false
 !URxvt*font:         xft:Monaco:pixelsize=13
 URxvt.imLocale:     es_AR.UTF-8
 URxvt*transparent:  true

@@ -6,7 +6,7 @@ Xft*antialias:	true
 !URxvt*termName:             screen-256color
 URxvt*termName:             rxvt-256color
 !URxvt*font:         xft:Ubuntu Mono derivative Powerline:pixelsize=18
-URxvt*font:           xft:Monaco for Powerline:pixelsize=15
+URxvt*font:           xft:Monaco for Powerline:pixelsize=15,xft:Noto Emoji
 URxvt*imFont:         xft:Monaco for Powerline:regular:size=15
 URxvt*boldFont:       xft:Monaco for Powerline:bold:size=16
 URxvt*italicFont:     xft:Monaco for Powerline:italic:size=15
@@ -21,7 +21,7 @@ URxvt.keysym.M-u:           perl:url-select:select_next
 URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.utf-8:                1
-URxvt.imLocale:             es_AR.UTF-8
+URxvt.imLocale:             en_CA.UTF-8
 !URxvt*transparent:          true
 URxvt*shading:              10
 URxvt*scrollBar:            false
