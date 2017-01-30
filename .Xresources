@@ -22,7 +22,7 @@ URxvt.keysym.M-Escape:      perl:keyboard-select:activate
 URxvt.keysym.M-s:           perl:keyboard-select:search
 URxvt.utf-8:                1
 URxvt.imLocale:             en_CA.UTF-8
-!URxvt*transparent:          true
+URxvt*transparent:          false
 URxvt*shading:              10
 URxvt*scrollBar:            false
 URxvt*geometry:             80x27
