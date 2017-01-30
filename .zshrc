@@ -111,16 +111,10 @@ MANPAGER="most"
 mail=~/.mail
 IGNOREEOF=3
 GPG_TTY=$(tty)
-LANG=en_CA.UTF-8
 export GPG_TTY
 export EDITOR
 export PAGER
 export VISUAL
-<<<<<<< HEAD
-
-=======
-export LANG
->>>>>>> Add new options
 unset GREP_OPTIONS
 unsetopt CORRECT
 
