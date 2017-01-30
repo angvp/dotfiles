@@ -18,17 +18,8 @@ alias vi="vim"
 alias ll="ls -la"
 alias grep="grep --color=always"
 
-alias launch-redis="redis-server /usr/local/etc/redis.conf"
-
 # Python Development
 WORKON_HOME=~/virtualenvs
-
-# MacOSX homebrew path
-if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
-    source /usr/local/bin/virtualenvwrapper.sh 
-elif [ -f /usr/bin/virtualenvwrapper.sh ] ; then
-    source /usr/bin/virtualenvwrapper.sh
-fi
 
 # Functions
 autoload -U zmv
@@ -120,35 +111,23 @@ PAGER="most"
 MANPAGER="most"
 mail=~/.mail
 IGNOREEOF=3
-# osx homebrew
 GPG_TTY=$(tty)
-LANG=en_US.UTF-8
+LANG=en_CA.UTF-8
 export GPG_TTY
 export EDITOR
 export PAGER
 export VISUAL
-export HOMEBREW_GITHUB_API_TOKEN
-if [ -d /usr/local/Cellar/vim/7.4.2085/share/vim/vim74/ ]; then
-    export VIM=/usr/local/Cellar/vim/7.4.2085/share/vim/vim74/
-fi
 
 unset GREP_OPTIONS
 unsetopt CORRECT
 
-# Start keychain
-if [ -f /usr/bin/keychain ] && [ "x$ssh_key" != "x" ]; then
-    /usr/bin/keychain -q $ssh_key
-    source $HOME/.keychain/$HOSTNAME-sh
-fi
-
 # colors for ls
 source $HOME/env/colors.sh
 
+# check if OSX and get additional variables
+[[ $(echo $(uname)) == "Darwin" ]] && source ~/env/osx.sh
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# iterm2 + zsh
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # prompt 
 autoload -Uz promptinit

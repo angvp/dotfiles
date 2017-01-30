@@ -1,4 +1,4 @@
 *.pyc
 *.swp
 .vim/.netrwhist
-env/osx.sh
+env/osxpriv.sh
