@@ -22,7 +22,6 @@ call plug#begin('~/.vim/plugged')
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
 " cool bars
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -34,6 +33,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mattn/emmet-vim'
 " Autocompletion
 Plug 'Shougo/neocomplcache.vim'
+" Plug 'maralla/completor.vim' " TODO: try this later
 " Indexed Search (better search integration)
 Plug 'IndexedSearch'
 " Indent text object
@@ -49,13 +49,15 @@ Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
 Plug 'vim-utils/vim-troll-stopper'
 " python-mode (debugger and python stuff)
-Plug 'klen/python-mode'
+Plug 'klen/python-mode', {'branch': 'develop'}
 " Fugitive
 Plug 'tpope/vim-fugitive'
 " JavaScript stuff
 Plug 'mtscout6/syntastic-local-eslint.vim'
 " window chooser
 Plug 't9md/vim-choosewin'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 call plug#end()
 
 " colors
@@ -140,6 +142,8 @@ au BufNewFile,BufRead grub.conf set filetype=grub
 au BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
 au BufNewFile,BufRead *.j2 set filetype=jinja
 au BufNewFile,BufRead *.sls set filetype=yaml
+au BufNewFile,BufRead *.jsx set filetype=jsx
+au BufNewFile,BufRead *.sass set filetype=sass
 
 " C file specific options
 au FileType c,cpp set cindent
@@ -153,6 +157,8 @@ au FileType jinja setlocal et ts=4 sw=4 sts=4
 " JavaScript abbreviations
 au FileType javascript setlocal et ts=2 sw=2 sts=2
 au FileType json setlocal et ts=2 sw=2 sts=2
+au FileType jsx set noexpandtab syntax=javascript
+au FileType sass setlocal noexpandtab
 
 au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
 au FileType yaml setlocal et ts=2 sw=2 sts=2
@@ -168,6 +174,7 @@ map q :bd!<CR>
 " select all
 nnoremap <C-e> ggVG
 " FZF config
+set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <leader><C-P> :Files<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
@@ -190,12 +197,15 @@ let g:yapf_format_yapf_location = '/usr/local/bin/yapf'
 " syntastic options
 let g:syntastic_check_on_open = 1
 nmap <leader>e :Errors<CR>
-let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_style_warning_symbol = '⚠'
-let g:syntastic_python_checkers=['flake8']
+" let g:syntastic_javascript_checkers = ['eslint']
+" autocmd bufwritepost *.js silent !standard --fix %
+set autoread
+" let g:syntastic_javascript_checkers = ['standard']
+
 
 "neocomplcache (stolen from fisadev/fisaconfig)
 let g:neocomplcache_enable_at_startup = 1
@@ -215,17 +225,41 @@ let g:neocomplcache_same_filetype_lists = {}
 let g:neocomplcache_same_filetype_lists._ = '_'
 
 " Python-mode options
-let g:pymode_lint_on_write = 0
+let g:pymode_lint_on_write = 1
 let g:pymode_lint_signs = 0
 let g:pymode_folding = 0
 let g:pymode_rope = 1
-
+let pymode_breakpoint = 1
+let pymode_breakpoint_bind = 'b'
+let pymode_doc = 1
+let pymode_doc_bind = 'K'
+let pymode_folding = 1
+let pymode_indent = 1
+let pymode_lint_checkers = ['flake8', 'mccabe']
+let pymode_lint_cwindow = 1
+let pymode_lint_ignore = ''
+let pymode_lint_message = 1
+let pymode_lint_on_fly = 0
+let pymode_lint_select = ''
+let pymode_motion = 1
+let pymode_options = 1
+let pymode_paths = []
+let pymode_quickfix_maxheight = 6
+let pymode_quickfix_minheight = 3
+let pymode_rope = 1
+let pymode_run = 1
+let pymode_run_bind = 'r'
+let pymode_trim_whitespaces = 1
+let pymode_virtualenv = 1
+let pymode_virtualenv_enabled = ''
+let pymode_lint = 1
 " choosewin 
 nmap  -  <Plug>(choosewin)
 " show big letters
 let g:choosewin_overlay_enable = 1
 
 " define python to be used
-let g:python_host_prog = '/usr/local/bin/python'
+let g:python_host_prog = '/usr/local/bin/pypy'
 
+set timeoutlen=1000 ttimeoutlen=0
 syntax on
