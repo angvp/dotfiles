@@ -17,7 +17,6 @@ alias cls="clear"
 alias vi="vim"
 alias ll="ls -la"
 alias grep="grep --color=always"
-
 # Python Development
 WORKON_HOME=~/virtualenvs
 
@@ -117,7 +116,11 @@ export GPG_TTY
 export EDITOR
 export PAGER
 export VISUAL
+<<<<<<< HEAD
 
+=======
+export LANG
+>>>>>>> Add new options
 unset GREP_OPTIONS
 unsetopt CORRECT
 
@@ -132,3 +135,7 @@ source $HOME/env/colors.sh
 # prompt 
 autoload -Uz promptinit
 promptinit
+
+# zpython
+alias pyclean='find . -type f -name "*.py[co]" -delete'
+module_path=($module_path /usr/local/lib/zpython)
