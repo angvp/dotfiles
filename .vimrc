@@ -1,4 +1,6 @@
 " angvp's .vimrc config
+" =====================
+
 let mapleader = " "
 let maplocalleader = " "
 set nocompatible
@@ -38,8 +40,8 @@ Plug 'Shougo/neocomplcache.vim'
 Plug 'IndexedSearch'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
-" syntastic
-Plug 'scrooloose/syntastic'
+" asynchronous lint engine
+Plug 'w0rp/ale'
 " Isort plugin
 Plug 'fisadev/vim-isort'
 " YAPF formatter for Python
@@ -52,12 +54,14 @@ Plug 'vim-utils/vim-troll-stopper'
 Plug 'klen/python-mode', {'branch': 'develop'}
 " Fugitive
 Plug 'tpope/vim-fugitive'
-" JavaScript stuff
-Plug 'mtscout6/syntastic-local-eslint.vim'
 " window chooser
 Plug 't9md/vim-choosewin'
+" javascript
 Plug 'pangloss/vim-javascript'
+" jsx (react)
 Plug 'mxw/vim-jsx'
+" whitespace
+Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
 " colors
@@ -194,18 +198,13 @@ highlight TrollStopper ctermbg = red guibg = #FF0000
 " yapf
 let g:yapf_format_yapf_location = '/usr/local/bin/yapf'
 
-" syntastic options
-let g:syntastic_check_on_open = 1
-nmap <leader>e :Errors<CR>
-let g:syntastic_error_symbol = '✗'
-let g:syntastic_warning_symbol = '⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
-" let g:syntastic_javascript_checkers = ['eslint']
-" autocmd bufwritepost *.js silent !standard --fix %
-set autoread
-" let g:syntastic_javascript_checkers = ['standard']
-
+" ale options
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 "neocomplcache (stolen from fisadev/fisaconfig)
 let g:neocomplcache_enable_at_startup = 1
@@ -253,13 +252,19 @@ let pymode_trim_whitespaces = 1
 let pymode_virtualenv = 1
 let pymode_virtualenv_enabled = ''
 let pymode_lint = 1
-" choosewin 
+" choosewin
 nmap  -  <Plug>(choosewin)
 " show big letters
 let g:choosewin_overlay_enable = 1
 
 " define python to be used
 let g:python_host_prog = '/usr/local/bin/pypy'
+
+" whitespace configuration
+set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+set list
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
 
 set timeoutlen=1000 ttimeoutlen=0
 syntax on
