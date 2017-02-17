@@ -59,7 +59,8 @@ Plug 't9md/vim-choosewin'
 " javascript
 Plug 'pangloss/vim-javascript'
 " jsx (react)
-Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'mxw/vim-jsx'
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
@@ -146,7 +147,6 @@ au BufNewFile,BufRead grub.conf set filetype=grub
 au BufNewFile,BufRead PKGBUILD set filetype=pkgbuild
 au BufNewFile,BufRead *.j2 set filetype=jinja
 au BufNewFile,BufRead *.sls set filetype=yaml
-au BufNewFile,BufRead *.jsx set filetype=jsx
 au BufNewFile,BufRead *.sass set filetype=sass
 
 " C file specific options
@@ -161,7 +161,7 @@ au FileType jinja setlocal et ts=4 sw=4 sts=4
 " JavaScript abbreviations
 au FileType javascript setlocal et ts=2 sw=2 sts=2
 au FileType json setlocal et ts=2 sw=2 sts=2
-au FileType jsx set noexpandtab syntax=javascript
+au FileType jsx setlocal noexpandtab
 au FileType sass setlocal noexpandtab
 
 au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
