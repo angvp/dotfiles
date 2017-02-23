@@ -65,10 +65,18 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 
+if vim_plug_just_installed
+    :PlugInstall
+endif
+
 " colors
 set background=dark
 let g:solarized_visibility =  "low"
-colorscheme solarized
+if (vim_plug_just_installed)
+    colorscheme delek
+else
+    colorscheme solarized
+endif
 " colors -> powerline options
 let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = "dark"
