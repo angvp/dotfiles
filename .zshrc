@@ -80,10 +80,7 @@ if [ -f .banner ] ; then
     ./.banner
 fi
 
-# Arch Linux Packager vars and functions
-PACKAGER="Angel Velasquez <angvp@archlinux.org>"
-ARCH_HASKELL="Angel Velasquez <angvp@archlinux.org>"
-
+# Arch Linux Packager functions
 signpkg() {
     for pkg in *.pkg.tar.xz; do gpg --detach-sign $pkg; done
 }
