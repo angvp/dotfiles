@@ -63,6 +63,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'mxw/vim-jsx'
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
+" base16 solarized
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 if vim_plug_just_installed
@@ -75,12 +77,13 @@ let g:solarized_visibility =  "low"
 if (vim_plug_just_installed)
     colorscheme delek
 else
-    colorscheme solarized
+    " colorscheme solarized
+    colorscheme base16-default-dark
 endif
 " colors -> powerline options
 let g:airline_powerline_fonts = 1
 let g:airline_solarized_bg = "dark"
-let g:airline_theme = "solarized"
+let g:airline_theme = "base16_solarized"
 let g:airline#extensions#tabline#enabled = 1
 
 set cmdheight=1
@@ -269,10 +272,10 @@ let g:choosewin_overlay_enable = 1
 let g:python_host_prog = '/usr/local/bin/pypy'
 
 " whitespace configuration
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
-set list
-highlight NonText guifg=#4a4a59
-highlight SpecialKey guifg=#4a4a59
+" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space: 
+" set list
+" highlight NonText guifg=#4a4a59
+" highlight SpecialKey guifg=#4a4a59
 
 set timeoutlen=1000 ttimeoutlen=0
 syntax on
