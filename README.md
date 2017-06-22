@@ -4,11 +4,20 @@ angvp's configs files:
 
 Available configs:
 
-- awesome (3.5)
-- bashrc (not using it lately)
-- ncmpp (out of date too)
-- screen (not using that lately either)
-- subtle (out of date since I don't use it anymore)
-- tmux
-- vim (requires [vim-plug](https://github.com/junegunn/vim-plug/))
-- zshrc (requires [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh))
+- awesome (4.1 and 3.5)
+- conky
+- dircolors
+- makepkg
+- tmux (2.5)
+- vim >= 8.0 (requires [vim-plug](https://github.com/junegunn/vim-plug/))
+- Xdefaults and Xresources
+- zshrc (requires [prezto](https://github.com/sorin-ionescu/prezto/))
+
+Deprecated configs (can be useful for some hints)
+
+- subtle
+- bash
+- screen
+- ncmppp 
+- oh-my-zsh
+- quake3 
