@@ -37,7 +37,7 @@ Plug 'mattn/emmet-vim'
 Plug 'Shougo/neocomplcache.vim'
 " Plug 'maralla/completor.vim' " TODO: try this later
 " Indexed Search (better search integration)
-Plug 'IndexedSearch'
+Plug 'vim-scripts/IndexedSearch'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
 " asynchronous lint engine
@@ -170,7 +170,7 @@ au FileType python iab putf8 # -*- coding: utf-8 -*-
 au FileType python setlocal et ts=4 sw=4 sts=4
 au FileType jinja setlocal et ts=4 sw=4 sts=4
 " JavaScript abbreviations
-au FileType javascript setlocal et ts=2 sw=2 sts=2
+au FileType javascript setlocal noexpandtab ts=2 sw=2 sts=2
 au FileType json setlocal et ts=2 sw=2 sts=2
 au FileType jsx setlocal noexpandtab
 au FileType sass setlocal noexpandtab
@@ -216,6 +216,9 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+\   'javascript': [],
+\}
 
 "neocomplcache (stolen from fisadev/fisaconfig)
 let g:neocomplcache_enable_at_startup = 1
