@@ -4,10 +4,11 @@
 #
 # Executed by startx (run your window manager from here)
 xscreensaver -no-splash &
-setxkbmap us altgr-intl 
-wicd-client &
+setxkbmap us altgr-intl
+wicd-client -t &
 conky &
 eval `cat ~/.fehbg` &
 xrdb -merge ~/.Xresources &
-start-pulseaudio-x11 
+nvidia-settings --load-config-only &
+start-pulseaudio-x11
 exec awesome
