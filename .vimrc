@@ -170,9 +170,9 @@ au FileType python iab putf8 # -*- coding: utf-8 -*-
 au FileType python setlocal et ts=4 sw=4 sts=4
 au FileType jinja setlocal et ts=4 sw=4 sts=4
 " JavaScript abbreviations
-" au FileType javascript setlocal noexpandtab ts=2 sw=2 sts=2
+au FileType javascript setlocal et ts=2 sw=2 sts=2
 au FileType json setlocal et ts=2 sw=2 sts=2
-au FileType jsx setlocal noexpandtab
+au FileType jsx setlocal et ts=2 sw=2 sts=2 
 au FileType sass setlocal noexpandtab
 
 au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
