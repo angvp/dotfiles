@@ -34,4 +34,5 @@ URxvt.tabbed.urlLauncher:    firefox
 URxvt.tabbed.matcher.button: 2
 URxvt.tabbed.secondaryScroll:true
 !# include "/home/angvp/.xcolours/angvp"
-# include "/home/angvp/.xcolours/solarized"
+!# include "/home/angvp/.xcolours/solarized"
+# include "/home/angvp/.xcolours/base16-solarized-dark-256"
