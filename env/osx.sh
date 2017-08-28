@@ -17,3 +17,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 test -e "${HOME}/env/osx.priv.sh" && source "${HOME}/env/osxpriv.sh"
 export HOMEBREW_GITHUB_API_TOKEN
+
+# virtualenvwrapper
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
