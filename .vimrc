@@ -160,6 +160,10 @@ au BufNewFile,BufRead *.j2 set filetype=jinja
 au BufNewFile,BufRead *.sls set filetype=yaml
 au BufNewFile,BufRead *.sass set filetype=sass
 
+" Templates TIL thanks to this tweet
+" (https://twitter.com/csswizardry/status/903244333687721988)
+au BufNewFile *.test.js 0r ~/.vimtpl/template.test.js
+
 " C file specific options
 au FileType c,cpp set cindent
 au FileType c,cpp set formatoptions+=ro
