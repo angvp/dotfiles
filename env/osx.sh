@@ -1,5 +1,7 @@
 alias launch-redis="redis-server /usr/local/etc/redis.conf"
 
+VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
+
 if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
     source /usr/local/bin/virtualenvwrapper.sh
 elif [ -f /usr/bin/virtualenvwrapper.sh ] ; then
@@ -19,4 +21,3 @@ test -e "${HOME}/env/osx.priv.sh" && source "${HOME}/env/osxpriv.sh"
 export HOMEBREW_GITHUB_API_TOKEN
 
 # virtualenvwrapper
-VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2

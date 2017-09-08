@@ -176,7 +176,7 @@ au FileType jinja setlocal et ts=4 sw=4 sts=4
 " JavaScript abbreviations
 au FileType javascript setlocal et ts=2 sw=2 sts=2
 au FileType json setlocal et ts=2 sw=2 sts=2
-au FileType jsx setlocal et ts=2 sw=2 sts=2 
+au FileType jsx setlocal et ts=2 sw=2 sts=2
 au FileType sass setlocal noexpandtab
 
 au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
@@ -276,9 +276,6 @@ let pymode_lint = 1
 nmap  -  <Plug>(choosewin)
 " show big letters
 let g:choosewin_overlay_enable = 1
-
-" define python to be used
-let g:python_host_prog = '/usr/local/bin/pypy'
 
 " whitespace configuration
 " set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space: 
