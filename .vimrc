@@ -278,7 +278,7 @@ nmap  -  <Plug>(choosewin)
 let g:choosewin_overlay_enable = 1
 
 " whitespace configuration
-" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space: 
+" set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
 " set list
 " highlight NonText guifg=#4a4a59
 " highlight SpecialKey guifg=#4a4a59

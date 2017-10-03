@@ -9,4 +9,4 @@ describe('description of your tests', () => {
     }
     expect(someVar).toMatchObject(otherVar)
   })
-}
+})
