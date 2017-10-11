@@ -1,18 +1,16 @@
-# angvp conky 
+# angvp conky
 # A comprehensive conky script, configured for use on
 # Arch Linux - OpenBox, FluxBox, Pekwm, awesome
 #
-# Last modified on: 05/11/2008
+# Last modified on: 11/10/2017
 #
 # Based on conky-jc and the default .conkyrc.
 # INCLUDES:
-# - tail of /var/log/messages
-# - netstat connections to your computer
 # - Calendar
 # - Fortune
 # - MPD Info (custom script)
 #
-# -- Angel 'angvp' Velásquez <angvp[at]archlinux.com.ve> 
+# -- Angel 'angvp' Velásquez <angvp[at]archlinux.org>
 #
 
 # Create own window instead of using desktop (required in nautilus)
@@ -35,12 +33,12 @@ update_interval 3.0
 # minimum_size 250 5
 
 # Draw shades?
-draw_shades yes 
+draw_shades yes
 
 # Text stuff
 draw_outline no # amplifies text if yes
 draw_borders no
-font terminus 
+font terminus
 uppercase no # set to yes if you want all text to be in uppercase
 
 # Stippled borders?
@@ -108,7 +106,7 @@ Var  (/var):      ${fs_free_perc /var}%   ${fs_bar 4 /}$color
 Home (/home):  ${fs_free_perc /home}%   ${fs_bar 4 /home}$color
 
 ${color green}NETWORK  (Wi-Fi) (${addr wlp3s0}) ${hr 2}$color
-Down: $color${downspeed wlp3s0} ${alignr}Up: ${upspeed wlp3s0} 
+Down: $color${downspeed wlp3s0} ${alignr}Up: ${upspeed wlp3s0}
 ${downspeedgraph wlp3s0 15,140 000000 ff0000} ${alignr}${upspeedgraph wlp3s0
 15,140 000000 00ff00}$color
 Total: ${totaldown wlp3s0} ${alignr}Total: ${totalup wlp3s0}
@@ -130,8 +128,3 @@ ${exec cal}
 # You should have fortune-mod in order to use this
 ${color green}FORTUNE ${hr 2}$color
 ${execi 120 fortune -s | fold -w50}
-
-#This is a custom script if you don't use it, please comment these lines 
-# ${color green}MPD ${hr 2}$color
-#${exec mpd_cs.py} 
-
