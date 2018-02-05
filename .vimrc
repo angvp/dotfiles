@@ -58,6 +58,8 @@ Plug 'tpope/vim-fugitive'
 Plug 't9md/vim-choosewin'
 " javascript
 Plug 'pangloss/vim-javascript'
+" javascript (might be removed, still testing it)
+Plug 'jelera/vim-javascript-syntax'
 " jsx (react)
 Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'mxw/vim-jsx'
@@ -65,6 +67,10 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'ntpeters/vim-better-whitespace'
 " base16 solarized
 Plug 'chriskempson/base16-vim'
+" splitjoin
+Plug 'AndrewRadev/splitjoin.vim'
+" brackets
+Plug 'itmammoth/doorboy.vim'
 call plug#end()
 
 if vim_plug_just_installed
