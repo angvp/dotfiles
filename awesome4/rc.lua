@@ -50,7 +50,7 @@ local function run_once(cmd)
   awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd))
 end
 
-run_once("urxvtd")
+-- run_once("urxvtd")
 run_once("unclutter -root")
 -- }}}
 
@@ -61,7 +61,7 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lu
 -- common
 local modkey     = "Mod4"
 local altkey     = "Mod1"
-local terminal   = "urxvtc"
+local terminal   = "alacritty"
 local editor     = os.getenv("EDITOR") or "vim"
 
 -- user defined

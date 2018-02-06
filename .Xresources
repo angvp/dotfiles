@@ -6,11 +6,11 @@ Xft*antialias:               true
 !URxvt*termName:             screen-256color
 URxvt*termName:              rxvt-256color
 !URxvt*font:         xft:Ubuntu Mono derivative Powerline:pixelsize=18
-URxvt*font:                  xft:Monaco for Powerline:pixelsize=15,xft:Noto Emoji
-URxvt*imFont:                xft:Monaco for Powerline:regular:size=15
-URxvt*boldFont:              xft:Monaco for Powerline:bold:size=16
-URxvt*italicFont:            xft:Monaco for Powerline:italic:size=15
-URxvt*boldItalicFont:        xft:Monaco for Powerline:bold:italic:size=16
+URxvt*font:                  xft:monospace:pixelsize=15,xft:Noto Emoji
+URxvt*imFont:                xft:monospace:regular:size=15
+URxvt*boldFont:              xft:monospace:bold:size=16
+URxvt*italicFont:            xft:monospace:italic:size=15
+URxvt*boldItalicFont:        xft:monospace:bold:italic:size=16
 URxvt*background:            #002b36
 
 

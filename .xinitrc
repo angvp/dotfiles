@@ -3,9 +3,10 @@
 # ~/.xinitrc
 #
 # Executed by startx (run your window manager from here)
+./.screenlayout/gaming.sh
 xscreensaver -no-splash &
 setxkbmap us altgr-intl
-wicd-client -t &
+nm-applet &
 conky &
 eval `cat ~/.fehbg` &
 xrdb -merge ~/.Xresources &
