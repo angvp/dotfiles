@@ -19,6 +19,8 @@ alias ll="ls -la"
 alias grep="grep --color=always"
 # Python Development
 WORKON_HOME=~/virtualenvs
+ANDROID_HOME=/opt/android-studio
+JAVA_HOME=/opt/android-studio/jre
 
 # Functions
 autoload -U zmv
@@ -112,6 +114,8 @@ export GPG_TTY
 export EDITOR
 export PAGER
 export VISUAL
+export ANDROID_HOME
+export JAVA_HOME
 unset GREP_OPTIONS
 unsetopt CORRECT
 
@@ -123,7 +127,10 @@ source $HOME/env/colors.sh
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# prompt 
+# check virtualenvwrapper Arch
+[ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
+
+# prompt
 autoload -Uz promptinit
 promptinit
 
