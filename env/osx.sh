@@ -1,6 +1,7 @@
 alias launch-redis="redis-server /usr/local/etc/redis.conf"
 
 VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
+PATH=$PATH:~/Library/Android/sdk/platform-tools
 
 if [ -f /usr/local/bin/virtualenvwrapper.sh ] ; then
     source /usr/local/bin/virtualenvwrapper.sh
@@ -17,7 +18,8 @@ fi
 # iterm2 + zsh
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-test -e "${HOME}/env/osx.priv.sh" && source "${HOME}/env/osxpriv.sh"
+test -e "${HOME}/env/osxpriv.sh" && source "${HOME}/env/osxpriv.sh"
 export HOMEBREW_GITHUB_API_TOKEN
 
 # virtualenvwrapper
+eval "$(pyenv init -)"
