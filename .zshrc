@@ -78,8 +78,8 @@ x() {
 }
 
 # TODO: This banner should go to .zshrc.archlinux
-if [ -f .banner ] ; then
-    ./.banner
+if [ -f ~/.banner ] ; then
+    ~/.banner
 fi
 
 # Arch Linux Packager functions
