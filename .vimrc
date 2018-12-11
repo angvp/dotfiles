@@ -44,14 +44,15 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'w0rp/ale'
 " Isort plugin
 Plug 'fisadev/vim-isort'
-" YAPF formatter for Python
-Plug 'pignacio/vim-yapf-format'
+Plug 'ambv/black'
+
+
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
 Plug 'vim-utils/vim-troll-stopper'
 " python-mode (debugger and python stuff)
-Plug 'klen/python-mode', {'branch': 'develop'}
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 " Fugitive
 Plug 'tpope/vim-fugitive'
 " window chooser
@@ -216,9 +217,7 @@ set fillchars+=stl:\ ,stlnc:\
 " trollstopper
 highlight TrollStopper ctermbg = red guibg = #FF0000
 
-" yapf
-let g:yapf_format_yapf_location = '/usr/local/bin/yapf'
-
+let g:black_linelength = 79
 " ale options
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
@@ -260,7 +259,6 @@ let pymode_doc = 1
 let pymode_doc_bind = 'K'
 let pymode_folding = 1
 let pymode_indent = 1
-let pymode_lint_checkers = ['flake8', 'mccabe']
 let pymode_lint_cwindow = 1
 let pymode_lint_ignore = ''
 let pymode_lint_message = 1
@@ -278,6 +276,7 @@ let pymode_trim_whitespaces = 1
 let pymode_virtualenv = 1
 let pymode_virtualenv_enabled = ''
 let pymode_lint = 1
+let g:pymode_python = 'python'
 " choosewin
 nmap  -  <Plug>(choosewin)
 " show big letters

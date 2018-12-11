@@ -659,7 +659,7 @@ globalkeys = awful.util.table.join(
 
     -- User programs
     awful.key({ modkey }, "q", function () awful.spawn(browser) end),
-    awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
+    -- awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
     awful.key({ modkey }, "g", function () awful.spawn(graphics) end),
 
     -- Default
