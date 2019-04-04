@@ -67,7 +67,11 @@ Plug 'maxmellon/vim-jsx-pretty'
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
 " base16 solarized
-Plug 'chriskempson/base16-vim'
+function FixupBase16(info)
+    !sed -i '/Base16hi/\! s/a:\(attr\|guisp\)/l:\1/g' ~/.vim/plugged/base16-vim/colors/*.vim
+endfunction
+Plug 'chriskempson/base16-vim', { 'do': function('FixupBase16') }
+" Plug 'chriskempson/base16-vim'
 " splitjoin
 Plug 'AndrewRadev/splitjoin.vim'
 " brackets
@@ -84,7 +88,6 @@ let g:solarized_visibility =  "low"
 if (vim_plug_just_installed)
     colorscheme delek
 else
-    " colorscheme solarized
     colorscheme base16-default-dark
 endif
 " colors -> powerline options
