@@ -86,9 +86,9 @@ endif
 set background=dark
 let g:solarized_visibility =  "low"
 if (vim_plug_just_installed)
-    colorscheme delek
+    "colorscheme delek
 else
-    colorscheme base16-default-dark
+    colorscheme base16-solarized-dark
 endif
 " colors -> powerline options
 let g:airline_powerline_fonts = 1
