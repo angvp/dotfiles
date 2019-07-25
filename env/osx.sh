@@ -1,4 +1,5 @@
 alias launch-redis="redis-server /usr/local/etc/redis.conf"
+alias alacritty="open -n /Applications/Alacritty.app"
 
 VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python2
 PATH=$PATH:~/Library/Android/sdk/platform-tools
