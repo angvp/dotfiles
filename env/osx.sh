@@ -22,5 +22,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 test -e "${HOME}/env/osxpriv.sh" && source "${HOME}/env/osxpriv.sh"
 export HOMEBREW_GITHUB_API_TOKEN
 
+export ANDROID_HOME="/Users/angvp/Library/Android/sdk"
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-12.0.1.jdk/Contents/Home/"
+
 # virtualenvwrapper
 eval "$(pyenv init -)"
