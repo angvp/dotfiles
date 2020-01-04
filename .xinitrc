@@ -3,7 +3,7 @@
 # ~/.xinitrc
 #
 # Executed by startx (run your window manager from here)
-./.screenlayout/threemonitors.sh
+./.screenlayout/topactive.sh
 xscreensaver -no-splash &
 setxkbmap us altgr-intl
 nm-applet &
