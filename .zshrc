@@ -21,6 +21,8 @@ alias grep="grep --color=always"
 WORKON_HOME=~/virtualenvs
 ANDROID_HOME=/opt/android-studio
 JAVA_HOME=/opt/android-studio/jre
+NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Functions
 autoload -U zmv
@@ -116,6 +118,7 @@ export PAGER
 export VISUAL
 export ANDROID_HOME
 export JAVA_HOME
+export NVM_DIR
 unset GREP_OPTIONS
 unsetopt CORRECT
 
