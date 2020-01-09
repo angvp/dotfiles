@@ -52,7 +52,7 @@ Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
 Plug 'vim-utils/vim-troll-stopper'
 " python-mode (debugger and python stuff)
-Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Fugitive
 Plug 'tpope/vim-fugitive'
 " window chooser
@@ -230,7 +230,7 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " it requires you install prettier-standard
 " yarn add --dev prettier-standard
-let g:ale_fixers = {'javascript': ['prettier_standard']}
+let g:ale_fixers = {'javascript': ['prettier_standard'], 'python': ['black', 'yapf', 'isort']}
 let g:ale_linters = {'javascript': ['']}
 let g:ale_fix_on_save = 1
 
@@ -279,7 +279,7 @@ let pymode_trim_whitespaces = 1
 let pymode_virtualenv = 1
 let pymode_virtualenv_enabled = ''
 let pymode_lint = 1
-let g:pymode_python = 'python'
+let g:pymode_python = 'python3'
 " choosewin
 nmap  -  <Plug>(choosewin)
 " show big letters
