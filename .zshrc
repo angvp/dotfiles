@@ -133,6 +133,9 @@ source $HOME/env/colors.sh
 # check virtualenvwrapper Arch
 [ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+
 # prompt
 autoload -Uz promptinit
 promptinit

@@ -24,6 +24,7 @@ export HOMEBREW_GITHUB_API_TOKEN
 
 export ANDROID_HOME="/Users/angvp/Library/Android/sdk"
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/openjdk-12.0.1.jdk/Contents/Home/"
+export PATH="/usr/local/opt/php@7.1/bin:$PATH"
 
 # virtualenvwrapper
 eval "$(pyenv init -)"
