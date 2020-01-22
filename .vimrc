@@ -45,6 +45,7 @@ Plug 'w0rp/ale'
 " Isort plugin
 Plug 'fisadev/vim-isort'
 Plug 'ambv/black'
+Plug 'ryanoasis/vim-devicons'
 
 
 " Virtualenv
@@ -76,6 +77,8 @@ Plug 'chriskempson/base16-vim', { 'do': function('FixupBase16') }
 Plug 'AndrewRadev/splitjoin.vim'
 " brackets
 Plug 'itmammoth/doorboy.vim'
+" ligatures
+Plug 'angvp/vim-ligatures', { 'branch': 'feature/add-other-languages' }
 call plug#end()
 
 if vim_plug_just_installed
@@ -83,7 +86,7 @@ if vim_plug_just_installed
 endif
 
 " colors
-set background=dark
+" set background=dark
 let g:solarized_visibility =  "low"
 if (vim_plug_just_installed)
     "colorscheme delek
