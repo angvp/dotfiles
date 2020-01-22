@@ -86,7 +86,6 @@ if vim_plug_just_installed
 endif
 
 " colors
-" set background=dark
 let g:solarized_visibility =  "low"
 if (vim_plug_just_installed)
     "colorscheme delek
