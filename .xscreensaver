@@ -1,11 +1,11 @@
 # XScreenSaver Preferences File
-# Written by xscreensaver-demo 5.43 for angvp on Sun Jan  5 00:27:25 2020.
+# Written by xscreensaver-demo 5.43 for angvp on Tue Feb 25 00:18:42 2020.
 # https://www.jwz.org/xscreensaver/
 
-timeout:	0:10:00
-cycle:		0:10:00
-lock:		False
-lockTimeout:	0:00:00
+timeout:	0:05:00
+cycle:		0:03:00
+lock:		True
+lockTimeout:	0:05:00
 passwdTimeout:	0:00:30
 visualID:	default
 installColormap:    True
@@ -34,8 +34,8 @@ grabVideoFrames:    False
 chooseRandomImages: False
 imageDirectory:	
 
-mode:		one
-selected:	163
+mode:		random
+selected:	0
 
 textMode:	file
 textLiteral:	XScreenSaver
@@ -52,7 +52,7 @@ programs:								      \
 				helix -root				    \n\
 				hopalong -root				    \n\
 				imsmap -root				    \n\
--				noseguy -root				    \n\
+				noseguy -root				    \n\
 -				pyro -root				    \n\
 				qix -root				    \n\
 -				rocks -root				    \n\
@@ -134,7 +134,7 @@ programs:								      \
 				xflame -root				    \n\
 				xmatrix -root				    \n\
   GL: 				gflux -root				    \n\
--				nerverot -root				    \n\
+				nerverot -root				    \n\
 				xrayswarm -root				    \n\
 				xspirograph -root			    \n\
   GL: 				circuit -root				    \n\
