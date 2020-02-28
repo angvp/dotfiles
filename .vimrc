@@ -72,13 +72,14 @@ function FixupBase16(info)
     !sed -i '/Base16hi/\! s/a:\(attr\|guisp\)/l:\1/g' ~/.vim/plugged/base16-vim/colors/*.vim
 endfunction
 Plug 'chriskempson/base16-vim', { 'do': function('FixupBase16') }
-" Plug 'chriskempson/base16-vim'
 " splitjoin
 Plug 'AndrewRadev/splitjoin.vim'
 " brackets
 Plug 'itmammoth/doorboy.vim'
-" ligatures
-Plug 'angvp/vim-ligatures', { 'branch': 'feature/add-other-languages' }
+if !has('mac')
+  Plug 'sebmaynard/vim-ligatures'
+endif
+
 call plug#end()
 
 if vim_plug_just_installed
