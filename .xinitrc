@@ -11,6 +11,4 @@ conky &
 eval `cat ~/.fehbg` &
 xrdb -merge ~/.Xresources &
 xinput --set-prop 15 'libinput Accel Speed' 1.0
-# nvidia-settings --load-config-only &
-start-pulseaudio-x11
 exec awesome
