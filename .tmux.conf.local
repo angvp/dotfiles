@@ -241,7 +241,7 @@ tmux_conf_copy_to_os_clipboard=true
 #
 #
 # split panel in vertical
-bind | split-window -h
+bind -n | split-window -h
 # move into panels
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
