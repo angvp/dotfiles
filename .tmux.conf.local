@@ -240,9 +240,8 @@ tmux_conf_copy_to_os_clipboard=true
 # this is the place to override or undo settings
 #
 #
-# split panel in vertical
-bind -n | split-window -h
 # move into panels
+bind | split-window -h
 bind -n M-Left select-pane -L
 bind -n M-Right select-pane -R
 bind -n M-Up select-pane -U
