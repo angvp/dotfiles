@@ -1,74 +1,68 @@
-# angvp conky
-# A comprehensive conky script, configured for use on
-# Arch Linux - OpenBox, FluxBox, Pekwm, awesome
-#
-# Last modified on: 11/10/2017
-#
-# Based on conky-jc and the default .conkyrc.
-# INCLUDES:
-# - Calendar
-# - Fortune
-# - MPD Info (custom script)
-#
-# -- Angel 'angvp' Velásquez <angvp[at]archlinux.org>
-#
+conky.config = {
+-- angvp conky
+-- A comprehensive conky script, configured for use on
+-- Arch Linux - OpenBox, FluxBox, Pekwm, awesome
 
-# Create own window instead of using desktop (required in nautilus)
-#own_window yes
-#own_window_type override
-#own_window_transparent yes
-#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+-- Last modified on: 10/08/2020
 
-# Use double buffering (reduces flicker, may not work for everyone)
-double_buffer yes
+-- Based on conky-jc and the default .conkyrc.
+-- INCLUDES:
+-- - Fortune
+-- - MPD Info (custom script)
 
-# fiddle with window
-use_spacer yes
-use_xft no
+-- -- Angel 'angvp' Velásquez <angvp[at]archlinux.org>
 
-# Update interval in seconds
-update_interval 3.0
 
-# Minimum size of text area
-# minimum_size 250 5
+-- Create own window instead of using desktop (required in nautilus)
+--own_window yes
+--own_window_type override
+--own_window_transparent yes
+--own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
-# Draw shades?
-draw_shades yes
+-- Use double buffering (reduces flicker, may not work for everyone)
+	double_buffer = true,
 
-# Text stuff
-draw_outline no # amplifies text if yes
-draw_borders no
-font terminus
-uppercase no # set to yes if you want all text to be in uppercase
+-- fiddle with window
+	use_spacer = 'none',
+	use_xft = true,
 
-# Stippled borders?
-stippled_borders 3
+-- Update interval in seconds
+	update_interval = 3.0,
 
-# border margins
-border_margin 9
+-- Minimum size of text area
+-- minimum_size 250 5
 
-# border width
-border_width 10
+-- Draw shades?
+	draw_shades = true,
 
-# Default colors and also border colors, grey90 == #e5e5e5
-default_color green
+-- Text stuff
+	draw_outline = false,-- amplifies text if yes
+	draw_borders = false,
+	font = 'Terminus:size=10',
+	uppercase = false,-- set to yes if you want all text to be in uppercase
 
-own_window_colour green
-own_window_transparent yes
+-- Stippled borders?
+	stippled_borders = 3,
 
-# Text alignment, other possible values are commented
-#alignment top_left
-#alignment top_right
-#alignment bottom_left
-alignment top_left
+-- border width
+	border_width = 10,
 
-# Gap between borders of screen and text
-gap_x 10
-gap_y 10
+-- Default colors and also border colors, grey90 == #e5e5e5
+	default_color = 'green',
 
-# stuff after 'TEXT' will be formatted on screen
+	own_window_colour = 'green',
+	own_window_transparent = true,
 
-TEXT
+-- Text alignment, other possible values are commented
+	alignment = 'top_left',
+
+-- Gap between borders of screen and text
+	gap_x = 10,
+	gap_y = 10,
+
+};
+
+conky.text = [[
 $color
 ${color green}SYSTEM ${hr 2}$color
 $nodename $sysname $kernel on $machine
@@ -120,11 +114,7 @@ ${downspeedgraph enp0s31f6 15,140 000000 ff0000} ${alignr}${upspeedgraph enp0s31
 Total: ${totaldown enp0s31f6} ${alignr}Total: ${totalup enp0s31f6}
 Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
 61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
-
-# You should have cal in order to use this feature
-${color green}CALENDAR ${hr 2}$color
-${exec cal}
-
 # You should have fortune-mod in order to use this
 ${color green}FORTUNE ${hr 2}$color
 ${execi 120 fortune -s | fold -w50}
+]];
