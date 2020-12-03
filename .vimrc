@@ -76,9 +76,12 @@ Plug 'chriskempson/base16-vim', { 'do': function('FixupBase16') }
 Plug 'AndrewRadev/splitjoin.vim'
 " brackets
 Plug 'itmammoth/doorboy.vim'
-if !has('mac')
-  Plug 'sebmaynard/vim-ligatures'
-endif
+" if !has('mac')
+"   Plug 'sebmaynard/vim-ligatures'
+" endif
+Plug 'editorconfig/editorconfig-vim'
+" formatting php
+" Plug 'beanworks/vim-phpfmt'
 
 call plug#end()
 
@@ -235,7 +238,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " yarn add --dev prettier-standard
 let g:ale_fixers = {'javascript': ['prettier_standard'], 'python': ['black', 'yapf', 'isort']}
 let g:ale_linters = {'javascript': ['']}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 " Python-mode options
 let g:pymode_lint_on_write = 1
@@ -270,6 +273,9 @@ let g:pymode_python = 'python3'
 nmap  -  <Plug>(choosewin)
 " show big letters
 let g:choosewin_overlay_enable = 1
+
+" phpfmt
+" let g:phpfmt_standard = 'PSR2'
 
 " whitespace configuration
 " set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:
