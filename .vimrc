@@ -82,6 +82,7 @@ Plug 'itmammoth/doorboy.vim'
 Plug 'editorconfig/editorconfig-vim'
 " formatting php
 " Plug 'beanworks/vim-phpfmt'
+Plug 'vuciv/vim-bujo'
 
 call plug#end()
 
