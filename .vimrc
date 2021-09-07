@@ -27,8 +27,6 @@ Plug 'junegunn/fzf.vim'
 " cool bars
 Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" colors
-Plug 'altercation/vim-colors-solarized'
 " class/module browser (to be removed?)
 Plug 'majutsushi/tagbar'
 " Zen coding
@@ -91,7 +89,6 @@ if vim_plug_just_installed
 endif
 
 " colors
-let g:solarized_visibility =  "low"
 if (vim_plug_just_installed)
     "colorscheme delek
 else
