@@ -44,7 +44,7 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'w0rp/ale'
 " Isort plugin
 Plug 'fisadev/vim-isort'
-Plug 'ambv/black'
+Plug 'psf/black', { 'branch': 'stable' }
 Plug 'ryanoasis/vim-devicons'
 
 
