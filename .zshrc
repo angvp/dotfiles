@@ -16,7 +16,10 @@ alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
 alias ll="ls -la"
-alias grep="grep --color=always"
+#alias grep="grep --color=always"
+alias grep="rg"
+alias ssh="TERM=xterm-256color ssh"
+alias music="/usr/bin/YoutubeMusic/YoutubeMusic"
 # Python Development
 WORKON_HOME=~/virtualenvs
 ANDROID_HOME=/opt/android-studio
@@ -129,6 +132,7 @@ source $HOME/env/colors.sh
 [[ $(echo $(uname)) == "Darwin" ]] && source ~/env/osx.sh
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/fzf/key-bindings.zsh  ] && source /usr/share/fzf/key-bindings.zsh
 
 # check virtualenvwrapper Arch
 [ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
@@ -157,6 +161,7 @@ SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
+TERM=kitty
 # prompt
 autoload -Uz promptinit
 promptinit
