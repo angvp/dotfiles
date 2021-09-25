@@ -44,8 +44,6 @@ Plug 'w0rp/ale'
 Plug 'fisadev/vim-isort'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'ryanoasis/vim-devicons'
-
-
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
 " vim troll stopper
@@ -80,7 +78,7 @@ Plug 'itmammoth/doorboy.vim'
 Plug 'editorconfig/editorconfig-vim'
 " formatting php
 " Plug 'beanworks/vim-phpfmt'
-Plug 'vuciv/vim-bujo'
+" Plug 'vuciv/vim-bujo'
 
 call plug#end()
 
