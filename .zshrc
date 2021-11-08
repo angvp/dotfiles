@@ -22,10 +22,9 @@ alias ssh="TERM=xterm-256color ssh"
 alias music="/usr/bin/YoutubeMusic/YoutubeMusic"
 # Python Development
 WORKON_HOME=~/virtualenvs
-ANDROID_HOME=/opt/android-studio
-JAVA_HOME=/opt/android-studio/jre
-NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 
 # Functions
 autoload -U zmv
@@ -119,8 +118,6 @@ export GPG_TTY
 export EDITOR
 export PAGER
 export VISUAL
-export ANDROID_HOME
-export JAVA_HOME
 export NVM_DIR
 unset GREP_OPTIONS
 unsetopt CORRECT
@@ -137,8 +134,6 @@ source $HOME/env/colors.sh
 # check virtualenvwrapper Arch
 [ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 
 # SPACESHIP PROMPT OPTIONS
 # SPACESHIP_TIME_SHOW=true
@@ -149,7 +144,6 @@ SPACESHIP_PROMPT_ORDER=(
   dir           # Current directory section
   host          # Hostname section
   git           # Git section (git_branch + git_status)
-  hg            # Mercurial section (hg_branch  + hg_status)
   exec_time     # Execution time
   line_sep      # Line break
   vi_mode       # Vi-mode indicator
@@ -169,3 +163,12 @@ promptinit
 # zpython
 alias pyclean='find . -type f -name "*.py[co]" -delete'
 module_path=($module_path /usr/local/lib/zpython)
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+
+# to use gnu getopt first
+export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
