@@ -16,8 +16,7 @@ alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
 alias ll="ls -la"
-#alias grep="grep --color=always"
-alias grep="rg"
+alias grep="rg -p"
 alias ssh="TERM=xterm-256color ssh"
 alias music="/usr/bin/YoutubeMusic/YoutubeMusic"
 # Python Development
@@ -81,15 +80,6 @@ x() {
     fi
 }
 
-# TODO: This banner should go to .zshrc.archlinux
-if [ -f ~/.banner ] ; then
-    ~/.banner
-fi
-
-# Arch Linux Packager functions
-signpkg() {
-    for pkg in *.pkg.tar.xz; do gpg --detach-sign $pkg; done
-}
 
 delswp() {
     find . -name "*.swp" -delete
@@ -155,7 +145,6 @@ SPACESHIP_USER_SHOW=always
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
-TERM=kitty
 # prompt
 autoload -Uz promptinit
 promptinit
