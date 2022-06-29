@@ -107,11 +107,11 @@ Total: ${totaldown wlp3s0} ${alignr}Total: ${totalup wlp3s0}
 Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
 61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
 
-${color green}NETWORK  (Ethernet) (${addr enp0s31f6}) ${hr 2}$color
-Down: $color${downspeed enp0s31f6} ${alignr}Up: ${upspeed enp0s31f6}
-${downspeedgraph enp0s31f6 15,140 000000 ff0000} ${alignr}${upspeedgraph enp0s31f6
+${color green}NETWORK  (Ethernet) (${addr enp0s20f0u2}) ${hr 2}$color
+Down: $color${downspeed enp0s20f0u2} ${alignr}Up: ${upspeed enp0s20f0u2}
+${downspeedgraph enp0s20f0u2 15,140 000000 ff0000} ${alignr}${upspeedgraph enp0s20f0u2
 15,140 000000 00ff00}$color
-Total: ${totaldown enp0s31f6} ${alignr}Total: ${totalup enp0s31f6}
+Total: ${totaldown enp0s20f0u2} ${alignr}Total: ${totalup enp0s20f0u2}
 Inbound: ${tcp_portmon 1 32767 count} Outbound: ${tcp_portmon 32768
 61000 count}${alignr}Total: ${tcp_portmon 1 65535 count}
 # You should have fortune-mod in order to use this

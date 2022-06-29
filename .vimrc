@@ -39,10 +39,10 @@ Plug 'vim-scripts/IndexedSearch'
 " Indent text object
 Plug 'michaeljsmith/vim-indent-object'
 " asynchronous lint engine
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 " Isort plugin
 Plug 'fisadev/vim-isort'
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'psf/black', { 'branch': 'main' }
 Plug 'ryanoasis/vim-devicons'
 " Virtualenv
 Plug 'jmcantrell/vim-virtualenv'
@@ -240,7 +240,8 @@ let g:ale_fix_on_save = 0
 let g:pymode_lint_on_write = 1
 let g:pymode_lint_signs = 0
 let g:pymode_folding = 0
-let g:pymode_rope = 1
+" let g:pymode_rope = 1
+" let g:pymode_rope_lookup_project = 0
 let pymode_breakpoint = 1
 let pymode_breakpoint_bind = 'b'
 let pymode_doc = 1
@@ -257,7 +258,6 @@ let pymode_options = 1
 let pymode_paths = []
 let pymode_quickfix_maxheight = 6
 let pymode_quickfix_minheight = 3
-let pymode_rope = 1
 let pymode_run = 1
 let pymode_run_bind = '<F5>'
 let pymode_trim_whitespaces = 1
@@ -281,3 +281,5 @@ let g:choosewin_overlay_enable = 1
 
 set timeoutlen=1000 ttimeoutlen=0
 syntax on
+" bug with devicons https://github.com/vim-airline/vim-airline/issues/393
+set t_RV=
