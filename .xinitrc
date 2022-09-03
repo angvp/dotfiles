@@ -4,7 +4,9 @@
 #
 # Executed by startx (run your window manager from here)
 # ./.screenlayout/current-desktop.sh
-./.screenlayout/temp-setup.sh
+if [ "$(xrandr --listmonitors | head -n 1 | awk '/:/ {print $2}')" -gt 1 ]; then
+  ./.screenlayout/temp-setup.sh
+fi
 xscreensaver -no-splash &
 setxkbmap us altgr-intl
 nm-applet &
