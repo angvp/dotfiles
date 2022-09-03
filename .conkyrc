@@ -1,93 +1,57 @@
-conky.config = {
--- angvp conky
 -- A comprehensive conky script, configured for use on
 -- Arch Linux - OpenBox, FluxBox, Pekwm, awesome
 
--- Last modified on: 10/08/2020
+-- Last modified on: 03/09/2022
 
 -- Based on conky-jc and the default .conkyrc.
 -- INCLUDES:
 -- - Fortune
 -- - MPD Info (custom script)
 
--- -- Angel 'angvp' Velásquez <angvp[at]archlinux.org>
+-- Angel 'angvp' Velásquez <angvp[at]archlinux.org>
 
 
--- Create own window instead of using desktop (required in nautilus)
---own_window yes
---own_window_type override
---own_window_transparent yes
---own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-
--- Use double buffering (reduces flicker, may not work for everyone)
-	double_buffer = true,
-
--- fiddle with window
-	use_spacer = 'none',
-	use_xft = true,
-
--- Update interval in seconds
-	update_interval = 3.0,
-
--- Minimum size of text area
--- minimum_size 250 5
-
--- Draw shades?
-	draw_shades = true,
-
--- Text stuff
-	draw_outline = false,-- amplifies text if yes
-	draw_borders = false,
-	font = 'Terminus:size=10',
-	uppercase = false,-- set to yes if you want all text to be in uppercase
-
--- Stippled borders?
-	stippled_borders = 3,
-
--- border width
-	border_width = 10,
-
--- Default colors and also border colors, grey90 == #e5e5e5
-	default_color = 'green',
-
-	own_window_colour = 'green',
-	own_window_transparent = true,
-
--- Text alignment, other possible values are commented
-	alignment = 'top_left',
-
--- Gap between borders of screen and text
-	gap_x = 10,
-	gap_y = 10,
-
+conky.config = {
+    -- Use double buffering (reduces flicker, may not work for everyone)
+    double_buffer = true,
+    -- fiddle with window
+    use_spacer = 'none',
+    use_xft = true,
+    -- Update interval in seconds
+    update_interval = 3.0,
+    -- Draw shades?
+    draw_shades = true,
+    -- Text stuff
+    draw_outline = false,-- amplifies text if yes
+    draw_borders = false,
+    font = 'Terminus:size=10',
+    uppercase = false,-- set to yes if you want all text to be in uppercase
+    -- Stippled borders?
+    stippled_borders = 3,
+    -- border width
+    border_width = 10,
+    -- Default colors and also border colors, grey90 == #e5e5e5
+    default_color = 'green',
+    own_window_colour = 'green',
+    own_window_transparent = true,
+    -- Text alignment, other possible values are commented
+    alignment = 'top_left',
+    -- Gap between borders of screen and text
+    gap_x = 10,
+    gap_y = 10,
+    lua_load = '~/conky-scripts/conky_mycpus.lua ~/conky-scripts/conky_mytop.lua',
 };
 
 conky.text = [[
-$color
+
 ${color green}SYSTEM ${hr 2}$color
 $nodename $sysname $kernel on $machine
 
 ${color green}CPU ${hr 2}$color
 ${freq}MHz   Load: ${loadavg}   Temp: ${acpitemp}
-${cpubar cpu1}
-${cpubar cpu2}
-${cpubar cpu3}
-${cpubar cpu4}
-${cpubar cpu5}
-${cpubar cpu6}
-${cpubar cpu7}
-${cpubar cpu8}
+${lua_parse conky_mycpus}
 
-NAME             PID       CPU%      MEM%
-${top name 1} ${top pid 1}   ${top cpu 1}    ${top mem 1}
-${top name 2} ${top pid 2}   ${top cpu 2}    ${top mem 2}
-${top name 3} ${top pid 3}   ${top cpu 3}    ${top mem 3}
-${top name 4} ${top pid 4}   ${top cpu 4}    ${top mem 4}
-${top name 5} ${top pid 5}   ${top cpu 5}    ${top mem 5}
-${top name 6} ${top pid 6}   ${top cpu 6}    ${top mem 6}
-${top name 7} ${top pid 7}   ${top cpu 7}    ${top mem 7}
-${top name 8} ${top pid 8}   ${top cpu 8}    ${top mem 8}
-
+${lua_parse conky_mytop}
 
 ${color green}MEMORY / DISK ${hr 2}$color
 RAM:   $memperc%   ${membar 4}$color
