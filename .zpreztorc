@@ -86,7 +86,7 @@ zstyle ':prezto:module:history-substring-search' globbing-flags ''
 #
 
 # Set the Pacman frontend.
-zstyle ':prezto:module:pacman' frontend 'pacman'
+# zstyle ':prezto:module:pacman' frontend 'pacman'
 
 #
 # Prompt
@@ -96,7 +96,9 @@ zstyle ':prezto:module:pacman' frontend 'pacman'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 # zstyle ':prezto:module:prompt' theme 'sorin'
-zstyle ':prezto:module:prompt' theme 'spaceship'
+# zstyle ':prezto:module:prompt' theme 'spaceship'
+zstyle :prezto:module:prompt theme powerlevel10k
+
 
 #
 # Ruby
@@ -166,4 +168,4 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'
