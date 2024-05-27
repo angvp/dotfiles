@@ -180,6 +180,9 @@ au BufNewFile *.test.js 0r ~/.vimtpl/template.test.js
 au FileType c,cpp set cindent
 au FileType c,cpp set formatoptions+=ro
 au FileType c,cpp set makeprg=gcc\ -Wall\ -O2\ -o\ %<\ %
+" Ruby abbreviations
+au FileType ruby setlocal et ts=2 sw=2 sts=2
+au BufWritePre *.rb :%s/\s\+$//e
 
 " Python abbreviations
 au FileType python iab putf8 # -*- coding: utf-8 -*-
@@ -190,6 +193,8 @@ au FileType javascript setlocal et ts=2 sw=2 sts=2
 au FileType json setlocal et ts=2 sw=2 sts=2
 au FileType jsx setlocal et ts=2 sw=2 sts=2
 au FileType sass setlocal noexpandtab
+" TypeScript abbreviations
+au FileType typescript setlocal et ts=2 sw=2 sts=2
 
 au FileType pkgbuild iab maintainer # Maintainer: Angel Velasquez <angvp@archlinux.org>
 au FileType yaml setlocal et ts=2 sw=2 sts=2
@@ -232,8 +237,8 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " it requires you install prettier-standard
 " yarn add --dev prettier-standard
-let g:ale_fixers = {'javascript': ['prettier_standard'], 'python': ['black', 'yapf', 'isort']}
-let g:ale_linters = {'javascript': ['']}
+let g:ale_fixers = {'javascript': ['prettier_standard'], 'python': ['black', 'yapf', 'isort'], 'typescript': ['tslint'], 'ruby': ['rubocop']}
+let g:ale_linters = {'javascript': [''], 'typescript': ['tslint'], 'ruby': ['rubocop']}
 let g:ale_fix_on_save = 0
 
 " Python-mode options
