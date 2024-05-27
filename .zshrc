@@ -30,7 +30,8 @@ alias music="/usr/bin/YoutubeMusic/YoutubeMusic"
 WORKON_HOME=~/virtualenvs
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Functions
 autoload -U zmv
@@ -150,5 +151,20 @@ export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+dockerssh() {
+    docker exec -it `docker ps | /usr/bin/grep "$1" | awk '{print $1}'` /bin/bash
+}
+
+eval "$(rbenv init - zsh)"
+
+# bun completions
+[ -s "/Users/angvp/.bun/_bun" ] && source "/Users/angvp/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+eval "$(ssh-agent -s)"
