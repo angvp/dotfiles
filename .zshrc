@@ -22,6 +22,7 @@ alias rm="rm -i"
 alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
+alias vim="nvim"
 alias ll="ls -la"
 alias ls="lsd"
 alias grep="rg -p"
@@ -172,6 +173,3 @@ export MAKE="make -j$(nproc)"
 # eval "$(ssh-agent -s)"
 eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa && ssh-add ~/.ssh/id_ed25519
 
-if [[ ! $(tmux list-sessions) ]]; then
-    tmux
-fi
