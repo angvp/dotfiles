@@ -23,6 +23,7 @@ alias mv="mv -i"
 alias cls="clear"
 alias vi="vim"
 alias ll="ls -la"
+alias ls="lsd"
 alias grep="rg -p"
 alias ssh="TERM=xterm-256color ssh"
 alias music="/usr/bin/YoutubeMusic/YoutubeMusic"
@@ -107,8 +108,8 @@ PATH=$PATH:/usr/local/bin:/usr/bin:$HOME/bin:$HOME/.gem/ruby/2.2.0/bin:$GOPATH/b
 ## editor
 EDITOR="vim"
 VISUAL="vim"
-PAGER="most"
-MANPAGER="most"
+PAGER="bat"
+MANPAGER="bat"
 mail=~/.mail
 IGNOREEOF=3
 GPG_TTY=$(tty)
@@ -166,5 +167,11 @@ eval "$(rbenv init - zsh)"
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+export MAKE="make -j$(nproc)"
 
-eval "$(ssh-agent -s)"
+# eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa && ssh-add ~/.ssh/id_ed25519
+
+if [[ ! $(tmux list-sessions) ]]; then
+    tmux
+fi
