@@ -150,6 +150,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # to use gnu getopt first
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+<<<<<<< Updated upstream
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -210,4 +211,6 @@ atuin-setup() {
         zle -N fzf-atuin-history-widget
         bindkey '^R' fzf-atuin-history-widget
     }
-    atuin-setup
+atuin-setup
+
+export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true

@@ -8,6 +8,7 @@ if [ "$(xrandr --listmonitors | head -n 1 | awk '/:/ {print $2}')" -gt 1 ]; then
   ./.screenlayout/temp-setup.sh
 fi
 xscreensaver -no-splash &
+polkit-dumb-agent &
 setxkbmap us altgr-intl
 nm-applet &
 conky &
