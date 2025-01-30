@@ -150,12 +150,11 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # to use gnu getopt first
 export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
-<<<<<<< Updated upstream
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+typeset -g POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 dockerssh() {
     docker exec -it `docker ps | /usr/bin/grep "$1" | awk '{print $1}'` /bin/bash
@@ -171,9 +170,7 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export MAKE="make -j$(nproc)"
 
-eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_rsa && ssh-add ~/.ssh/id_ed25519
-
-# eval "$(atuin init zsh)"
+eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519 # && ssh-add ~/.ssh/id_rsa 
 atuin-setup() {
         if ! which atuin &> /dev/null; then return 1; fi
         bindkey '^E' _atuin_search_widget
@@ -213,4 +210,3 @@ atuin-setup() {
     }
 atuin-setup
 
-export POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
