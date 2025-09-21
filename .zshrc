@@ -27,13 +27,8 @@ alias ll="ls -la"
 alias ls="lsd"
 alias grep="rg -p"
 alias ssh="TERM=xterm-256color ssh"
-alias music="/usr/bin/YoutubeMusic/YoutubeMusic"
 # Python Development
 WORKON_HOME=~/virtualenvs
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Functions
 autoload -U zmv
@@ -107,8 +102,8 @@ SAVEHIST=1000
 export GOPATH=~/go
 PATH=$PATH:/usr/local/bin:/usr/bin:$HOME/bin:$HOME/.gem/ruby/2.2.0/bin:$GOPATH/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/sbin
 ## editor
-EDITOR="vim"
-VISUAL="vim"
+EDITOR="nvim"
+VISUAL="nvim"
 PAGER="bat"
 MANPAGER="bat"
 mail=~/.mail
@@ -131,25 +126,17 @@ source $HOME/env/colors.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/fzf/key-bindings.zsh  ] && source /usr/share/fzf/key-bindings.zsh
 
-# check virtualenvwrapper Arch
-[ -f /usr/bin/virtualenvwrapper.sh ] && source /usr/bin/virtualenvwrapper.sh
-
 # prompt
 autoload -Uz promptinit
 promptinit
 
 # zpython
-alias pyclean='find . -type f -name "*.py[co]" -delete'
+alias pyclean='find . -type d -name "__pycache__" -exec rm -r {} + -o -name "*.pyc" -exec rm -f {} +'
 module_path=($module_path /usr/local/lib/zpython)
 
+# to use gnu getopt first (OSX only)
+[ -f /usr/local/opt/gnu-getopt/bin ] && export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-
-# to use gnu getopt first
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
@@ -160,17 +147,15 @@ dockerssh() {
     docker exec -it `docker ps | /usr/bin/grep "$1" | awk '{print $1}'` /bin/bash
 }
 
-eval "$(rbenv init - zsh)"
-
 # bun completions
-[ -s "/Users/angvp/.bun/_bun" ] && source "/Users/angvp/.bun/_bun"
+[ -f ~/.bun/_bun ] && source ~/.bun/_bun
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export MAKE="make -j$(nproc)"
+export MAKEFLAGS="-j $(nproc)"
 
-eval "$(ssh-agent -s)" && ssh-add ~/.ssh/id_ed25519 # && ssh-add ~/.ssh/id_rsa 
+eval "$(atuin init zsh)"
 atuin-setup() {
         if ! which atuin &> /dev/null; then return 1; fi
         bindkey '^E' _atuin_search_widget
@@ -210,3 +195,5 @@ atuin-setup() {
     }
 atuin-setup
 
+# Custom scripts
+export PATH="$HOME/.local/bin:$PATH"
