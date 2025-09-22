@@ -1,13 +1,13 @@
 return {
-	{
-		"ishan9299/nvim-solarized-lua",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.o.background = "dark"
-			vim.cmd.colorscheme("solarized")
-		end,
-	},
+	-- {
+	-- 	"ishan9299/nvim-solarized-lua",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.o.background = "dark"
+	-- 		vim.cmd.colorscheme("solarized")
+	-- 	end,
+	-- },
 	{ "nvim-lualine/lualine.nvim", opts = { options = { theme = "auto" } } },
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{
@@ -44,7 +44,18 @@ return {
 		opts = {
 			highlight = { enable = true },
 			indent = { enable = true },
-			ensure_installed = { "python", "javascript", "typescript", "tsx", "json", "lua", "vim", "yaml", "html", "css" },
+			ensure_installed = {
+				"python",
+				"javascript",
+				"typescript",
+				"tsx",
+				"json",
+				"lua",
+				"vim",
+				"yaml",
+				"html",
+				"css",
+			},
 		},
 	},
 }

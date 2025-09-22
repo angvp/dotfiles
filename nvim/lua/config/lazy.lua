@@ -7,7 +7,7 @@ return function()
 		{ import = "plugins" },
 	}, {
 		defaults = { lazy = true, version = false },
-		install = { colorscheme = { "solarized" } },
+		-- install = { colorscheme = { "solarized" } },
 		checker = { enabled = true },
 		performance = { rtp = { disabled_plugins = { "gzip", "tarPlugin", "tohtml", "tutor", "zipPlugin" } } },
 	})
