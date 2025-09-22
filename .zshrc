@@ -150,6 +150,9 @@ dockerssh() {
 # bun completions
 [ -f ~/.bun/_bun ] && source ~/.bun/_bun
 
+# priv keys
+[ -d ~/bin/priv ] && source ~/bin/priv/cursor.sh
+
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
