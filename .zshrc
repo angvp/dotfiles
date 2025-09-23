@@ -156,7 +156,9 @@ dockerssh() {
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export MAKEFLAGS="-j $(nproc)"
+export NPROCS=`nproc 2>/dev/null || sysctl -n hw.logicalcpu`
+
+export MAKEFLAGS="-j $NPROCS"
 
 eval "$(atuin init zsh)"
 atuin-setup() {
