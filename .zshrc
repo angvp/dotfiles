@@ -202,3 +202,4 @@ atuin-setup
 
 # Custom scripts
 export PATH="$HOME/.local/bin:$PATH"
+[ -d ~/env/nesto/ ] && source ~/env/nesto/env.sh
