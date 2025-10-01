@@ -2,3 +2,4 @@
 *.swp
 .vim/.netrwhist
 env/osxpriv.sh
+nvim/lazy-lock.json
