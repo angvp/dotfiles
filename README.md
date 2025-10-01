@@ -1,7 +1,6 @@
 angvp's configuration files:
 ============================
 
-```
 ## 🚀 Experimental: Chezmoi Configuration
 
 This dotfiles repository can be managed using [chezmoi](https://github.com/twpayne/chezmoi), a dotfile manager that supports templating, encryption, and cross-platform synchronization.
