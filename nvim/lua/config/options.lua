@@ -12,6 +12,10 @@ opt.modeline = true
 opt.incsearch = true
 opt.hlsearch = true
 opt.textwidth = 79
+-- LazyVim sets formatoptions with flag `t` (auto-wrap at textwidth). With tw=79 that
+-- rewrites text during insert, which breaks bracketed paste and long pasted lines.
+-- Keep tw for `gq` / style; disable insert-mode hard wrap here.
+opt.formatoptions:remove({ "t" })
 opt.ruler = true
 opt.splitbelow = true
 opt.splitright = true
