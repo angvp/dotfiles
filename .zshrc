@@ -17,6 +17,12 @@ if [ -f /usr/local/bin/gls ]; then
     alias gls="/usr/local/bin/gls"
     alias ls="gls --color=auto"
 fi
+
+# osx priv
+if [ -f ~/Dropbox/env/osxpriv.sh ]; then
+  source ~/Dropbox/env/osxpriv.sh
+fi
+
 alias cp="cp -ri"
 alias rm="rm -i"
 alias mv="mv -i"
@@ -25,7 +31,7 @@ alias vi="vim"
 alias vim="nvim"
 alias ll="ls -la"
 alias ls="lsd"
-alias grep="rg -p"
+alias grepp="rg -p"
 alias ssh="TERM=xterm-256color ssh"
 # Python Development
 WORKON_HOME=~/virtualenvs
