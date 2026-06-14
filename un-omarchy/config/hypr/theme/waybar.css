@@ -1,2 +1,5 @@
 @define-color foreground #cdd6f4;
 @define-color background #181824;
+@define-color border    #313244;
+@define-color surface   #1e1e2e;
+@define-color accent    #89b4fa;

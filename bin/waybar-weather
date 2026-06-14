@@ -1,0 +1,8 @@
+#!/bin/bash
+weather=$(curl -fsS --max-time 4 "https://wttr.in?format=%c%t" 2>/dev/null | tr -d '\n')
+if [[ -z $weather ]]; then
+  printf '{"text":"","class":"unavailable"}\n'
+else
+  weather=$(printf '%s' "$weather" | sed 's/["\\]/\\&/g')
+  printf '{"text":"%s"}\n' "$weather"
+fi
