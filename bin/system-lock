@@ -1,0 +1,19 @@
+#!/bin/bash
+if ! pidof hyprlock >/dev/null; then
+  hyprlock &
+fi
+
+hyprctl switchxkblayout all 0 >/dev/null 2>&1
+
+if pgrep -x "1password" >/dev/null; then
+  1password --lock &
+fi
+
+if [[ ${LOCK_ONLY:-false} != "true" ]]; then
+  (
+    sleep 3
+    pidof hyprlock >/dev/null || exit 0
+    ~/.dotfiles/bin/brightness-keyboard off
+    ~/.dotfiles/bin/brightness-display off
+  ) &
+fi

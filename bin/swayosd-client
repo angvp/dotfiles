@@ -1,0 +1,2 @@
+#!/bin/bash
+exec swayosd-client --monitor "$(~/.dotfiles/bin/hyprland-focused-monitor)" "$@"

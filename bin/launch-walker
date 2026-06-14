@@ -1,0 +1,5 @@
+#!/bin/bash
+pgrep -x elephant >/dev/null || setsid uwsm-app -- elephant &
+pgrep -f "walker --gapplication-service" >/dev/null || \
+  setsid uwsm-app -- env GSK_RENDERER=cairo walker --gapplication-service &
+exec walker --width 644 --maxheight 300 --minheight 300 "$@"

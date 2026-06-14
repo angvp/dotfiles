@@ -1,0 +1,22 @@
+#!/bin/bash
+INFO=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true)')
+MONITOR=$(echo "$INFO" | jq -r '.name')
+SCALE=$(echo "$INFO" | jq -r '.scale')
+WIDTH=$(echo "$INFO" | jq -r '.width')
+HEIGHT=$(echo "$INFO" | jq -r '.height')
+RATE=$(echo "$INFO" | jq -r '.refreshRate')
+
+SCALES=(1 1.25 1.6 2 3 4)
+IDX=$(awk -v s="$SCALE" -v list="${SCALES[*]}" 'BEGIN {
+  n=split(list,arr," "); best=0; diff=1e9
+  for(i=1;i<=n;i++){d=s-arr[i];if(d<0)d=-d; if(d<diff){diff=d;best=i-1}}
+  print best
+}')
+
+[[ "$1" == "--reverse" ]] && \
+  NEW_IDX=$(( (IDX - 1 + ${#SCALES[@]}) % ${#SCALES[@]} )) || \
+  NEW_IDX=$(( (IDX + 1) % ${#SCALES[@]} ))
+
+NEW=${SCALES[$NEW_IDX]}
+hyprctl keyword monitor "$MONITOR,${WIDTH}x${HEIGHT}@${RATE},auto,$NEW"
+notify-send -u low "󰍹    Display scaling set to ${NEW}x"

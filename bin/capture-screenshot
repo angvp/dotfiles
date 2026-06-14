@@ -1,0 +1,33 @@
+#!/bin/bash
+[[ -f ~/.config/user-dirs.dirs ]] && source ~/.config/user-dirs.dirs
+OUTPUT_DIR="${XDG_PICTURES_DIR:-$HOME/Pictures}"
+mkdir -p "$OUTPUT_DIR"
+
+pkill slurp && exit 0
+
+MODE="${1:-smart}"
+FILEPATH="$OUTPUT_DIR/screenshot-$(date +'%Y-%m-%d_%H-%M-%S').png"
+
+case "$MODE" in
+  region)
+    SELECTION=$(slurp 2>/dev/null)
+    ;;
+  fullscreen)
+    SELECTION=$(hyprctl monitors -j | jq -r '.[] | select(.focused == true) | "\(.x),\(.y) \(.width/.scale|floor)x\(.height/.scale|floor)"')
+    ;;
+  smart | *)
+    RECTS=$(hyprctl clients -j | jq -r '.[] | "\(.at[0]),\(.at[1]) \(.size[0])x\(.size[1])"')
+    RECTS+=$'\n'$(hyprctl monitors -j | jq -r '.[] | "\(.x),\(.y) \(.width/.scale|floor)x\(.height/.scale|floor)"')
+    SELECTION=$(echo "$RECTS" | slurp 2>/dev/null)
+    ;;
+esac
+
+[[ -z $SELECTION ]] && exit 0
+
+grim -g "$SELECTION" "$FILEPATH" || exit 1
+wl-copy < "$FILEPATH"
+
+(
+  ACTION=$(notify-send "Screenshot saved" "Click to edit" -t 10000 -i "$FILEPATH" -A "default=edit")
+  [[ $ACTION == "default" ]] && satty --filename "$FILEPATH" --output-filename "$FILEPATH" --actions-on-enter save-to-clipboard --save-after-copy --copy-command wl-copy 2>/dev/null || true
+) >/dev/null 2>&1 &

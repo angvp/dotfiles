@@ -1,0 +1,4 @@
+#!/bin/bash
+WINDOW_PATTERN="$1"
+shift
+exec ~/.dotfiles/bin/launch-or-focus "$WINDOW_PATTERN" "~/.dotfiles/bin/launch-webapp $*"

@@ -1,0 +1,15 @@
+#!/bin/bash
+ON_TEMP=4000
+OFF_TEMP=6000
+
+pgrep -x hyprsunset || { setsid uwsm-app -- hyprsunset & sleep 1; }
+
+CURRENT=$(hyprctl hyprsunset temperature 2>/dev/null | grep -oE '[0-9]+')
+
+if [[ $CURRENT == $OFF_TEMP ]]; then
+  hyprctl hyprsunset temperature $ON_TEMP
+  notify-send -u low "  Nightlight screen temperature"
+else
+  hyprctl hyprsunset temperature $OFF_TEMP
+  notify-send -u low "   Daylight screen temperature"
+fi

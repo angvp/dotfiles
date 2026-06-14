@@ -1,0 +1,14 @@
+#!/bin/bash
+STATE="$HOME/.local/state/dotfiles/toggles/touchpad-disabled"
+device=$(hyprctl devices -j | jq -r '[.mice[] | select(.name | test("touchpad";"i"))] | first | .name // empty')
+[[ -z $device ]] && exit 0
+
+if [[ -f $STATE ]]; then
+  hyprctl keyword "device[$device]:enabled" true >/dev/null
+  rm -f "$STATE"
+  ~/.dotfiles/bin/swayosd-client --custom-icon input-touchpad-symbolic --custom-message "Touchpad enabled"
+else
+  hyprctl keyword "device[$device]:enabled" false >/dev/null
+  mkdir -p "$(dirname "$STATE")" && touch "$STATE"
+  ~/.dotfiles/bin/swayosd-client --custom-icon touchpad-disabled-symbolic --custom-message "Touchpad disabled"
+fi

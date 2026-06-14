@@ -1,0 +1,2 @@
+#!/bin/bash
+exec setsid uwsm-app -- xdg-terminal-exec -e "$1" "${@:2}"

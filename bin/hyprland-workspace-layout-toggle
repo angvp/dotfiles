@@ -1,0 +1,6 @@
+#!/bin/bash
+ACTIVE=$(hyprctl activeworkspace -j | jq -r '.id')
+LAYOUT=$(hyprctl activeworkspace -j | jq -r '.tiledLayout')
+[[ $LAYOUT == "dwindle" ]] && NEW=scrolling || NEW=dwindle
+hyprctl keyword workspace $ACTIVE, layout:$NEW
+notify-send -u low "󱂬    Workspace layout set to $NEW"

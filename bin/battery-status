@@ -1,0 +1,7 @@
+#!/bin/bash
+info=$(upower -i "$(upower -e | grep BAT)")
+pct=$(echo "$info" | awk '/percentage/ {print int($2); exit}')
+rate=$(echo "$info" | awk '/energy-rate/ {printf "%.1f", $2; exit}')
+state=$(echo "$info" | awk '/state/ {print $2; exit}')
+[[ $state == "charging" ]] && arrow="" || arrow=""
+echo "󰁹    Battery ${pct}%  ·  ${rate}W  ${arrow}"

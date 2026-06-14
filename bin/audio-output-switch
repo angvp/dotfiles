@@ -1,0 +1,21 @@
+#!/bin/bash
+sinks=$(pactl -f json list sinks | jq '[.[] | select((.ports | length == 0) or ([.ports[]? | .availability != "not available"] | any))]')
+sinks_count=$(echo "$sinks" | jq '. | length')
+
+if (( sinks_count == 0 )); then
+  ~/.dotfiles/bin/swayosd-client --custom-message "No audio devices found"
+  exit 1
+fi
+
+current=$(pactl get-default-sink)
+current_idx=$(echo "$sinks" | jq -r --arg n "$current" 'map(.name) | index($n)')
+[[ $current_idx == "null" ]] && current_idx=0
+
+next_idx=$(( (current_idx + 1) % sinks_count ))
+next=$(echo "$sinks" | jq -r ".[$next_idx]")
+next_name=$(echo "$next" | jq -r '.name')
+next_desc=$(echo "$next" | jq -r '.description')
+next_wpid=$(echo "$next" | jq -r '.properties."object.id"')
+
+[[ $next_name != "$current" ]] && wpctl set-default "$next_wpid"
+~/.dotfiles/bin/swayosd-client --custom-message "$next_desc" --custom-icon sink-volume-high-symbolic

@@ -1,0 +1,10 @@
+#!/bin/bash
+EDITOR="${EDITOR:-nvim}"
+case "$EDITOR" in
+nvim | vim | nano | micro | hx | helix)
+  exec ~/.dotfiles/bin/launch-tui "$EDITOR" "$@"
+  ;;
+*)
+  exec setsid uwsm-app -- "$EDITOR" "$@"
+  ;;
+esac

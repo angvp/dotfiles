@@ -1,0 +1,29 @@
+#!/bin/bash
+STATE="$HOME/.local/state/dotfiles/toggles/internal-monitor-disabled"
+INTERNAL=$(hyprctl monitors all -j | jq -r '.[] | select(.name | contains("eDP")).name' | head -n1)
+
+[[ -z $INTERNAL ]] && exit 0
+
+enable() {
+  [[ -f $STATE ]] || return
+  hyprctl keyword monitor "$INTERNAL,preferred,auto,1" >/dev/null
+  rm -f "$STATE"
+  notify-send -u low "󰍹    Laptop display enabled"
+}
+
+disable() {
+  external=$(hyprctl monitors -j | jq '[.[] | select(.name | contains("eDP") | not)] | length')
+  if (( external == 0 )); then
+    notify-send -u low "󰍹    Can't disable the only active display"
+    exit 1
+  fi
+  mkdir -p "$(dirname "$STATE")" && touch "$STATE"
+  hyprctl keyword monitor "$INTERNAL,disable" >/dev/null
+  notify-send -u low "󰍹    Laptop display disabled"
+}
+
+case "${1:-toggle}" in
+  on)     enable ;;
+  off)    disable ;;
+  toggle) [[ -f $STATE ]] && enable || disable ;;
+esac

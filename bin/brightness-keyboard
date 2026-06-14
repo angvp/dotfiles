@@ -1,0 +1,33 @@
+#!/bin/bash
+direction="${1:-up}"
+
+device=""
+for candidate in /sys/class/leds/*kbd_backlight*; do
+  [[ -e $candidate ]] && device="$(basename "$candidate")" && break
+done
+
+[[ -z $device ]] && exit 0
+
+if [[ $direction == "off" ]]; then
+  brightnessctl -sd "$device" set 0 >/dev/null; exit 0
+elif [[ $direction == "restore" ]]; then
+  brightnessctl -rd "$device" >/dev/null 2>&1; exit 0
+fi
+
+max=$(brightnessctl -d "$device" max)
+current=$(brightnessctl -d "$device" get)
+step=$(( max / 10 ))
+(( step < 1 )) && step=1
+
+if [[ $direction == "cycle" ]]; then
+  new=$(( current + step ))
+  (( new > max )) && new=0
+elif [[ $direction == "up" ]]; then
+  new=$(( current + step ))
+  (( new > max )) && new=$max
+else
+  new=$(( current - step ))
+  (( new < 0 )) && new=0
+fi
+
+brightnessctl -d "$device" set "$new" >/dev/null
