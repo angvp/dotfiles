@@ -91,7 +91,6 @@ x() {
     fi
 }
 
-
 delswp() {
     find . -name "*.swp" -delete
 }

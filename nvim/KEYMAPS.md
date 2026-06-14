@@ -17,7 +17,7 @@ This document contains all the custom keymaps and shortcuts configured in your N
 | Keymap | Mode | Action | Description |
 |--------|------|--------|-------------|
 | `<leader><C-P>` | Normal | `find_files` | Find Files |
-| `<leader>a` | Normal | `buffers` | Show open buffers |
+| `<leader>fb` | Normal | `buffers` | Show open buffers |
 | `<leader>;` | Normal | `current_buffer_fuzzy_find` | Search lines in current buffer |
 | `<leader>.` | Normal | `live_grep` | Live grep search |
 | `<leader>o` | Normal | `current_buffer_tags` | Show buffer tags |
@@ -49,7 +49,7 @@ This document contains all the custom keymaps and shortcuts configured in your N
 ## Window Management
 | Keymap | Mode | Action | Description |
 |--------|------|--------|-------------|
-| `-` | Normal | Window picker | Pick/switch to a window (nvim-window-picker) |
+| `<leader>wp` | Normal | Window picker | Pick/switch to a window (nvim-window-picker) |
 
 ## Plugin-Specific Keymaps
 

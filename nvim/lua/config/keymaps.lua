@@ -21,7 +21,7 @@ map("n", "<C-e>", "ggVG", silent)
 
 -- Telescope bindings (lazy-required)
 map("n", "<leader><C-P>", tb("find_files"), { desc = "Find Files" })
-map("n", "<leader>a",     tb("buffers"),    { desc = "Buffers" })
+map("n", "<leader>fb",    tb("buffers"),    { desc = "Buffers" })
 map("n", "<leader>;",     tb("current_buffer_fuzzy_find"), { desc="Buffer Lines" })
 map("n", "<leader>.",     tb("live_grep"),  { desc = "Live Grep" })
 map("n", "<leader>o",     tb("current_buffer_tags"), { desc = "Buf Tags" })
@@ -43,7 +43,7 @@ map("n", "<leader>cd", ":ChatGPTRun docstring<CR>", { desc = "ChatGPT Docstring"
 map("n", "<leader>ct", ":ChatGPTRun tests<CR>", { desc = "ChatGPT Tests" })
 
 -- Window picker
-map("n", "-", function()
+map("n", "<leader>wp", function()
   local ok, picker = pcall(require, "window-picker")
   if ok then
     local winid = picker.pick_window({ include_current_win = false })
