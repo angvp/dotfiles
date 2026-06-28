@@ -1,66 +1,32 @@
-angvp's configuration files:
+angvp's configuration files
 ============================
 
-## 🚀 Experimental: Chezmoi Configuration
+## Quick Setup
 
-This dotfiles repository can be managed using [chezmoi](https://github.com/twpayne/chezmoi), a dotfile manager that supports templating, encryption, and cross-platform synchronization.
-
-### Quick Setup
-
-1. **Install chezmoi:**
-   ```bash
-   # macOS
-   brew install chezmoi
-   
-   # Linux
-   curl -sfL https://git.io/chezmoi | sh
-   
-   # Or download from: https://github.com/twpayne/chezmoi/releases
-   ```
-
-2. **Initialize chezmoi with this repository:**
-   ```bash
-   chezmoi init https://github.com/angvp/dotfiles.git
-   ```
-
-3. **Apply the configuration:**
-   ```bash
-   chezmoi apply
-   ```
-
-### Chezmoi Features Used
-
-- **Templates**: Configuration files use chezmoi templating for OS-specific settings
-- **Encryption**: Sensitive files (like SSH keys) can be encrypted with `chezmoi encrypt`
-- **Cross-platform**: Same dotfiles work on macOS, Linux, and other Unix systems
-- **Selective application**: Choose which configs to apply with `chezmoi apply --include=awesome`
-
-### Useful Commands
+Clone the repo and run the install script:
 
 ```bash
-# See what would be changed
-chezmoi diff
-
-# Edit a template file
-chezmoi edit ~/.zshrc
-
-# Add a new file to chezmoi
-chezmoi add ~/.newconfig
-
-# Update from remote repository
-chezmoi update
-
-# Check status
-chezmoi status
+git clone https://github.com/angvp/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+./install.sh
 ```
 
-### Manual Installation (Traditional Method)
+`install.sh` creates symlinks under `~/.config/` and `~/`, detecting the OS automatically:
+- **Linux & macOS**: shell (zsh/prezto, tmux, vim), neovim, bat, alacritty, fastfetch, lazygit, btop, starship
+- **Linux only**: hypr, waybar, walker, mako, swayosd, ghostty (Hyprland stack), scripts under `~/.local/bin/`
+- **macOS only**: ghostty (standalone config)
 
-If you prefer the traditional method or chezmoi isn't suitable for your needs, you can manually symlink or copy the configuration files.
+### Install packages (Arch Linux)
+
+```bash
+./un-omarchy/install-packages.sh
+```
+
+Requires `yay`. Installs packages from `packages-official.txt` and `packages-aur.txt`.
 
 ---
 
-Available configs:
+## Available configs
 
 **Terminal & Shell:**
 - `.zshrc` (requires [prezto](https://github.com/sorin-ionescu/prezto/))
@@ -69,6 +35,11 @@ Available configs:
 - `.banner`
 
 **Window Managers & Desktop:**
+- `un-omarchy/config/hypr/` - [Hyprland](https://hyprland.org/) window manager configuration (Linux)
+- `un-omarchy/config/waybar/` - Status bar configuration
+- `un-omarchy/config/walker/` - Application launcher configuration
+- `un-omarchy/config/mako/` - Notification daemon configuration
+- `un-omarchy/config/swayosd/` - On-screen display for volume/brightness
 - `awesome/` (4.1 and 3.5) - Complete [AwesomeWM](https://github.com/awesomeWM/awesome) configuration
   - `awesome/rc.lua` - Main configuration
   - `awesome/color.lua` - Color definitions
@@ -80,11 +51,11 @@ Available configs:
 - `.xinitrc.office` - Deprecated xinitrc of some work place specific X11 setup
 
 **Terminal Emulators:**
-- `ghostty/config` - [Ghostty](https://github.com/ghostty-org/ghostty) terminal configuration
+- `ghostty/config` - [Ghostty](https://github.com/ghostty-org/ghostty) terminal configuration (macOS)
+- `un-omarchy/config/ghostty/` - Ghostty terminal configuration (Linux/Hyprland)
 - `kitty.conf` - [Kitty](https://github.com/kovidgoyal/kitty) terminal configuration
 - `iterm2/` - [iTerm2](https://github.com/gnachman/iTerm2) configuration and profiles
 - `alacritty.toml` - [Alacritty](https://github.com/alacritty/alacritty) configuration (TOML format)
-- `alacritty.yml` - [Alacritty](https://github.com/alacritty/alacritty) configuration (YAML format)
 
 **Editors:**
 - `nvim/` - [Neovim](https://github.com/neovim/neovim) configuration ([LazyVim](https://github.com/LazyVim/LazyVim)-based)
@@ -99,12 +70,19 @@ Available configs:
 - `bat/config` - [Bat](https://github.com/sharkdp/bat) (cat alternative) configuration
 - `.tmux.conf` - [Tmux](https://github.com/tmux/tmux) configuration (2.5)
 - `.tmux.conf.local` - Local tmux overrides
+- `un-omarchy/config/btop/` - [btop](https://github.com/aristocratos/btop) resource monitor configuration
+- `un-omarchy/config/lazygit/` - [lazygit](https://github.com/jesseduffield/lazygit) terminal UI for git
+- `un-omarchy/config/fastfetch/` - [fastfetch](https://github.com/fastfetch-cli/fastfetch) system info configuration
+- `un-omarchy/config/starship.toml` - [Starship](https://starship.rs/) prompt configuration
 - `.conkyrc` - [Conky](https://github.com/brndnmtthws/conky) desktop widget configuration
 - `.conkyrc.desktop` - Desktop-specific conky config
 - `conky-scripts/` - Custom conky Lua scripts
 - `.makepkg.conf` - [Arch Linux](https://github.com/archlinux) package building configuration
 - `.dircolors` - Directory colors configuration
 - `Brewfile` - [Homebrew](https://github.com/Homebrew/brew) package list
+
+**Scripts (`bin/`):**
+- System scripts for Hyprland, audio, brightness, screenshots, weather, and more (Linux only)
 
 **Display & Colors:**
 - `.Xresources` - X11 resource definitions
@@ -125,7 +103,7 @@ Available configs:
   - `env/archlinux.zsh` - Arch Linux environment setup
   - `env/colors.sh` - Color definitions
 
-** VIM Templates (deprecated):**
+**VIM Templates (deprecated):**
 - `vimtpl/` - Vim template files
   - `vimtpl/template.test.js` - JavaScript test template
 
@@ -134,14 +112,16 @@ Available configs:
 - `.gitignore` - Git ignore patterns
 - `.gitmodules` - Git submodules configuration
 
-Deprecated config files (can be useful for some hints):
+---
+
+## Deprecated config files (can be useful for some hints)
 
 **Window Managers:**
 - `subtle.rb.desktop` - [Subtle](https://github.com/subtle-h/subtle) window manager (desktop)
 - `subtle.rb.laptop` - [Subtle](https://github.com/subtle-h/subtle) window manager (laptop)
 
 **Shell & Terminal:**
-- `bash` (`.bashrc` still present but deprecated) - [Bash](https://github.com/bminor/bash)
+- `.bashrc` (still present but deprecated) - [Bash](https://github.com/bminor/bash)
 - `.screenrc` - [GNU Screen](https://github.com/GNU-Screen/screen) configuration
 - `oh-my-zsh/themes/angvp.zsh-theme` - Custom [Oh My Zsh](https://github.com/ohmyzsh/ohmyzsh) theme
 
@@ -150,4 +130,4 @@ Deprecated config files (can be useful for some hints):
 
 **Legacy Files:**
 - `a.cfg` - Quake3 Arena Configuration File (yes this is probably my oldest file here)
-- `awesome-copycats/` - [AwesomeWM copycat themes](https://github.com/lcpz/awesome-copycats) (empty directory) 
+- `awesome-copycats/` - [AwesomeWM copycat themes](https://github.com/lcpz/awesome-copycats) (empty directory)
